@@ -1,0 +1,3 @@
+*.js linguist-language=React
+*.json linguist-language=JSON
+*.css linguist-language=CSS
