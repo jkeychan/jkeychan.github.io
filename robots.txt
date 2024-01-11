@@ -1,9 +1,3 @@
-User-agent: BaiduSpider
-Disallow: /
-
-User-agent: YandexBot
-Disallow: /
-
+# https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow: 
-Sitemap: https://jeff.bollingerfamily.net/sitemap.xml
+Disallow:
