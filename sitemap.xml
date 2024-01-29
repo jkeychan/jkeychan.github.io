@@ -8,6 +8,14 @@
       <priority>1.0</priority>
    </url>
 
+   <!-- Homepage -->
+   <url>
+      <loc>https://www.jeff-bollinger.com/</loc>
+      <lastmod>2023-09-18</lastmod>
+      <changefreq>yearly</changefreq>
+      <priority>1.0</priority>
+   </url>
+
    <!-- Projects page -->
    <url>
       <loc>https://jeff-bollinger.com/project</loc>
