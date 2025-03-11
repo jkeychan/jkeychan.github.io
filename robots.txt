@@ -1,3 +1,10 @@
-# https://www.robotstxt.org/robotstxt.html
+User-agent: BaiduSpider
+Disallow: /
+
+User-agent: YandexBot
+Disallow: /
+
 User-agent: *
-Disallow:
+Disallow: /static/media/*
+Disallow: /static/js/*
+Sitemap: https://www.jeff-bollinger.com/sitemap.xml
