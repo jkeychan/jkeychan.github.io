@@ -100,21 +100,57 @@ const publications = [
 ];
 
 const additionalLinks = [
-  { label: "International Women in Engineering Day LinkedIn Live", href: "https://www.inwed.org.uk/activity/voices-in-infosec-linkedin-live-event/" },
-  { label: "Cisco Security Blogs by Jeff Bollinger", href: "https://blogs.cisco.com/author/jeffbollinger" },
-  { label: "Cisco TAC Security Podcast: Web Security with Jeff Bollinger", href: "https://podcasts.apple.com/us/podcast/how-cisco-uses-web-security-appliance-to-protect-its/id343898585?i=1000370866442" },
-  { label: "ZDNet article: LinkedIn has massively cut time to detect threats", href: "https://www.zdnet.com/article/linkedin-has-massively-cut-the-time-it-takes-to-detect-security-threats-heres-how-it-did-it/" },
-  { label: "RSA: Crafting the Infosec Playbook Review", href: "https://www.rsaconference.com/library/blog/crafting-the-infosec-playbook-security-monitoring-and-incident-response-master-pl" },
-  { label: "SIEM Books on Amazon (Solutions Review)", href: "https://solutionsreview.com/security-information-event-management/the-6-highest-rated-siem-books-available-on-amazon/" },
-  { label: "Interview: Confirmation bias in incident response (The Register)", href: "https://www.theregister.com/2016/07/27/cisco_warns_responders_drop_ego_assimilate_with_the_ir_playbook/" },
-  { label: "ACM SIGCAS: Responsible Disclosure", href: "https://dl.acm.org/doi/abs/10.1145/1111635.1111636" },
-  { label: "Splunk: Book review of Crafting the Infosec Playbook", href: "https://www.splunk.com/en_us/blog/learn/cybersecurity-infosec-books.html" },
-  { label: "Cisco Cybersecurity Series: Threat Hunting (quoted)", href: "https://www.cisco.com/c/dam/global/en_uk/products/collateral/cybersecurity-series-2019-threat-hunting.pdf" },
-  { label: "Cisco IT Case Study: Web Security", href: "https://www.cisco.com/c/dam/en_us/about/ciscoitatwork/borderless_networks/docs/cisco_it_case_study_wsa.pdf" },
-  { label: "Cisco Datacenter Case Study: Network IPS", href: "https://www.cisco.com/c/dam/en_us/about/ciscoitatwork/downloads/ciscoitatwork/pdf/CSIRT_Network-Based_Intrusion_Prevention_System_Case_Study.pdf" },
-  { label: "Article on Jeff Bollinger from UNC SILS", href: "https://sils.unc.edu/news/2015/bollinger-infosec-book" },
-  { label: "O'Reilly Author Page for Jeff Bollinger", href: "https://www.oreilly.com/pub/au/6508" },
-  { label: "Crafting the Infosec Playbook on Awesome Incident Response", href: "https://github.com/meirwah/awesome-incident-response" },
+  {
+    title: "International Women in Engineering Day LinkedIn Live",
+    href: "https://www.inwed.org.uk/activity/voices-in-infosec-linkedin-live-event/",
+  },
+  {
+    title: "Cisco Security Blogs by Jeff Bollinger",
+    href: "https://blogs.cisco.com/author/jeffbollinger",
+  },
+  {
+    title: "Cisco TAC Security Podcast: Web Security with Jeff Bollinger",
+    href: "https://podcasts.apple.com/us/podcast/how-cisco-uses-web-security-appliance-to-protect-its/id343898585?i=1000370866442",
+  },
+  {
+    title: "ZDNet article: LinkedIn has massively cut time to detect threats",
+    href: "https://www.zdnet.com/article/linkedin-has-massively-cut-the-time-it-takes-to-detect-security-threats-heres-how-it-did-it/",
+  },
+  {
+    title: "RSA: Crafting the Infosec Playbook Review",
+    href: "https://www.rsaconference.com/library/blog/crafting-the-infosec-playbook-security-monitoring-and-incident-response-master-pl",
+  },
+  {
+    title: "SIEM Books on Amazon (Solutions Review)",
+    href: "https://solutionsreview.com/security-information-event-management/the-6-highest-rated-siem-books-available-on-amazon/",
+  },
+  {
+    title: "Interview: Confirmation bias in incident response (The Register)",
+    href: "https://www.theregister.com/2016/07/27/cisco_warns_responders_drop_ego_assimilate_with_the_ir_playbook/",
+  },
+  { title: "ACM SIGCAS: Responsible Disclosure", href: "https://dl.acm.org/doi/abs/10.1145/1111635.1111636" },
+  {
+    title: "Splunk: Book review of Crafting the Infosec Playbook",
+    href: "https://www.splunk.com/en_us/blog/learn/cybersecurity-infosec-books.html",
+  },
+  {
+    title: "Cisco Cybersecurity Series: Threat Hunting (quoted)",
+    href: "https://www.cisco.com/c/dam/global/en_uk/products/collateral/cybersecurity-series-2019-threat-hunting.pdf",
+  },
+  {
+    title: "Cisco IT Case Study: Web Security",
+    href: "https://www.cisco.com/c/dam/en_us/about/ciscoitatwork/borderless_networks/docs/cisco_it_case_study_wsa.pdf",
+  },
+  {
+    title: "Cisco Datacenter Case Study: Network IPS",
+    href: "https://www.cisco.com/c/dam/en_us/about/ciscoitatwork/downloads/ciscoitatwork/pdf/CSIRT_Network-Based_Intrusion_Prevention_System_Case_Study.pdf",
+  },
+  { title: "Article on Jeff Bollinger from UNC SILS", href: "https://sils.unc.edu/news/2015/bollinger-infosec-book" },
+  { title: "O'Reilly Author Page for Jeff Bollinger", href: "https://www.oreilly.com/pub/au/6508" },
+  {
+    title: "Crafting the Infosec Playbook on Awesome Incident Response",
+    href: "https://github.com/meirwah/awesome-incident-response",
+  },
 ];
 
 export default function ProjectPage() {
@@ -133,15 +169,19 @@ export default function ProjectPage() {
 
       <section className="mt-12">
         <h2 className="text-2xl font-semibold text-purple-400 mb-4">Additional Links</h2>
-        <ul className="list-disc pl-6 space-y-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {additionalLinks.map((l) => (
-            <li key={l.href}>
-              <a className="underline hover:opacity-80" href={l.href} target="_blank" rel="noopener noreferrer">
-                {l.label}
-              </a>
-            </li>
+            <ProjectCard
+              key={l.href}
+              imageSrc="/static/media/pre.d4812f51c8c80976eaab.svg"
+              title={l.title}
+              description=""
+              linkHref={l.href}
+              linkLabel="Link"
+              imageFit="contain"
+            />
           ))}
-        </ul>
+        </div>
       </section>
     </main>
   );
