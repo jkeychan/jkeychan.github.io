@@ -170,17 +170,20 @@ export default function ProjectPage() {
       <section className="mt-12">
         <h2 className="text-2xl font-semibold text-purple-400 mb-4">Additional Links</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {additionalLinks.map((l) => (
-            <ProjectCard
-              key={l.href}
-              imageSrc="/static/media/pre.d4812f51c8c80976eaab.svg"
-              title={l.title}
-              description=""
-              linkHref={l.href}
-              linkLabel="Link"
-              imageFit="contain"
-            />
-          ))}
+          {additionalLinks.map((l) => {
+            const slug = l.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+            return (
+              <ProjectCard
+                key={l.href}
+                imageSrc={`/placeholders/${slug}.svg`}
+                title={l.title}
+                description=""
+                linkHref={l.href}
+                linkLabel="Link"
+                imageFit="contain"
+              />
+            );
+          })}
         </div>
       </section>
     </main>
