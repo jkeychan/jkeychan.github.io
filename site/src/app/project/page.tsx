@@ -151,6 +151,19 @@ const additionalLinks = [
     title: "Crafting the Infosec Playbook on Awesome Incident Response",
     href: "https://github.com/meirwah/awesome-incident-response",
   },
+  // Newly requested YouTube links
+  {
+    title: "YouTube: Video zfIAifhRMto",
+    href: "https://www.youtube.com/watch?v=zfIAifhRMto&t=286s&pp=ygUOamVmZiBib2xsaW5nZXI%3D",
+  },
+  {
+    title: "YouTube: Video Bkbgzz4L8J4",
+    href: "https://www.youtube.com/watch?v=Bkbgzz4L8J4&t=9s&pp=ygUOamVmZiBib2xsaW5nZXI%3D",
+  },
+  {
+    title: "YouTube: Video 1QfJwvNb_Uk",
+    href: "https://www.youtube.com/watch?v=1QfJwvNb_Uk&pp=ygUOamVmZiBib2xsaW5nZXI%3D",
+  },
 ];
 
 export default function ProjectPage() {
@@ -170,7 +183,11 @@ export default function ProjectPage() {
       <section className="mt-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {additionalLinks.map((l) => {
-            const slug = l.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+            const slug = l.title
+              .toLowerCase()
+              .replace(/[^a-z0-9]+/g, "-")
+              .replace(/(^-|-$)/g, "")
+              .replace(/_/g, "-");
             return (
               <ProjectCard
                 key={l.href}
