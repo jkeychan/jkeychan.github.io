@@ -9,8 +9,8 @@ type ProjectCardProps = {
 export function ProjectCard({ imageSrc, title, description, linkHref, linkLabel = "Link" }: ProjectCardProps) {
   return (
     <div className="bg-white/5 border border-white/10 rounded-lg overflow-hidden shadow-md flex flex-col h-full">
-      <div className="w-full h-56 bg-black/20 flex items-center justify-center overflow-hidden">
-        <img src={imageSrc} alt={title} className="max-h-full w-full object-contain" />
+      <div className="w-full h-56 md:h-64 bg-black/20 overflow-hidden">
+        <img src={imageSrc} alt={title} className="w-full h-full object-cover object-center" />
       </div>
       <div className="p-4 flex-1 flex flex-col">
         <h3 className="text-white text-lg font-semibold mb-2">{title}</h3>
