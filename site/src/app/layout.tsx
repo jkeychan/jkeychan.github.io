@@ -68,7 +68,7 @@ export default function RootLayout({
           </div>
         </nav>
         <div className="pt-16">{children}</div>
-        <footer className="mt-16 border-t border-white/10 text-white/80">
+        <footer className="mt-8 border-t border-white/10 text-white/80">
           <div className="mx-auto max-w-6xl px-4 py-8 flex items-center justify-end">
             <div className="flex gap-4">
               <a href="https://www.linkedin.com/in/jeffb0llinger" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">LinkedIn</a>

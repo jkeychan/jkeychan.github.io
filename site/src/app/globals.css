@@ -23,6 +23,7 @@ body {
   background: linear-gradient(270deg, #1b1429, #140f23);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  overflow-y: auto;
 }
 
 @keyframes twinkle {
