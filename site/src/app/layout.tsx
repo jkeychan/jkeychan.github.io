@@ -29,6 +29,36 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "http://schema.org",
+              "@type": "Person",
+              name: "Jeff Bollinger",
+              url: "https://www.jeff-bollinger.com",
+              jobTitle: "Director, Incident Response and Detection Engineering",
+              description:
+                "Expert in cybersecurity with over 20 years of experience in incident response, detection engineering, and executive leadership.",
+              affiliation: [{ "@type": "Organization", name: "LinkedIn" }, { "@type": "Organization", name: "Cisco" }],
+              knowsAbout: [
+                "Cybersecurity",
+                "Computer Security",
+                "Penetration Testing",
+                "CSIRT",
+                "Incident Response",
+                "Director",
+              ],
+              contactPoint: [
+                {
+                  "@type": "ContactPoint",
+                  contactType: "professional",
+                  url: "https://www.linkedin.com/in/jeffb0llinger/",
+                },
+              ],
+            }),
+          }}
+        />
         <nav className="fixed top-0 left-0 right-0 z-10 backdrop-blur bg-black/10 border-b border-white/10">
           <div className="mx-auto max-w-6xl px-4 py-3 flex items-center gap-6">
             <Link href="/" className="text-white hover:opacity-80">Home</Link>
