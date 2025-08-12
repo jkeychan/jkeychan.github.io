@@ -24,3 +24,37 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
+
+@keyframes twinkle {
+  from { opacity: 0.2; }
+  50% { opacity: 1; }
+  to { opacity: 0.2; }
+}
+
+.star-field {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.star-field::before,
+.star-field::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.6), transparent 60%),
+    radial-gradient(1.5px 1.5px at 70% 40%, rgba(255,255,255,0.5), transparent 60%),
+    radial-gradient(1.5px 1.5px at 40% 80%, rgba(255,255,255,0.4), transparent 60%),
+    radial-gradient(2px 2px at 80% 20%, rgba(255,255,255,0.6), transparent 60%),
+    radial-gradient(1px 1px at 10% 70%, rgba(255,255,255,0.5), transparent 60%);
+  background-repeat: no-repeat;
+  animation: twinkle 6s infinite ease-in-out;
+}
+
+.star-field::after {
+  transform: scale(1.2);
+  filter: blur(0.5px);
+  animation-duration: 9s;
+}

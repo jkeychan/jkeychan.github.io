@@ -29,6 +29,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <div className="star-field" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
