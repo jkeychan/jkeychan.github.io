@@ -11,8 +11,9 @@ export default function Home() {
             className="text-purple-300 text-xl md:text-2xl mb-6 block"
             phrases={[
               "Infosec Professional for over 20 years",
-              "Director, Incident Response & Detection Engineering",
-              "Threat Detection · Security Architecture · Leadership",
+              "Threat Detection and Incident Response",
+              "Detection Engineering and Security Architecture",
+              "Leadership, mentoring, and building strong teams",
             ]}
           />
           <div className="flex flex-wrap gap-3">

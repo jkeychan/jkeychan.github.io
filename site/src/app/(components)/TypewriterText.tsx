@@ -75,10 +75,13 @@ export function TypewriterText({
     setPhase("typing");
   }, [index]);
 
+  const showCaret = phase !== "holding"; // hide caret when a phrase is fully shown
   return (
     <span className={className}>
       {display}
-      <span className="ml-1 inline-block w-[1ch] animate-pulse">|</span>
+      {showCaret ? (
+        <span aria-hidden className="ml-1 inline-block w-[1ch] animate-pulse">|</span>
+      ) : null}
     </span>
   );
 }
