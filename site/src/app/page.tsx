@@ -5,7 +5,7 @@ export default function Home() {
       <section className="mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
         <div>
           <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-2">
-            Hello I'm <span className="text-purple-400">Jeff Bollinger</span>
+            Hello I&apos;m <span className="text-purple-400">Jeff Bollinger</span>
           </h1>
           <TypewriterText
             className="text-purple-300 text-lg md:text-2xl mb-4 block"

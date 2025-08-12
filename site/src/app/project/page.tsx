@@ -67,7 +67,7 @@ const publications = [
   },
   {
     imageSrc: "/static/media/bonzi.7015abbedc1e2d5d322f.png",
-    title: "Ad-Weary Or, “What Could Possibly Go Wrong?”",
+    title: "Ad-Weary Or, \"What Could Possibly Go Wrong?\"",
     description:
       "Presentation at Security B-Sides Asheville and LACNIC/LACNOG 26 on ad-ware threats in enterprise networks and mitigation lessons.",
     linkHref: "https://www.youtube.com/watch?v=zfIAifhRMto",
@@ -164,7 +164,7 @@ const additionalLinks = [
   },
   {
     title:
-      "LinkedIn’s Jeff Bollinger on the Role of Human Intuition in Addressing Security Challenges.",
+      "LinkedIn&apos;s Jeff Bollinger on the Role of Human Intuition in Addressing Security Challenges.",
     href: "https://www.youtube.com/watch?v=1QfJwvNb_Uk",
     imageSrc: "/placeholders/yt-1QfJwvNb_Uk.svg",
   },
