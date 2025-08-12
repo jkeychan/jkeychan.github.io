@@ -47,6 +47,7 @@ const publications = [
       "Presentation on enabling readiness and improving capabilities with evolving threat profiles and new skillsets for incident response teams.",
     linkHref:
       "https://www.first.org/resources/papers/conf2019/1100-CSIRT-Schiltron-Final.pdf",
+    imageFit: "contain" as const,
   },
   {
     imageSrc: "/static/media/hacker.a0a5977e419ef5ecbc86.png",
