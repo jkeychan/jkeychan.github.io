@@ -15,6 +15,7 @@ const publications = [
     description:
       "Co-authored this O'Reilly book on building an incident response program and creating the process, philosophy, and architecture for implementing an information security monitoring program. The book was also translated into Japanese.",
     linkHref: "https://www.infosecplaybook.com/",
+    imageFit: "contain" as const,
   },
   {
     imageSrc: "/static/media/broken-disk.5b8ebec8d7f8f022e876.png",
