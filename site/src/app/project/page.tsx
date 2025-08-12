@@ -155,18 +155,18 @@ const additionalLinks = [
   {
     title: "Ad Weary - BSides Asheville Information Security Conference",
     href: "https://youtu.be/zfIAifhRMto?si=DFar-Sm7SSGcjQxv",
-    imageSrc: "/placeholders/yt-zfIAifhRMto.jpg",
+    imageSrc: "/placeholders/yt-zfIAifhRMto.svg",
   },
   {
     title: "Breaking into Cybersecurity with Jeff Bollinger - Incident Response",
     href: "https://www.youtube.com/live/Bkbgzz4L8J4?si=mKI1oR0ZdrgR4-Jb",
-    imageSrc: "/placeholders/yt-Bkbgzz4L8J4.jpg",
+    imageSrc: "/placeholders/yt-Bkbgzz4L8J4.svg",
   },
   {
     title:
       "LinkedIn’s Jeff Bollinger on the Role of Human Intuition in Addressing Security Challenges.",
     href: "https://www.youtube.com/watch?v=1QfJwvNb_Uk",
-    imageSrc: "/placeholders/yt-1QfJwvNb_Uk.jpg",
+    imageSrc: "/placeholders/yt-1QfJwvNb_Uk.svg",
   },
 ];
 
