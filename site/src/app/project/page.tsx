@@ -176,7 +176,7 @@ export default function ProjectPage() {
       <h1 className="text-3xl font-bold mb-2">
         <span className="text-purple-400">Publications and Conferences</span>
       </h1>
-      <p className="text-white/80 mb-6">This is a non-exhaustive list of blogs, articles, conferences hosted, and other publications I've created or co-created.</p>
+      <p className="text-white/80 mb-6">This is a non-exhaustive list of blogs, articles, conferences hosted, and other publications I&apos;ve created or co-created.</p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {publications.map((p) => (
