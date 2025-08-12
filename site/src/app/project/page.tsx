@@ -153,16 +153,20 @@ const additionalLinks = [
   },
   // Newly requested YouTube links
   {
-    title: "YouTube: Video zfIAifhRMto",
-    href: "https://www.youtube.com/watch?v=zfIAifhRMto&t=286s&pp=ygUOamVmZiBib2xsaW5nZXI%3D",
+    title: "Ad Weary - BSides Asheville Information Security Conference",
+    href: "https://youtu.be/zfIAifhRMto?si=DFar-Sm7SSGcjQxv",
+    imageSrc: "/placeholders/yt-zfIAifhRMto.jpg",
   },
   {
-    title: "YouTube: Video Bkbgzz4L8J4",
-    href: "https://www.youtube.com/watch?v=Bkbgzz4L8J4&t=9s&pp=ygUOamVmZiBib2xsaW5nZXI%3D",
+    title: "Breaking into Cybersecurity with Jeff Bollinger - Incident Response",
+    href: "https://www.youtube.com/live/Bkbgzz4L8J4?si=mKI1oR0ZdrgR4-Jb",
+    imageSrc: "/placeholders/yt-Bkbgzz4L8J4.jpg",
   },
   {
-    title: "YouTube: Video 1QfJwvNb_Uk",
-    href: "https://www.youtube.com/watch?v=1QfJwvNb_Uk&pp=ygUOamVmZiBib2xsaW5nZXI%3D",
+    title:
+      "LinkedIn’s Jeff Bollinger on the Role of Human Intuition in Addressing Security Challenges.",
+    href: "https://www.youtube.com/watch?v=1QfJwvNb_Uk",
+    imageSrc: "/placeholders/yt-1QfJwvNb_Uk.jpg",
   },
 ];
 
@@ -191,12 +195,12 @@ export default function ProjectPage() {
             return (
               <ProjectCard
                 key={l.href}
-                imageSrc={`/placeholders/${slug}.svg`}
+                imageSrc={l.imageSrc ?? `/placeholders/${slug}.svg`}
                 title={l.title}
                 description=""
                 linkHref={l.href}
                 linkLabel="Link"
-                imageFit="contain"
+                imageFit={l.imageSrc ? "cover" : "contain"}
               />
             );
           })}
