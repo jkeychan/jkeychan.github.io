@@ -133,7 +133,7 @@ export default function PublicationsPage() {
     const observer = new IntersectionObserver((entries) => {
       const first = entries[0];
       if (first.isIntersecting) {
-        setVisibleCount((prev) => Math.min(prev + 12, publications.length));
+        setVisibleCount((prev) => Math.min(prev + 12, cards.length));
       }
     }, { rootMargin: "1000px" });
     observer.observe(el);
@@ -165,7 +165,18 @@ export default function PublicationsPage() {
         ))}
       </div>
 
-      <div ref={sentinelRef} className="h-10 mt-8" />
+      {visibleCount < cards.length && (
+        <div className="mt-8 flex justify-center">
+          <button
+            onClick={() => setVisibleCount((prev) => Math.min(prev + 12, cards.length))}
+            className="px-4 py-2 rounded bg-purple-600 hover:bg-purple-500 text-white text-sm font-medium"
+          >
+            Load more
+          </button>
+        </div>
+      )}
+
+      <div ref={sentinelRef} className="h-10" />
     </main>
   );
 }
