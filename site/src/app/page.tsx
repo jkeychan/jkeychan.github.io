@@ -79,10 +79,10 @@ export default function Home() {
             imageFit="contain"
           />
           <ProjectCard
-            imageSrc="/static/media/broken-disk.5b8ebec8d7f8f022e876.png"
-            title="Disk Image Deception"
-            description="Cisco Security blog post on a malspam campaign misusing .IMG files and key lessons learned."
-            linkHref="https://blogs.cisco.com/security/disk-image-deception-incident-response"
+            imageSrc="/static/media/moonbase.498c0f55cde35211bd65.png"
+            title="(Re)building Threat Detection and Incident Response at LinkedIn"
+            description="How LinkedIn rebuilt its security operations platform and teams, scaling protection for employees and members."
+            linkHref="https://engineering.linkedin.com/blog/2022/-re-building-threat-detection-and-incident-response-at-linkedin"
           />
           <ProjectCard
             imageSrc="/static/media/cloud.e6bacd0aae8c329e0edd.png"
