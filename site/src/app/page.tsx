@@ -11,10 +11,10 @@ export default function Home() {
           <TypewriterText
             className="text-purple-300 text-lg md:text-2xl mb-3 block"
             phrases={[
-              "Infosec Professional for over 20 years",
-              "Threat Detection and Incident Response",
-              "Detection Engineering and Security Architecture",
-              "Leadership, mentoring, and building strong teams",
+              "Infosec Professional | 25 years",
+              "Threat Detection | Incident Response",
+              "Detection Engineering | Security Architecture",
+              "Executive Leadership | Mentoring, Team Building",
             ]}
           />
           <div className="flex flex-wrap gap-3 mt-2">
@@ -43,9 +43,12 @@ export default function Home() {
             <div className="rounded-lg border border-white/10 bg-white/5 p-4">
               <h2 className="text-white/90 font-semibold mb-2">What I do</h2>
               <ul className="list-disc pl-5 text-white/80 space-y-1 text-sm">
-                <li>Build and lead detection engineering and incident response programs</li>
-                <li>Design security architecture and observability for large enterprises</li>
+                <li>Build, modernize, and lead detection engineering, incident response, and insider threat programs</li>
+                <li>Design reliable security architecture and observability for large enterprises</li>
                 <li>Coach and mentor high-performing security teams</li>
+                <li>Build and lead security operations centers</li>
+                <li>Lead security architecture and design</li>
+                <li>Lead security operations and incident response</li>
               </ul>
             </div>
             <div className="rounded-lg border border-white/10 bg-white/5 p-4">
@@ -55,6 +58,9 @@ export default function Home() {
                 <span className="px-2 py-1 rounded bg-purple-600/30 border border-purple-300/20">Incident Response</span>
                 <span className="px-2 py-1 rounded bg-purple-600/30 border border-purple-300/20">Detection Engineering</span>
                 <span className="px-2 py-1 rounded bg-purple-600/30 border border-purple-300/20">Security Architecture</span>
+                <span className="px-2 py-1 rounded bg-purple-600/30 border border-purple-300/20">Executive Leadership</span>
+                <span className="px-2 py-1 rounded bg-purple-600/30 border border-purple-300/20">Security Operations</span>
+                <span className="px-2 py-1 rounded bg-purple-600/30 border border-purple-300/20">Security Engineering</span>
               </div>
             </div>
           </div>
