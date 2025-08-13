@@ -67,7 +67,7 @@ const publications = [
   },
   {
     imageSrc: "/static/media/bonzi.7015abbedc1e2d5d322f.png",
-    title: "Ad-Weary Or, “What Could Possibly Go Wrong?”",
+    title: "Ad-Weary Or, \"What Could Possibly Go Wrong?\"",
     description:
       "Presentation at Security B-Sides Asheville and LACNIC/LACNOG 26 on ad-ware threats in enterprise networks and mitigation lessons.",
     linkHref: "https://www.youtube.com/watch?v=zfIAifhRMto",
@@ -164,7 +164,7 @@ const additionalLinks = [
   },
   {
     title:
-      "LinkedIn’s Jeff Bollinger on the Role of Human Intuition in Addressing Security Challenges.",
+      "LinkedIn&apos;s Jeff Bollinger on the Role of Human Intuition in Addressing Security Challenges.",
     href: "https://www.youtube.com/watch?v=1QfJwvNb_Uk",
     imageSrc: "/placeholders/yt-1QfJwvNb_Uk.svg",
   },
@@ -176,7 +176,7 @@ export default function ProjectPage() {
       <h1 className="text-3xl font-bold mb-2">
         <span className="text-purple-400">Publications and Conferences</span>
       </h1>
-      <p className="text-white/80 mb-6">This is a non-exhaustive list of blogs, articles, conferences hosted, and other publications I've created or co-created.</p>
+      <p className="text-white/80 mb-6">This is a non-exhaustive list of blogs, articles, conferences hosted, and other publications I&apos;ve created or co-created.</p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {publications.map((p) => (
