@@ -17,6 +17,8 @@ export const metadata: Metadata = {
   title: "Jeff Bollinger | Resume, CV, and Publications",
   description:
     "Jeff Bollinger's official resume website featuring comprehensive details about his expertise in cybersecurity, projects, and publications.",
+  metadataBase: new URL("https://www.jeff-bollinger.com"),
+  alternates: { canonical: "/" },
 };
 
 export default function RootLayout({
