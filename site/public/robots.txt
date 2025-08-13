@@ -1,10 +1,3 @@
-User-agent: BaiduSpider
-Disallow: /
-
-User-agent: YandexBot
-Disallow: /
-
 User-agent: *
-Disallow: /static/media/*
-Disallow: /static/js/*
+Allow: /
 Sitemap: https://www.jeff-bollinger.com/sitemap.xml

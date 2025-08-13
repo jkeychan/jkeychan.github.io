@@ -5,6 +5,6 @@ User-agent: YandexBot
 Disallow: /
 
 User-agent: *
-Disallow: /static/media/*
-Disallow: /static/js/*
+Allow: /
+Disallow:
 Sitemap: https://www.jeff-bollinger.com/sitemap.xml
