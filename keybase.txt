@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/jeffbollinger
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://www.jeff-bollinger.com
+  * I am jeffbollinger (https://keybase.io/jeffbollinger) on keybase.
+  * I have a public key ASAUHA9D7c-n6NVJsvKItZNUZKGVLgV9A9O7r9XU9MwwkAo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01010bf46a4aa949043301143bfdf08a485f638299d61aa098e3c048b5d9e916f0c70a",
+      "host": "keybase.io",
+      "kid": "0120141c0f43edcfa7e8d549b2f288b5935464a1952e057d03d3bbafd5d4f4cc30900a",
+      "uid": "218e85ea5bc21b0bdf375a3f8459c219",
+      "username": "jeffbollinger"
+    },
+    "merkle_root": {
+      "ctime": 1704941282,
+      "hash": "7af2fe257489f0eddac49e2015d2f86ea676ac25bae0b88a21dd7ef0dcd03096d217e7b02783fd1b1761107f60a176dc7a0b5d3286b67480bcc8ef626aafe0fd",
+      "hash_meta": "cdccf198f278da533a25237d8a100580187ece3f6d54ac2f9156593b208defd0",
+      "seqno": 25334255
+    },
+    "service": {
+      "entropy": "V4Y0ztRwPXj/OuRwYe7eovrt",
+      "hostname": "www.jeff-bollinger.com",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "6.2.5"
+  },
+  "ctime": 1704941294,
+  "expire_in": 504576000,
+  "prev": "265b656e74ccea8eaa3ed8098bc3be60220781968c673416e91ebf8ce7e2dc09",
+  "seqno": 48,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgFBwPQ+3Pp+jVSbLyiLWTVGShlS4FfQPTu6/V1PTMMJAKp3BheWxvYWTESpcCMMQgJltlbnTM6o6qPtgJi8O+YCIHgZaMZzQW6R6/jOfi3AnEIIFpdeEISp7gh6ywyfuLfA/m9aooWWqWx+J/aq+GVWTzAgHCo3NpZ8RAOJFcMBWGYIIol28ZHlm+Jto/nWGb2TZRgTstE/cr/6U0Mw/gW6ve5yGNc4JbxoiJGgYOpK/f6xjT5tXd7RlSBahzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIODIddPulaCaVWaDx6/jhnHj15janko+r+aslzuRwgVmo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/jeffbollinger
+
+==================================================================
