@@ -104,7 +104,7 @@ const publications = [
 // No additionalLinks section anymore; all items are cards in `publications`.
 
 export default function PublicationsPage() {
-  const [visibleCount, setVisibleCount] = useState(10);
+  const [visibleCount, setVisibleCount] = useState(12);
   const sentinelRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -113,14 +113,14 @@ export default function PublicationsPage() {
     const observer = new IntersectionObserver((entries) => {
       const first = entries[0];
       if (first.isIntersecting) {
-        setVisibleCount((prev) => Math.min(prev + 10, publications.length));
+        setVisibleCount((prev) => Math.min(prev + 12, publications.length));
       }
-    }, { rootMargin: "200px" });
+    }, { rootMargin: "1000px" });
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
-  const visibleItems = publications.slice(0, visibleCount);
+  const visibleItems = publications.slice(0, Math.min(visibleCount, publications.length));
 
   return (
     <main className="min-h-screen p-8 text-white">
@@ -135,9 +135,7 @@ export default function PublicationsPage() {
         ))}
       </div>
 
-      {visibleCount < publications.length && (
-        <div ref={sentinelRef} className="h-10 mt-8" />
-      )}
+      <div ref={sentinelRef} className="h-10 mt-8" />
     </main>
   );
 }
