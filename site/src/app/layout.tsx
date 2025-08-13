@@ -20,16 +20,28 @@ export const metadata: Metadata = {
     template: "%s | Jeff Bollinger",
   },
   description:
-    "Jeff Bollinger's official resume website featuring comprehensive details about his expertise in cybersecurity, projects, and publications.",
+    "Jeff Bollinger's official resume website featuring comprehensive details about his expertise in cybersecurity, executive leadership, security engineering, and publications.",
   alternates: { canonical: "/" },
   keywords: [
     "Jeff Bollinger",
+    "Jeff Bollinger Resume",
+    "Jeff Bollinger CV",
+    "Jeff Bollinger Publications",
+    "Jeff Bollinger Security",
+    "Jeff Bollinger Security Engineering",
+    "Jeff Bollinger Security Operations",
     "Jeffrey Bollinger",
+    "executive leadership",
     "cybersecurity",
     "incident response",
     "detection engineering",
     "security architecture",
-    "executive leadership",
+    "security operations",
+    "security design",
+    "security engineering",
+    "security",
+    "security consulting",
+    "security services",
   ],
   authors: [{ name: "Jeff Bollinger", url: "https://www.linkedin.com/in/jeffb0llinger/" }],
   creator: "Jeff Bollinger",
@@ -43,10 +55,10 @@ export const metadata: Metadata = {
     siteName: "Jeff Bollinger",
     images: [
       {
-        url: "https://www.jeff-bollinger.com/static/media/moonbase.498c0f55cde35211bd65.png",
+        url: "https://www.jeff-bollinger.com/og-card.svg",
         width: 1200,
         height: 630,
-        alt: "Jeff Bollinger Portfolio",
+        alt: "Jeff Bollinger | Cybersecurity Leader",
       },
     ],
   },
@@ -54,9 +66,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Jeff Bollinger | Resume, CV, and Publications",
     description:
-      "Jeff Bollinger's official resume website featuring comprehensive details about his expertise in cybersecurity, projects, and publications.",
+      "Jeff Bollinger's official resume website featuring comprehensive details about his expertise in cybersecurity, executive leadership, security engineering, and publications.",
     images: [
-      "https://www.jeff-bollinger.com/static/media/moonbase.498c0f55cde35211bd65.png",
+      "https://www.jeff-bollinger.com/og-card.svg",
     ],
   },
 };
@@ -82,14 +94,23 @@ export default function RootLayout({
               url: "https://www.jeff-bollinger.com",
               jobTitle: "Director, Incident Response and Detection Engineering",
               description:
-                "Expert in cybersecurity with over 20 years of experience in incident response, detection engineering, and executive leadership.",
+                "Expert in cybersecurity with over 25 years of experience in incident response, detection engineering, and executive leadership.",
               affiliation: [
                 { "@type": "Organization", name: "LinkedIn" },
-                { "@type": "Organization", name: "Cisco" }
+                { "@type": "Organization", name: "Cisco" },
+                { "@type": "Organization", name: "University of North Carolina at Chapel Hill" }
               ],
               knowsAbout: [
                 "Cybersecurity",
                 "Computer Security",
+                "Executive Leadership",
+                "Security Engineering",
+                "Security Operations",
+                "Security Architecture",
+                "Security Design",
+                "Security Engineering",
+                "Security",
+                "Security Consulting",
                 "Penetration Testing",
                 "CSIRT",
                 "Incident Response",

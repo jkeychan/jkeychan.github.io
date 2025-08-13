@@ -10,6 +10,8 @@ export type TypewriterTextProps = {
   holdBeforeNextMs?: number;
   loop?: boolean;
   className?: string;
+  reserveLines?: number; // reserve vertical space to avoid layout shift
+  lineHeight?: number; // line-height multiplier used to compute reserved height
 };
 
 export function TypewriterText({
@@ -20,6 +22,8 @@ export function TypewriterText({
   holdBeforeNextMs = 300,
   loop = true,
   className,
+  reserveLines = 2,
+  lineHeight = 1.25,
 }: TypewriterTextProps) {
   const [index, setIndex] = useState(0);
   const [display, setDisplay] = useState("");
@@ -76,8 +80,9 @@ export function TypewriterText({
   }, [index]);
 
   const showCaret = phase !== "holding"; // hide caret when a phrase is fully shown
+  const minHeightEm = `${reserveLines * lineHeight}em`;
   return (
-    <span className={className}>
+    <span className={className} style={{ display: "block", lineHeight, minHeight: minHeightEm }}>
       {display}
       {showCaret ? (
         <span aria-hidden className="ml-1 inline-block w-[1ch] animate-pulse">|</span>
