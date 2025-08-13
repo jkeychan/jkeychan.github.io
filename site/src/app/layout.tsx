@@ -65,7 +65,7 @@ export default function RootLayout({
         <nav className="fixed top-0 left-0 right-0 z-10 backdrop-blur bg-black/10 border-b border-white/10">
           <div className="mx-auto max-w-6xl px-4 py-3 flex items-center gap-6">
             <Link href="/" className="text-white hover:opacity-80">Home</Link>
-            <Link href="/project" className="text-white hover:opacity-80">Publications</Link>
+            <Link href="/publications" className="text-white hover:opacity-80">Publications</Link>
             <Link href="/resume" className="text-white hover:opacity-80">Resume/CV</Link>
           </div>
         </nav>

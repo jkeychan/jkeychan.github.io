@@ -19,7 +19,7 @@ export default function Home() {
           />
           <div className="flex flex-wrap gap-3 mt-2">
             <a
-              href="/project"
+              href="/publications"
               className="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white text-sm font-medium px-4 py-2 rounded"
             >
               View Publications
