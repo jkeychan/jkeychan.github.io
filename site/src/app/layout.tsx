@@ -14,11 +14,51 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Jeff Bollinger | Resume, CV, and Publications",
+  metadataBase: new URL("https://www.jeff-bollinger.com"),
+  title: {
+    default: "Jeff Bollinger | Resume, CV, and Publications",
+    template: "%s | Jeff Bollinger",
+  },
   description:
     "Jeff Bollinger's official resume website featuring comprehensive details about his expertise in cybersecurity, projects, and publications.",
-  metadataBase: new URL("https://www.jeff-bollinger.com"),
   alternates: { canonical: "/" },
+  keywords: [
+    "Jeff Bollinger",
+    "Jeffrey Bollinger",
+    "cybersecurity",
+    "incident response",
+    "detection engineering",
+    "security architecture",
+    "executive leadership",
+  ],
+  authors: [{ name: "Jeff Bollinger", url: "https://www.linkedin.com/in/jeffb0llinger/" }],
+  creator: "Jeff Bollinger",
+  publisher: "Jeff Bollinger",
+  openGraph: {
+    type: "website",
+    url: "https://www.jeff-bollinger.com/",
+    title: "Jeff Bollinger | Resume, CV, and Publications",
+    description:
+      "Jeff Bollinger's official resume website featuring comprehensive details about his expertise in cybersecurity, projects, and publications.",
+    siteName: "Jeff Bollinger",
+    images: [
+      {
+        url: "https://www.jeff-bollinger.com/static/media/moonbase.498c0f55cde35211bd65.png",
+        width: 1200,
+        height: 630,
+        alt: "Jeff Bollinger Portfolio",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jeff Bollinger | Resume, CV, and Publications",
+    description:
+      "Jeff Bollinger's official resume website featuring comprehensive details about his expertise in cybersecurity, projects, and publications.",
+    images: [
+      "https://www.jeff-bollinger.com/static/media/moonbase.498c0f55cde35211bd65.png",
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -36,14 +76,17 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
-              "@context": "http://schema.org",
+              "@context": "https://schema.org",
               "@type": "Person",
               name: "Jeff Bollinger",
               url: "https://www.jeff-bollinger.com",
               jobTitle: "Director, Incident Response and Detection Engineering",
               description:
                 "Expert in cybersecurity with over 20 years of experience in incident response, detection engineering, and executive leadership.",
-              affiliation: [{ "@type": "Organization", name: "LinkedIn" }, { "@type": "Organization", name: "Cisco" }],
+              affiliation: [
+                { "@type": "Organization", name: "LinkedIn" },
+                { "@type": "Organization", name: "Cisco" }
+              ],
               knowsAbout: [
                 "Cybersecurity",
                 "Computer Security",
@@ -58,6 +101,12 @@ export default function RootLayout({
                   contactType: "professional",
                   url: "https://www.linkedin.com/in/jeffb0llinger/",
                 },
+              ],
+              sameAs: [
+                "https://www.linkedin.com/in/jeffb0llinger/",
+                "https://github.com/jkeychan",
+                "https://www.infosecplaybook.com/",
+                "https://www.oreilly.com/pub/au/6508"
               ],
             }),
           }}
