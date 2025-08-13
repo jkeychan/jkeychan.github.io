@@ -101,7 +101,27 @@ const publications = [
   },
 ];
 
-// No additionalLinks section anymore; all items are cards in `publications`.
+// Additional links converted to cards and merged with publications
+const additionalLinks = [
+  { title: "International Women in Engineering Day LinkedIn Live", href: "https://www.inwed.org.uk/activity/voices-in-infosec-linkedin-live-event/" },
+  { title: "Cisco Security Blogs by Jeff Bollinger", href: "https://blogs.cisco.com/author/jeffbollinger" },
+  { title: "Cisco TAC Security Podcast: Web Security with Jeff Bollinger", href: "https://podcasts.apple.com/us/podcast/how-cisco-uses-web-security-appliance-to-protect-its/id343898585?i=1000370866442" },
+  { title: "ZDNet article: LinkedIn has massively cut time to detect threats", href: "https://www.zdnet.com/article/linkedin-has-massively-cut-the-time-it-takes-to-detect-security-threats-heres-how-it-did-it/" },
+  { title: "RSA: Crafting the Infosec Playbook Review", href: "https://www.rsaconference.com/library/blog/crafting-the-infosec-playbook-security-monitoring-and-incident-response-master-pl" },
+  { title: "SIEM Books on Amazon (Solutions Review)", href: "https://solutionsreview.com/security-information-event-management/the-6-highest-rated-siem-books-available-on-amazon/" },
+  { title: "Interview: Confirmation bias in incident response (The Register)", href: "https://www.theregister.com/2016/07/27/cisco_warns_responders_drop_ego_assimilate_with_the_ir_playbook/" },
+  { title: "ACM SIGCAS: Responsible Disclosure", href: "https://dl.acm.org/doi/abs/10.1145/1111635.1111636" },
+  { title: "Splunk: Book review of Crafting the Infosec Playbook", href: "https://www.splunk.com/en_us/blog/learn/cybersecurity-infosec-books.html" },
+  { title: "Cisco Cybersecurity Series: Threat Hunting (quoted)", href: "https://www.cisco.com/c/dam/global/en_uk/products/collateral/cybersecurity-series-2019-threat-hunting.pdf" },
+  { title: "Cisco IT Case Study: Web Security", href: "https://www.cisco.com/c/dam/en_us/about/ciscoitatwork/borderless_networks/docs/cisco_it_case_study_wsa.pdf" },
+  { title: "Cisco Datacenter Case Study: Network IPS", href: "https://www.cisco.com/c/dam/en_us/about/ciscoitatwork/downloads/ciscoitatwork/pdf/CSIRT_Network-Based_Intrusion_Prevention_System_Case_Study.pdf" },
+  { title: "Article on Jeff Bollinger from UNC SILS", href: "https://sils.unc.edu/news/2015/bollinger-infosec-book" },
+  { title: "O'Reilly Author Page for Jeff Bollinger", href: "https://www.oreilly.com/pub/au/6508" },
+  { title: "Crafting the Infosec Playbook on Awesome Incident Response", href: "https://github.com/meirwah/awesome-incident-response" },
+  { title: "Ad Weary - BSides Asheville Information Security Conference", href: "https://youtu.be/zfIAifhRMto?si=DFar-Sm7SSGcjQxv", imageSrc: "/placeholders/yt-zfIAifhRMto.svg" },
+  { title: "Breaking into Cybersecurity with Jeff Bollinger - Incident Response", href: "https://www.youtube.com/live/Bkbgzz4L8J4?si=mKI1oR0ZdrgR4-Jb", imageSrc: "/placeholders/yt-Bkbgzz4L8J4.svg" },
+  { title: "LinkedIn's Jeff Bollinger on the Role of Human Intuition in Addressing Security Challenges.", href: "https://www.youtube.com/watch?v=1QfJwvNb_Uk", imageSrc: "/placeholders/yt-1QfJwvNb_Uk.svg" },
+];
 
 export default function PublicationsPage() {
   const [visibleCount, setVisibleCount] = useState(12);
@@ -120,7 +140,17 @@ export default function PublicationsPage() {
     return () => observer.disconnect();
   }, []);
 
-  const visibleItems = publications.slice(0, Math.min(visibleCount, publications.length));
+  const toCard = (l: { title: string; href: string; imageSrc?: string }) => {
+    const slug = l.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+    return {
+      imageSrc: l.imageSrc ?? `/placeholders/${slug}.svg`,
+      title: l.title,
+      description: "",
+      linkHref: l.href,
+    };
+  };
+  const cards = publications.concat(additionalLinks.map(toCard));
+  const visibleItems = cards.slice(0, Math.min(visibleCount, cards.length));
 
   return (
     <main className="min-h-screen p-8 text-white">
