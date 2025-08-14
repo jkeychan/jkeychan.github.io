@@ -140,14 +140,20 @@ export default function PublicationsPage() {
     return () => observer.disconnect();
   }, []);
 
-  const toCard = (l: { title: string; href: string; imageSrc?: string; imageFit?: "cover" | "contain" }) => {
+  const toCard = (l: { title: string; href: string; imageSrc?: string; imageFit?: "cover" | "contain" }): {
+    imageSrc: string;
+    title: string;
+    description: string;
+    linkHref: string;
+    imageFit?: "cover" | "contain";
+  } => {
     const slug = l.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
     return {
       imageSrc: l.imageSrc ?? `/placeholders/${slug}.svg`,
       title: l.title,
       description: "",
       linkHref: l.href,
-      imageFit: l.imageFit as "cover" | "contain" | undefined,
+      imageFit: l.imageFit,
     };
   };
   const cards = publications.concat(additionalLinks.map(toCard));
