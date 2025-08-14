@@ -103,24 +103,24 @@ const publications = [
 
 // Additional links converted to cards and merged with publications
 const additionalLinks = [
-  { title: "International Women in Engineering Day LinkedIn Live", href: "https://www.inwed.org.uk/activity/voices-in-infosec-linkedin-live-event/" },
-  { title: "Cisco Security Blogs by Jeff Bollinger", href: "https://blogs.cisco.com/author/jeffbollinger" },
-  { title: "Cisco TAC Security Podcast: Web Security with Jeff Bollinger", href: "https://podcasts.apple.com/us/podcast/how-cisco-uses-web-security-appliance-to-protect-its/id343898585?i=1000370866442" },
-  { title: "ZDNet article: LinkedIn has massively cut time to detect threats", href: "https://www.zdnet.com/article/linkedin-has-massively-cut-the-time-it-takes-to-detect-security-threats-heres-how-it-did-it/" },
-  { title: "RSA: Crafting the Infosec Playbook Review", href: "https://www.rsaconference.com/library/blog/crafting-the-infosec-playbook-security-monitoring-and-incident-response-master-pl" },
-  { title: "SIEM Books on Amazon (Solutions Review)", href: "https://solutionsreview.com/security-information-event-management/the-6-highest-rated-siem-books-available-on-amazon/" },
-  { title: "Interview: Confirmation bias in incident response (The Register)", href: "https://www.theregister.com/2016/07/27/cisco_warns_responders_drop_ego_assimilate_with_the_ir_playbook/" },
-  { title: "ACM SIGCAS: Responsible Disclosure", href: "https://dl.acm.org/doi/abs/10.1145/1111635.1111636" },
-  { title: "Splunk: Book review of Crafting the Infosec Playbook", href: "https://www.splunk.com/en_us/blog/learn/cybersecurity-infosec-books.html" },
-  { title: "Cisco Cybersecurity Series: Threat Hunting (quoted)", href: "https://www.cisco.com/c/dam/global/en_uk/products/collateral/cybersecurity-series-2019-threat-hunting.pdf" },
-  { title: "Cisco IT Case Study: Web Security", href: "https://www.cisco.com/c/dam/en_us/about/ciscoitatwork/borderless_networks/docs/cisco_it_case_study_wsa.pdf" },
-  { title: "Cisco Datacenter Case Study: Network IPS", href: "https://www.cisco.com/c/dam/en_us/about/ciscoitatwork/downloads/ciscoitatwork/pdf/CSIRT_Network-Based_Intrusion_Prevention_System_Case_Study.pdf" },
-  { title: "Article on Jeff Bollinger from UNC SILS", href: "https://sils.unc.edu/news/2015/bollinger-infosec-book" },
-  { title: "O'Reilly Author Page for Jeff Bollinger", href: "https://www.oreilly.com/pub/au/6508" },
-  { title: "Crafting the Infosec Playbook on Awesome Incident Response", href: "https://github.com/meirwah/awesome-incident-response" },
-  { title: "Ad Weary - BSides Asheville Information Security Conference", href: "https://youtu.be/zfIAifhRMto?si=DFar-Sm7SSGcjQxv", imageSrc: "/placeholders/yt-zfIAifhRMto.svg" },
-  { title: "Breaking into Cybersecurity with Jeff Bollinger - Incident Response", href: "https://www.youtube.com/live/Bkbgzz4L8J4?si=mKI1oR0ZdrgR4-Jb", imageSrc: "/placeholders/yt-Bkbgzz4L8J4.svg" },
-  { title: "LinkedIn's Jeff Bollinger on the Role of Human Intuition in Addressing Security Challenges.", href: "https://www.youtube.com/watch?v=1QfJwvNb_Uk", imageSrc: "/placeholders/yt-1QfJwvNb_Uk.svg" },
+  { title: "International Women in Engineering Day LinkedIn Live", href: "https://www.inwed.org.uk/activity/voices-in-infosec-linkedin-live-event/", imageSrc: "/static/media/international-women-in-engineering-day.jpeg" },
+  { title: "Cisco Security Blogs by Jeff Bollinger", href: "https://blogs.cisco.com/author/jeffbollinger", imageSrc: "/static/media/cisco-security-blogs.jpg", imageFit: "contain" as const },
+  { title: "Cisco TAC Security Podcast: Web Security with Jeff Bollinger", href: "https://podcasts.apple.com/us/podcast/how-cisco-uses-web-security-appliance-to-protect-its/id343898585?i=1000370866442", imageSrc: "/static/media/cisco-tac-security-podcast-websec.jpeg" },
+  { title: "ZDNet article: LinkedIn has massively cut time to detect threats", href: "https://www.zdnet.com/article/linkedin-has-massively-cut-the-time-it-takes-to-detect-security-threats-heres-how-it-did-it/", imageSrc: "/static/media/zdnet-linkedin-cut-time.jpeg" },
+  { title: "RSA: Crafting the Infosec Playbook Review", href: "https://www.rsaconference.com/library/blog/crafting-the-infosec-playbook-security-monitoring-and-incident-response-master-pl", imageSrc: "/static/media/rsa-crafting-infosec-playbook-review.jpeg" },
+  { title: "SIEM Books on Amazon (Solutions Review)", href: "https://solutionsreview.com/security-information-event-management/the-6-highest-rated-siem-books-available-on-amazon/", imageSrc: "/static/media/siem-books-amazon.jpeg" },
+  { title: "Interview: Confirmation bias in incident response (The Register)", href: "https://www.theregister.com/2016/07/27/cisco_warns_responders_drop_ego_assimilate_with_the_ir_playbook/", imageSrc: "/static/media/register-confirmation-bias-interview.jpeg" },
+  { title: "ACM SIGCAS: Responsible Disclosure", href: "https://dl.acm.org/doi/abs/10.1145/1111635.1111636", imageSrc: "/static/media/acm-sigcas-responsible-disclosure.jpeg" },
+  { title: "Splunk: Book review of Crafting the Infosec Playbook", href: "https://www.splunk.com/en_us/blog/learn/cybersecurity-infosec-books.html", imageSrc: "/static/media/splunk-book-review.jpeg" },
+  { title: "Cisco Cybersecurity Series: Threat Hunting (quoted)", href: "https://www.cisco.com/c/dam/global/en_uk/products/collateral/cybersecurity-series-2019-threat-hunting.pdf", imageSrc: "/static/media/cisco-cybersecurity-threat-hunting.jpg" },
+  { title: "Cisco IT Case Study: Web Security", href: "https://www.cisco.com/c/dam/en_us/about/ciscoitatwork/borderless_networks/docs/cisco_it_case_study_wsa.pdf", imageSrc: "/static/media/cisco-it-case-study-web-security.jpeg" },
+  { title: "Cisco Datacenter Case Study: Network IPS", href: "https://www.cisco.com/c/dam/en_us/about/ciscoitatwork/downloads/ciscoitatwork/pdf/CSIRT_Network-Based_Intrusion_Prevention_System_Case_Study.pdf", imageSrc: "/static/media/cisco-datacenter-network-ips.jpeg" },
+  { title: "Article on Jeff Bollinger from UNC SILS", href: "https://sils.unc.edu/news/2015/bollinger-infosec-book", imageSrc: "/static/media/unc-sils-article-logo.png", imageFit: "contain" as const },
+  { title: "O'Reilly Author Page for Jeff Bollinger", href: "https://www.oreilly.com/pub/au/6508", imageSrc: "/static/media/oreilly-author-page.png", imageFit: "contain" as const },
+  { title: "Crafting the Infosec Playbook on Awesome Incident Response", href: "https://github.com/meirwah/awesome-incident-response", imageSrc: "/static/media/awesome-incident-response.svg", imageFit: "contain" as const },
+  { title: "Ad Weary - BSides Asheville Information Security Conference", href: "https://youtu.be/zfIAifhRMto?si=DFar-Sm7SSGcjQxv", imageSrc: "/static/media/bsides-asheville-ad-weary.png", imageFit: "contain" as const },
+  { title: "Breaking into Cybersecurity with Jeff Bollinger - Incident Response", href: "https://www.youtube.com/live/Bkbgzz4L8J4?si=mKI1oR0ZdrgR4-Jb", imageSrc: "/static/media/breaking-into-cybersecurity.webp", imageFit: "contain" as const },
+  { title: "LinkedIn's Jeff Bollinger on the Role of Human Intuition in Addressing Security Challenges.", href: "https://www.youtube.com/watch?v=1QfJwvNb_Uk", imageSrc: "/static/media/linkedin-human-intuition.webp", imageFit: "contain" as const },
 ];
 
 export default function PublicationsPage() {
@@ -140,13 +140,14 @@ export default function PublicationsPage() {
     return () => observer.disconnect();
   }, []);
 
-  const toCard = (l: { title: string; href: string; imageSrc?: string }) => {
+  const toCard = (l: { title: string; href: string; imageSrc?: string; imageFit?: "cover" | "contain" }) => {
     const slug = l.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
     return {
       imageSrc: l.imageSrc ?? `/placeholders/${slug}.svg`,
       title: l.title,
       description: "",
       linkHref: l.href,
+      imageFit: l.imageFit,
     };
   };
   const cards = publications.concat(additionalLinks.map(toCard));
@@ -157,7 +158,7 @@ export default function PublicationsPage() {
       <h1 className="text-3xl font-bold mb-2">
         <span className="text-purple-400">Publications and Conferences</span>
       </h1>
-      <p className="text-white/80 mb-6">This is a non-exhaustive list of blogs, articles, conferences hosted, and other publications I&apos;ve created or co-created.</p>
+      <p className="text-white/80 mb-6">This is a non-exhaustive list of blogs, podcasts, articles, reviews, conferences hosted, and other publications I&apos;ve created, co-created, or been involved in.</p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {visibleItems.map((p) => (
