@@ -1,18 +1,7 @@
-"use client";
-import { useState } from "react";
 import { ProjectCard } from "../(components)/ProjectCard";
 import { PUBLICATIONS } from "../../data/publications";
 
 export default function PublicationsPage() {
-  const [visibleCount, setVisibleCount] = useState(12);
-  
-  const visibleItems = PUBLICATIONS.slice(0, visibleCount);
-  const hasMore = visibleCount < PUBLICATIONS.length;
-  
-  const loadMore = () => {
-    setVisibleCount(prev => Math.min(prev + 12, PUBLICATIONS.length));
-  };
-
   return (
     <main className="min-h-screen p-8 text-white">
       <h1 className="text-3xl font-bold mb-2">
@@ -23,25 +12,14 @@ export default function PublicationsPage() {
       </p>
       
       <p className="text-white/60 mb-4">
-        Showing {visibleItems.length} of {PUBLICATIONS.length} publications
+        {PUBLICATIONS.length} publications
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {visibleItems.map((p) => (
+        {PUBLICATIONS.map((p) => (
           <ProjectCard key={p.title} {...p} />
         ))}
       </div>
-
-      {hasMore && (
-        <div className="mt-8 flex justify-center">
-          <button
-            onClick={loadMore}
-            className="px-4 py-2 rounded bg-purple-600 hover:bg-purple-500 text-white text-sm font-medium"
-          >
-            Load more ({PUBLICATIONS.length - visibleCount} remaining)
-          </button>
-        </div>
-      )}
     </main>
   );
 }
