@@ -1,30 +1,23 @@
 "use client";
-import { useState } from "react";
 import { ProjectCard } from "../(components)/ProjectCard";
 import { PUBLICATIONS } from "../../data/publications";
+import { useInfiniteScroll } from "../../hooks/useInfiniteScroll";
 
 export default function PublicationsPage() {
-  const [visibleCount, setVisibleCount] = useState(12);
+  const { visibleItems, hasMore, loadMore, sentinelRef } = useInfiniteScroll(PUBLICATIONS);
   
-  const visibleItems = PUBLICATIONS.slice(0, visibleCount);
-  const hasMore = visibleCount < PUBLICATIONS.length;
-  
-  const loadMore = () => {
-    setVisibleCount(prev => Math.min(prev + 12, PUBLICATIONS.length));
-  };
+  // Debug logging
+  console.log('PUBLICATIONS length:', PUBLICATIONS.length);
+  console.log('visibleItems length:', visibleItems.length);
+  console.log('hasMore:', hasMore);
+
 
   return (
     <main className="min-h-screen p-8 text-white">
       <h1 className="text-3xl font-bold mb-2">
         <span className="text-purple-400">Publications and Conferences</span>
       </h1>
-      <p className="text-white/80 mb-6">
-        This is a non-exhaustive list of blogs, podcasts, articles, reviews, conferences hosted, and other publications I&apos;ve created, co-created, or been involved in.
-      </p>
-      
-      <p className="text-white/60 mb-4">
-        Showing {visibleItems.length} of {PUBLICATIONS.length} publications
-      </p>
+      <p className="text-white/80 mb-6">This is a non-exhaustive list of blogs, podcasts, articles, reviews, conferences hosted, and other publications I&apos;ve created, co-created, or been involved in.</p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {visibleItems.map((p) => (
@@ -35,13 +28,20 @@ export default function PublicationsPage() {
       {hasMore && (
         <div className="mt-8 flex justify-center">
           <button
-            onClick={loadMore}
+            onClick={() => {
+              console.log('Load more clicked!');
+              loadMore();
+            }}
             className="px-4 py-2 rounded bg-purple-600 hover:bg-purple-500 text-white text-sm font-medium"
           >
-            Load more ({PUBLICATIONS.length - visibleCount} remaining)
+            Load more
           </button>
         </div>
       )}
+
+      <div ref={sentinelRef} className="h-10" />
     </main>
   );
 }
+
+
