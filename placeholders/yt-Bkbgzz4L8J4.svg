@@ -1,0 +1,14 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='630' viewBox='0 0 1200 630'>
+  <defs>
+    <linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>
+      <stop offset='0%' stop-color='#ff0000'/>
+      <stop offset='100%' stop-color='#b91c1c'/>
+    </linearGradient>
+  </defs>
+  <rect width='1200' height='630' fill='url(#g)'/>
+  <g transform='translate(480,165)'>
+    <rect x='0' y='0' width='240' height='240' rx='36' ry='36' fill='#ffffff'/>
+    <polygon points='96,72 96,168 168,120' fill='#ef4444'/>
+  </g>
+  <text x='60' y='560' font-family='Raleway, Arial, sans-serif' font-size='44' fill='#ffffff' font-weight='700'>Breaking into Cybersecurity with Jeff Bollinger - Incident Response</text>
+</svg>
