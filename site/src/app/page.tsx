@@ -1,5 +1,6 @@
 import { TypewriterText } from "./(components)/TypewriterText";
 import { ProjectCard } from "./(components)/ProjectCard";
+import Image from "next/image";
 export default function Home() {
   return (
     <main className="min-h-[80vh] p-6 md:p-8 text-white">
@@ -10,9 +11,11 @@ export default function Home() {
           </h1>
         </div>
         <div className="mt-1 flex items-start gap-4">
-          <img
+          <Image
             src="/static/media/avatar.d355c64ac071e83edeabfc9c51f454d3.svg"
             alt="Jeff Bollinger headshot"
+            width={128}
+            height={128}
             className="w-28 h-28 md:w-32 md:h-32 rounded-full border border-white/20 shadow-sm"
           />
           <div className="min-h-[160px] md:min-h-[120px] flex-1">
@@ -82,10 +85,12 @@ export default function Home() {
         </div>
         <div className="relative rounded-lg border border-white/10 bg-white/5 overflow-hidden h-full">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(167,139,250,0.18),transparent_60%)]" />
-          <img
+          <Image
             src="/static/media/home-main.bb0187d03cff74c7d9bec63d61173238.svg"
             alt="Home Illustration"
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 50vw"
           />
         </div>
       </section>

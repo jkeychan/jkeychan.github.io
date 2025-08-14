@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 type ProjectCardProps = {
   imageSrc: string;
   title: string;
@@ -22,8 +24,14 @@ export function ProjectCard({ imageSrc, title, description, linkHref, linkLabel 
       : "object-center";
   return (
     <div className="bg-white/5 border border-white/10 rounded-lg overflow-hidden shadow-md flex flex-col h-full">
-      <div className="w-full h-56 md:h-64 bg-black/20 overflow-hidden">
-        <img src={imageSrc} alt={title} className={`w-full h-full ${fitClass} ${posClass}`} />
+      <div className="w-full h-56 md:h-64 bg-black/20 overflow-hidden relative">
+        <Image 
+          src={imageSrc} 
+          alt={title} 
+          fill
+          className={`${fitClass} ${posClass}`}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
       </div>
       <div className="p-4 flex-1 flex flex-col">
         <h3 className="text-white text-lg font-semibold mb-2">{title}</h3>
