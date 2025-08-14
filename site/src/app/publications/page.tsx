@@ -147,7 +147,7 @@ export default function PublicationsPage() {
       title: l.title,
       description: "",
       linkHref: l.href,
-      imageFit: l.imageFit,
+      imageFit: l.imageFit as "cover" | "contain" | undefined,
     };
   };
   const cards = publications.concat(additionalLinks.map(toCard));
