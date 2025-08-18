@@ -21,13 +21,7 @@
     <priority>0.9</priority>
   </url>
 
-  <!-- Excluded: legacy project URL is redirected to /publications -->
-  <!-- <url>
-    <loc>https://www.jeff-bollinger.com/project</loc>
-    <lastmod>2025-08-13T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.2</priority>
-  </url> -->
+  <!-- Note: /project redirects to /publications via server-side redirect -->
 
   <!-- Resume page -->
   <url>
