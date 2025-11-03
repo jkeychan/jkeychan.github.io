@@ -2,6 +2,122 @@
 import { useEffect, useRef, useState } from "react";
 import { ProjectCard } from "../(components)/ProjectCard";
 
+type Publication = {
+  imageSrc: string;
+  title: string;
+  description: string;
+  linkHref: string;
+  imageFit?: "cover" | "contain";
+};
+
+// Helper function to determine schema type
+function getSchemaType(publication: Publication): "Article" | "VideoObject" | "Event" | "Book" {
+  const { title, description, linkHref } = publication;
+  const lowerTitle = title.toLowerCase();
+  const lowerDesc = description.toLowerCase();
+  const lowerUrl = linkHref.toLowerCase();
+
+  // Check for YouTube videos
+  if (lowerUrl.includes("youtube.com") || lowerUrl.includes("youtu.be")) {
+    return "VideoObject";
+  }
+
+  // Check for book
+  if (lowerTitle.includes("crafting the infosec playbook") && lowerUrl.includes("infosecplaybook.com")) {
+    return "Book";
+  }
+
+  // Check for events/conferences
+  const eventKeywords = ["presentation", "presented", "summit", "conference", "colloquium", "symposium", "cisco live", "sans", "first", "lacnic", "interop", "b-sides"];
+  if (eventKeywords.some(keyword => lowerTitle.includes(keyword) || lowerDesc.includes(keyword))) {
+    return "Event";
+  }
+
+  // Default to Article
+  return "Article";
+}
+
+// Generate structured data schemas
+function generateSchemas(cards: Publication[]) {
+  const baseUrl = "https://www.jeff-bollinger.com";
+  
+  // ItemList schema
+  const itemList = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    numberOfItems: cards.length,
+    itemListElement: cards.map((card, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": getSchemaType(card),
+        name: card.title,
+        url: card.linkHref,
+      },
+    })),
+  };
+
+  // Individual schemas
+  const schemas = cards.map((card) => {
+    const schemaType = getSchemaType(card);
+    const imageUrl = `${baseUrl}${card.imageSrc}`;
+    const baseSchema: Record<string, unknown> = {
+      "@context": "https://schema.org",
+      "@type": schemaType,
+      name: card.title,
+      description: card.description || "",
+      url: card.linkHref,
+      image: imageUrl,
+      author: {
+        "@type": "Person",
+        name: "Jeff Bollinger",
+        url: "https://www.jeff-bollinger.com",
+      },
+    };
+
+    // Add type-specific properties
+    if (schemaType === "VideoObject") {
+      baseSchema.embedUrl = card.linkHref;
+      // uploadDate omitted - can be added if publication date is available
+    } else if (schemaType === "Event") {
+      baseSchema.eventAttendanceMode = "https://schema.org/OfflineEventAttendanceMode";
+      // Could add startDate, endDate, location if available
+    } else if (schemaType === "Book") {
+      baseSchema.publisher = {
+        "@type": "Organization",
+        name: "O'Reilly Media",
+        url: "https://www.oreilly.com/",
+      };
+      baseSchema.isbn = "978-1491949405";
+    } else if (schemaType === "Article") {
+      // Determine publisher from URL
+      if (card.linkHref.includes("cisco.com")) {
+        baseSchema.publisher = {
+          "@type": "Organization",
+          name: "Cisco",
+          url: "https://www.cisco.com/",
+        };
+      } else if (card.linkHref.includes("linkedin.com")) {
+        baseSchema.publisher = {
+          "@type": "Organization",
+          name: "LinkedIn Engineering",
+          url: "https://engineering.linkedin.com/",
+        };
+      } else if (card.linkHref.includes("cloud.withgoogle.com")) {
+        baseSchema.publisher = {
+          "@type": "Organization",
+          name: "Google Cloud",
+          url: "https://cloud.withgoogle.com/",
+        };
+      }
+    }
+
+    return baseSchema;
+  });
+
+  return { itemList, schemas };
+}
+
 const cards = [
   {
     imageSrc: "/static/media/moonbase.498c0f55cde35211bd65.png",
@@ -234,9 +350,52 @@ export default function PublicationsPage() {
   }, []);
 
   const visibleItems = cards.slice(0, Math.min(visibleCount, cards.length));
+  const { itemList, schemas } = generateSchemas(cards);
 
   return (
-    <main className="min-h-screen p-8 text-white">
+    <>
+      {/* ItemList schema for publications collection */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(itemList),
+        }}
+      />
+      {/* Individual publication schemas */}
+      {schemas.map((schema, index) => (
+        <script
+          key={index}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(schema),
+          }}
+        />
+      ))}
+      {/* BreadcrumbList for Publications page */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://www.jeff-bollinger.com/",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Publications",
+                item: "https://www.jeff-bollinger.com/publications",
+              },
+            ],
+          }),
+        }}
+      />
+      <main className="min-h-screen p-8 text-white">
       <h1 className="text-3xl font-bold mb-2">
         <span className="text-purple-400">Publications and Conferences</span>
       </h1>
@@ -261,6 +420,7 @@ export default function PublicationsPage() {
 
       <div ref={sentinelRef} className="h-10" />
     </main>
+    </>
   );
 }
 

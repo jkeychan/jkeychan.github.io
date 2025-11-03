@@ -84,50 +84,124 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className="star-field" />
+        {/* ProfilePage with Person schema */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Person",
-              name: "Jeff Bollinger",
-              url: "https://www.jeff-bollinger.com",
-              jobTitle: "Director, Incident Response and Detection Engineering",
-              description:
-                "Expert in cybersecurity with over 25 years of experience in incident response, detection engineering, and executive leadership.",
-              affiliation: [
-                { "@type": "Organization", name: "LinkedIn" },
-                { "@type": "Organization", name: "Cisco" },
-                { "@type": "Organization", name: "University of North Carolina at Chapel Hill" }
-              ],
-              knowsAbout: [
-                "Cybersecurity",
-                "Computer Security",
-                "Executive Leadership",
-                "Security Engineering",
-                "Security Operations",
-                "Security Architecture",
-                "Security Design",
-                "Security Engineering",
-                "Security",
-                "Security Consulting",
-                "Penetration Testing",
-                "CSIRT",
-                "Incident Response",
-                "Director",
-              ],
-              contactPoint: [
+              "@type": "ProfilePage",
+              mainEntity: {
+                "@type": "Person",
+                name: "Jeff Bollinger",
+                url: "https://www.jeff-bollinger.com",
+                jobTitle: "Director, Incident Response and Detection Engineering",
+                description:
+                  "Expert in cybersecurity with over 25 years of experience in incident response, detection engineering, and executive leadership.",
+                image: "https://www.jeff-bollinger.com/static/media/avatar.d355c64ac071e83edeabfc9c51f454d3.svg",
+                worksFor: [
+                  {
+                    "@type": "Organization",
+                    name: "LinkedIn",
+                    url: "https://www.linkedin.com/",
+                  },
+                  {
+                    "@type": "Organization",
+                    name: "Cisco",
+                    url: "https://www.cisco.com/",
+                  },
+                ],
+                affiliation: [
+                  { "@type": "Organization", name: "LinkedIn", url: "https://www.linkedin.com/" },
+                  { "@type": "Organization", name: "Cisco", url: "https://www.cisco.com/" },
+                  { "@type": "Organization", name: "University of North Carolina at Chapel Hill", url: "https://www.unc.edu/" }
+                ],
+                knowsAbout: [
+                  "Cybersecurity",
+                  "Computer Security",
+                  "Executive Leadership",
+                  "Security Engineering",
+                  "Security Operations",
+                  "Security Architecture",
+                  "Security Design",
+                  "Security",
+                  "Security Consulting",
+                  "Penetration Testing",
+                  "CSIRT",
+                  "Incident Response",
+                  "Director",
+                ],
+                contactPoint: [
+                  {
+                    "@type": "ContactPoint",
+                    contactType: "professional",
+                    url: "https://www.linkedin.com/in/jeffb0llinger/",
+                  },
+                ],
+                sameAs: [
+                  "https://www.linkedin.com/in/jeffb0llinger/",
+                  "https://github.com/jkeychan",
+                  "https://www.infosecplaybook.com/",
+                  "https://www.oreilly.com/pub/au/6508"
+                ],
+              },
+            }),
+          }}
+        />
+        {/* ImageObject for avatar */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ImageObject",
+              contentUrl: "https://www.jeff-bollinger.com/static/media/avatar.d355c64ac071e83edeabfc9c51f454d3.svg",
+              creator: {
+                "@type": "Person",
+                name: "Jeff Bollinger",
+              },
+              creditText: "Jeff Bollinger",
+              caption: "Jeff Bollinger - Cybersecurity Leader",
+            }),
+          }}
+        />
+        {/* Organization schemas */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "LinkedIn",
+              url: "https://www.linkedin.com/",
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Cisco",
+              url: "https://www.cisco.com/",
+            }),
+          }}
+        />
+        {/* BreadcrumbList - will be overridden per page for more specific paths */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
                 {
-                  "@type": "ContactPoint",
-                  contactType: "professional",
-                  url: "https://www.linkedin.com/in/jeffb0llinger/",
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Home",
+                  item: "https://www.jeff-bollinger.com/",
                 },
-              ],
-              sameAs: [
-                "https://www.linkedin.com/in/jeffb0llinger/",
-                "https://github.com/jkeychan",
-                "https://www.infosecplaybook.com/",
-                "https://www.oreilly.com/pub/au/6508"
               ],
             }),
           }}

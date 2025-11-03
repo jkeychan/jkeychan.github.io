@@ -2,7 +2,83 @@ import { TypewriterText } from "./(components)/TypewriterText";
 import { ProjectCard } from "./(components)/ProjectCard";
 export default function Home() {
   return (
-    <main className="min-h-[80vh] p-6 md:p-8 text-white">
+    <>
+      {/* Book schema for Crafting the Infosec Playbook */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Book",
+            name: "Crafting the Infosec Playbook",
+            description: "Co-authored book on building incident response programs and monitoring architecture.",
+            author: {
+              "@type": "Person",
+              name: "Jeff Bollinger",
+              url: "https://www.jeff-bollinger.com",
+            },
+            publisher: {
+              "@type": "Organization",
+              name: "O'Reilly Media",
+              url: "https://www.oreilly.com/",
+            },
+            isbn: "978-1491949405",
+            bookFormat: "https://schema.org/Hardcover",
+            url: "https://www.infosecplaybook.com/",
+            image: "https://www.jeff-bollinger.com/static/media/cover-blue-edition.0781c7b04869f677781b.png",
+          }),
+        }}
+      />
+      {/* Article schema for (Re)building Threat Detection and Incident Response at LinkedIn */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: "(Re)building Threat Detection and Incident Response at LinkedIn",
+            description: "How LinkedIn rebuilt its security operations platform and teams, scaling protection for employees and members.",
+            author: {
+              "@type": "Person",
+              name: "Jeff Bollinger",
+              url: "https://www.jeff-bollinger.com",
+            },
+            publisher: {
+              "@type": "Organization",
+              name: "LinkedIn Engineering",
+              url: "https://engineering.linkedin.com/",
+            },
+            url: "https://engineering.linkedin.com/blog/2022/-re-building-threat-detection-and-incident-response-at-linkedin",
+            image: "https://www.jeff-bollinger.com/static/media/moonbase.498c0f55cde35211bd65.png",
+            datePublished: "2022",
+          }),
+        }}
+      />
+      {/* Article schema for Cloud Security Observability Podcast */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: "Cloud Security Observability for Detection and Response",
+            description: "Discussion on enterprise-scale observability for detection and response (Google Cloud Security Podcast).",
+            author: {
+              "@type": "Person",
+              name: "Jeff Bollinger",
+              url: "https://www.jeff-bollinger.com",
+            },
+            publisher: {
+              "@type": "Organization",
+              name: "Google Cloud",
+              url: "https://cloud.withgoogle.com/",
+            },
+            url: "https://cloud.withgoogle.com/cloudsecurity/podcast/ep96-cloud-security-observability-for-detection-and-response/",
+            image: "https://www.jeff-bollinger.com/static/media/cloud.e6bacd0aae8c329e0edd.png",
+          }),
+        }}
+      />
+      <main className="min-h-[80vh] p-6 md:p-8 text-white">
       <section className="mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
         <div>
           <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-1">
@@ -114,5 +190,6 @@ export default function Home() {
         </div>
       </section>
     </main>
+    </>
   );
 }
