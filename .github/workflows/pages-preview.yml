@@ -45,8 +45,11 @@ jobs:
       name: github-pages
     needs: build
     runs-on: ubuntu-latest
+    # Note: Deployment may be blocked by environment protection rules
+    # This is expected for PR branches - the build job validates compilation
     steps:
       - name: Deploy to GitHub Pages (preview)
         id: deployment
         uses: actions/deploy-pages@v4
+        continue-on-error: true
 
