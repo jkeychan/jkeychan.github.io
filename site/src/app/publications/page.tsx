@@ -10,20 +10,31 @@ type Publication = {
   imageFit?: "cover" | "contain";
 };
 
+// Helper function to check if URL matches a specific hostname
+function urlMatchesHostname(url: string, hostnames: string[]): boolean {
+  try {
+    const urlObj = new URL(url);
+    const hostname = urlObj.hostname.toLowerCase();
+    return hostnames.some((h) => hostname === h.toLowerCase() || hostname === `www.${h.toLowerCase()}`);
+  } catch {
+    // Invalid URL, return false
+    return false;
+  }
+}
+
 // Helper function to determine schema type
 function getSchemaType(publication: Publication): "Article" | "VideoObject" | "Event" | "Book" {
   const { title, description, linkHref } = publication;
   const lowerTitle = title.toLowerCase();
   const lowerDesc = description.toLowerCase();
-  const lowerUrl = linkHref.toLowerCase();
 
   // Check for YouTube videos
-  if (lowerUrl.includes("youtube.com") || lowerUrl.includes("youtu.be")) {
+  if (urlMatchesHostname(linkHref, ["youtube.com", "youtu.be"])) {
     return "VideoObject";
   }
 
   // Check for book
-  if (lowerTitle.includes("crafting the infosec playbook") && lowerUrl.includes("infosecplaybook.com")) {
+  if (lowerTitle.includes("crafting the infosec playbook") && urlMatchesHostname(linkHref, ["infosecplaybook.com"])) {
     return "Book";
   }
 
@@ -90,20 +101,20 @@ function generateSchemas(cards: Publication[]) {
       };
       baseSchema.isbn = "978-1491949405";
     } else if (schemaType === "Article") {
-      // Determine publisher from URL
-      if (card.linkHref.includes("cisco.com")) {
+      // Determine publisher from URL using proper hostname matching
+      if (urlMatchesHostname(card.linkHref, ["cisco.com"])) {
         baseSchema.publisher = {
           "@type": "Organization",
           name: "Cisco",
           url: "https://www.cisco.com/",
         };
-      } else if (card.linkHref.includes("linkedin.com")) {
+      } else if (urlMatchesHostname(card.linkHref, ["linkedin.com", "engineering.linkedin.com"])) {
         baseSchema.publisher = {
           "@type": "Organization",
           name: "LinkedIn Engineering",
           url: "https://engineering.linkedin.com/",
         };
-      } else if (card.linkHref.includes("cloud.withgoogle.com")) {
+      } else if (urlMatchesHostname(card.linkHref, ["cloud.withgoogle.com"])) {
         baseSchema.publisher = {
           "@type": "Organization",
           name: "Google Cloud",
