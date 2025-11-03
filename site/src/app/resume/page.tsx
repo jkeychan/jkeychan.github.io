@@ -1,6 +1,31 @@
 export default function ResumePage() {
   return (
-    <main className="min-h-screen p-8 text-white">
+    <>
+      {/* BreadcrumbList for Resume page */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://www.jeff-bollinger.com/",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Resume/CV",
+                item: "https://www.jeff-bollinger.com/resume",
+              },
+            ],
+          }),
+        }}
+      />
+      <main className="min-h-screen p-8 text-white">
       <h1 className="text-3xl font-bold mb-6">Resume / CV</h1>
       <div className="flex gap-4 mb-6">
         <a
@@ -28,6 +53,7 @@ export default function ResumePage() {
         />
       </div>
     </main>
+    </>
   );
 }
 
