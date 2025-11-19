@@ -50,7 +50,7 @@ export default function Home() {
             },
             url: "https://engineering.linkedin.com/blog/2022/-re-building-threat-detection-and-incident-response-at-linkedin",
             image: "https://www.jeff-bollinger.com/static/media/moonbase.498c0f55cde35211bd65.png",
-            datePublished: "2022",
+            datePublished: "2022-01-01T00:00:00Z",
           }),
         }}
       />

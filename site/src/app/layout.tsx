@@ -162,6 +162,9 @@ export default function RootLayout({
               },
               creditText: "Jeff Bollinger",
               caption: "Jeff Bollinger - Cybersecurity Leader",
+              license: "https://www.jeff-bollinger.com/",
+              copyrightNotice: "© Jeff Bollinger. All rights reserved.",
+              acquireLicensePage: "https://www.jeff-bollinger.com/",
             }),
           }}
         />
