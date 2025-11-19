@@ -8,6 +8,9 @@ type Publication = {
   description: string;
   linkHref: string;
   imageFit?: "cover" | "contain";
+  thumbnailUrl?: string;
+  uploadDate?: string;
+  videoId?: string;
 };
 
 // Helper function to check if URL matches a specific hostname
@@ -72,6 +75,7 @@ function generateSchemas(cards: Publication[]) {
   const schemas = cards.map((card) => {
     const schemaType = getSchemaType(card);
     const imageUrl = `${baseUrl}${card.imageSrc}`;
+    const thumbnailUrl = card.thumbnailUrl ?? imageUrl;
     const baseSchema: Record<string, unknown> = {
       "@context": "https://schema.org",
       "@type": schemaType,
@@ -88,8 +92,15 @@ function generateSchemas(cards: Publication[]) {
 
     // Add type-specific properties
     if (schemaType === "VideoObject") {
-      baseSchema.embedUrl = card.linkHref;
-      // uploadDate omitted - can be added if publication date is available
+      const embedUrl =
+        card.videoId && urlMatchesHostname(card.linkHref, ["youtube.com", "youtu.be"])
+          ? `https://www.youtube.com/embed/${card.videoId}`
+          : card.linkHref;
+      baseSchema.embedUrl = embedUrl;
+      baseSchema.thumbnailUrl = thumbnailUrl;
+      if (card.uploadDate) {
+        baseSchema.uploadDate = card.uploadDate;
+      }
     } else if (schemaType === "Event") {
       baseSchema.eventAttendanceMode = "https://schema.org/OfflineEventAttendanceMode";
       // Could add startDate, endDate, location if available
@@ -200,6 +211,9 @@ const cards = [
     description:
       "Presentation at Security B-Sides Asheville and LACNIC/LACNOG 26 on ad-ware threats in enterprise networks and mitigation lessons.",
     linkHref: "https://www.youtube.com/watch?v=zfIAifhRMto",
+    videoId: "zfIAifhRMto",
+    thumbnailUrl: "https://img.youtube.com/vi/zfIAifhRMto/hqdefault.jpg",
+    uploadDate: "2018-06-13T06:39:12-07:00",
   },
   {
     imageSrc: "/static/media/ams.31a98a26e35e896408d3.png",
@@ -325,6 +339,9 @@ const cards = [
     title: "Ad Weary - BSides Asheville Information Security Conference",
     description: "",
     linkHref: "https://youtu.be/zfIAifhRMto?si=DFar-Sm7SSGcjQxv",
+    videoId: "zfIAifhRMto",
+    thumbnailUrl: "https://img.youtube.com/vi/zfIAifhRMto/hqdefault.jpg",
+    uploadDate: "2018-06-13T06:39:12-07:00",
     imageFit: "contain" as const,
   },
   {
@@ -332,6 +349,9 @@ const cards = [
     title: "Breaking into Cybersecurity with Jeff Bollinger - Incident Response",
     description: "",
     linkHref: "https://www.youtube.com/live/Bkbgzz4L8J4?si=mKI1oR0ZdrgR4-Jb",
+    videoId: "Bkbgzz4L8J4",
+    thumbnailUrl: "https://img.youtube.com/vi/Bkbgzz4L8J4/hqdefault.jpg",
+    uploadDate: "2022-01-28T22:34:53-08:00",
     imageFit: "contain" as const,
   },
   {
@@ -339,6 +359,9 @@ const cards = [
     title: "LinkedIn's Jeff Bollinger on the Role of Human Intuition in Addressing Security Challenges.",
     description: "",
     linkHref: "https://www.youtube.com/watch?v=1QfJwvNb_Uk",
+    videoId: "1QfJwvNb_Uk",
+    thumbnailUrl: "https://img.youtube.com/vi/1QfJwvNb_Uk/hqdefault.jpg",
+    uploadDate: "2024-05-07T09:35:30-07:00",
     imageFit: "contain" as const,
   },
 ];
