@@ -25,6 +25,32 @@ function urlMatchesHostname(url: string, hostnames: string[]): boolean {
   }
 }
 
+// Helper function to extract YouTube video ID from URL
+function extractYouTubeVideoId(url: string): string | null {
+  try {
+    const urlObj = new URL(url);
+    // Handle youtube.com/watch?v=VIDEO_ID
+    if (urlObj.hostname.includes("youtube.com") && urlObj.searchParams.has("v")) {
+      return urlObj.searchParams.get("v");
+    }
+    // Handle youtube.com/live/VIDEO_ID
+    if (urlObj.hostname.includes("youtube.com") && urlObj.pathname.startsWith("/live/")) {
+      const parts = urlObj.pathname.split("/");
+      const liveIndex = parts.indexOf("live");
+      if (liveIndex !== -1 && liveIndex < parts.length - 1) {
+        return parts[liveIndex + 1].split("?")[0];
+      }
+    }
+    // Handle youtu.be/VIDEO_ID
+    if (urlObj.hostname === "youtu.be" || urlObj.hostname === "www.youtu.be") {
+      return urlObj.pathname.slice(1).split("?")[0];
+    }
+  } catch {
+    // Invalid URL, return null
+  }
+  return null;
+}
+
 // Helper function to determine schema type
 function getSchemaType(publication: Publication): "Article" | "VideoObject" | "Event" | "Book" {
   const { title, description, linkHref } = publication;
@@ -76,11 +102,13 @@ function generateSchemas(cards: Publication[]) {
     const schemaType = getSchemaType(card);
     const imageUrl = `${baseUrl}${card.imageSrc}`;
     const thumbnailUrl = card.thumbnailUrl ?? imageUrl;
+    // Ensure description is never empty - use title as fallback
+    const description = card.description || card.title;
     const baseSchema: Record<string, unknown> = {
       "@context": "https://schema.org",
       "@type": schemaType,
       name: card.title,
-      description: card.description || "",
+      description: description,
       url: card.linkHref,
       image: imageUrl,
       author: {
@@ -92,16 +120,23 @@ function generateSchemas(cards: Publication[]) {
 
     // Add type-specific properties
     if (schemaType === "VideoObject") {
-      const embedUrl =
-        card.videoId && urlMatchesHostname(card.linkHref, ["youtube.com", "youtu.be"])
-          ? `https://www.youtube.com/embed/${card.videoId}`
-          : card.linkHref;
+      // Extract video ID if not provided
+      const videoId = card.videoId || extractYouTubeVideoId(card.linkHref);
+      // Always set embedUrl - use extracted videoId or fallback to linkHref
+      const embedUrl = videoId
+        ? `https://www.youtube.com/embed/${videoId}`
+        : card.linkHref;
       baseSchema.embedUrl = embedUrl;
       baseSchema.thumbnailUrl = thumbnailUrl;
+      // Ensure description is set (already set in baseSchema, but ensure it's not empty)
+      baseSchema.description = description;
       if (card.uploadDate) {
         baseSchema.uploadDate = card.uploadDate;
       }
     } else if (schemaType === "Event") {
+      // Explicitly set required fields for Event
+      baseSchema.image = imageUrl;
+      baseSchema.description = description;
       baseSchema.eventAttendanceMode = "https://schema.org/OfflineEventAttendanceMode";
       // Could add startDate, endDate, location if available
     } else if (schemaType === "Book") {
