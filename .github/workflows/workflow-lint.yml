@@ -28,10 +28,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Run zizmor
-        uses: zizmorcore/zizmor-action@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install and Run zizmor
+        run: |
+          mkdir -p $HOME/.local/bin
+          curl -L https://github.com/zizmorcore/zizmor/releases/latest/download/zizmor-linux-amd64 -o $HOME/.local/bin/zizmor
+          chmod +x $HOME/.local/bin/zizmor
+          $HOME/.local/bin/zizmor .github/workflows
 
   ratchet:
     name: Ratchet - Version Pinning Check
@@ -40,11 +42,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install Ratchet
+      - name: Install and Run Ratchet
         run: |
-          curl -sSL https://github.com/sethvargo/ratchet/releases/latest/download/ratchet-linux-amd64 -o /usr/local/bin/ratchet
-          chmod +x /usr/local/bin/ratchet
-
-      - name: Run Ratchet
-        run: ratchet
+          mkdir -p $HOME/.local/bin
+          curl -L https://github.com/sethvargo/ratchet/releases/latest/download/ratchet-linux-amd64 -o $HOME/.local/bin/ratchet
+          chmod +x $HOME/.local/bin/ratchet
+          $HOME/.local/bin/ratchet
 
