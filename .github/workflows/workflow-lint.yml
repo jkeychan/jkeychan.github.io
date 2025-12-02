@@ -1,0 +1,50 @@
+name: Workflow Security and Linting
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  actionlint:
+    name: Actionlint - Workflow Syntax Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run actionlint
+        uses: raven-actions/actionlint@v2
+
+  zizmor:
+    name: Zizmor - Security Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run zizmor
+        uses: zizmorcore/zizmor-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+  ratchet:
+    name: Ratchet - Version Pinning Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Ratchet
+        run: |
+          curl -sSL https://github.com/sethvargo/ratchet/releases/latest/download/ratchet-linux-amd64 -o /usr/local/bin/ratchet
+          chmod +x /usr/local/bin/ratchet
+
+      - name: Run Ratchet
+        run: ratchet
+
