@@ -78,17 +78,23 @@ jobs:
         run: |
           echo "PATH: ${PATH}"
           echo "Checking for ratchet..."
+          WORKFLOW_FILES=$(find .github/workflows -name "*.yml" -o -name "*.yaml" 2>/dev/null | tr '\n' ' ')
+          if [ -z "$WORKFLOW_FILES" ]; then
+            echo "No workflow files found"
+            exit 1
+          fi
+          echo "Found workflow files: $WORKFLOW_FILES"
           if command -v ratchet >/dev/null 2>&1; then
             echo "Running: ratchet lint on workflow files"
-            ratchet lint .github/workflows/*.yml .github/workflows/*.yaml
+            ratchet lint ${WORKFLOW_FILES}
             echo "Ratchet lint completed successfully"
           elif [ -f "${HOME}/.local/bin/ratchet" ]; then
             echo "Running: ${HOME}/.local/bin/ratchet lint on workflow files"
-            "${HOME}/.local/bin/ratchet" lint .github/workflows/*.yml .github/workflows/*.yaml
+            "${HOME}/.local/bin/ratchet" lint ${WORKFLOW_FILES}
             echo "Ratchet lint completed successfully"
           elif [ -f "./ratchet" ]; then
             echo "Running: ./ratchet lint on workflow files"
-            ./ratchet lint .github/workflows/*.yml .github/workflows/*.yaml
+            ./ratchet lint ${WORKFLOW_FILES}
             echo "Ratchet lint completed successfully"
           else
             echo "Error: ratchet binary not found"
