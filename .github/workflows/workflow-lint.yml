@@ -73,7 +73,6 @@ jobs:
         with:
           repo: sethvargo/ratchet
           tag: latest
-          rename-to: ratchet
 
       - name: Run ratchet
         run: |
