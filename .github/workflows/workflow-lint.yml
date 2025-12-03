@@ -35,8 +35,22 @@ jobs:
           tag: latest
           rename-to: zizmor
 
-      - name: Run zizmor
-        run: ./zizmor .github/workflows
+      - name: Find and run zizmor
+        run: |
+          if [ -f "./zizmor" ]; then
+            ./zizmor .github/workflows
+          elif [ -f "$HOME/.local/bin/zizmor" ]; then
+            "$HOME/.local/bin/zizmor" .github/workflows
+          else
+            ZIZMOR_PATH=$(find . -name zizmor -type f -executable 2>/dev/null | head -1)
+            if [ -n "$ZIZMOR_PATH" ]; then
+              "$ZIZMOR_PATH" .github/workflows
+            else
+              echo "Error: zizmor binary not found"
+              ls -la
+              exit 1
+            fi
+          fi
 
   ratchet:
     name: Ratchet - Version Pinning Check
@@ -52,6 +66,20 @@ jobs:
           tag: latest
           rename-to: ratchet
 
-      - name: Run ratchet
-        run: ./ratchet
+      - name: Find and run ratchet
+        run: |
+          if [ -f "./ratchet" ]; then
+            ./ratchet
+          elif [ -f "$HOME/.local/bin/ratchet" ]; then
+            "$HOME/.local/bin/ratchet"
+          else
+            RATCHET_PATH=$(find . -name ratchet -type f -executable 2>/dev/null | head -1)
+            if [ -n "$RATCHET_PATH" ]; then
+              "$RATCHET_PATH"
+            else
+              echo "Error: ratchet binary not found"
+              ls -la
+              exit 1
+            fi
+          fi
 
