@@ -29,12 +29,15 @@ function urlMatchesHostname(url: string, hostnames: string[]): boolean {
 function extractYouTubeVideoId(url: string): string | null {
   try {
     const urlObj = new URL(url);
+    const hostname = urlObj.hostname.toLowerCase();
+    
     // Handle youtube.com/watch?v=VIDEO_ID
-    if (urlObj.hostname.includes("youtube.com") && urlObj.searchParams.has("v")) {
+    // Check for exact hostname match: youtube.com or www.youtube.com
+    if ((hostname === "youtube.com" || hostname === "www.youtube.com") && urlObj.searchParams.has("v")) {
       return urlObj.searchParams.get("v");
     }
     // Handle youtube.com/live/VIDEO_ID
-    if (urlObj.hostname.includes("youtube.com") && urlObj.pathname.startsWith("/live/")) {
+    if ((hostname === "youtube.com" || hostname === "www.youtube.com") && urlObj.pathname.startsWith("/live/")) {
       const parts = urlObj.pathname.split("/");
       const liveIndex = parts.indexOf("live");
       if (liveIndex !== -1 && liveIndex < parts.length - 1) {
@@ -42,7 +45,7 @@ function extractYouTubeVideoId(url: string): string | null {
       }
     }
     // Handle youtu.be/VIDEO_ID
-    if (urlObj.hostname === "youtu.be" || urlObj.hostname === "www.youtu.be") {
+    if (hostname === "youtu.be" || hostname === "www.youtu.be") {
       return urlObj.pathname.slice(1).split("?")[0];
     }
   } catch {
