@@ -79,16 +79,16 @@ jobs:
           echo "PATH: ${PATH}"
           echo "Checking for ratchet..."
           if command -v ratchet >/dev/null 2>&1; then
-            echo "Running: ratchet lint"
-            ratchet lint .github/workflows/
+            echo "Running: ratchet lint on workflow files"
+            ratchet lint .github/workflows/*.yml .github/workflows/*.yaml
             echo "Ratchet lint completed successfully"
           elif [ -f "${HOME}/.local/bin/ratchet" ]; then
-            echo "Running: ${HOME}/.local/bin/ratchet lint"
-            "${HOME}/.local/bin/ratchet" lint .github/workflows/
+            echo "Running: ${HOME}/.local/bin/ratchet lint on workflow files"
+            "${HOME}/.local/bin/ratchet" lint .github/workflows/*.yml .github/workflows/*.yaml
             echo "Ratchet lint completed successfully"
           elif [ -f "./ratchet" ]; then
-            echo "Running: ./ratchet lint"
-            ./ratchet lint .github/workflows/
+            echo "Running: ./ratchet lint on workflow files"
+            ./ratchet lint .github/workflows/*.yml .github/workflows/*.yaml
             echo "Ratchet lint completed successfully"
           else
             echo "Error: ratchet binary not found"
