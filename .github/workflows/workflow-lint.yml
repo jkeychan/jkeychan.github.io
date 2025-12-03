@@ -29,28 +29,21 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install zizmor
+        id: install-zizmor
         uses: jaxxstorm/action-install-gh-release@v1.10.0
         with:
           repo: zizmorcore/zizmor
           tag: latest
           rename-to: zizmor
 
-      - name: Find and run zizmor
+      - name: Run zizmor
         run: |
-          if [ -f "./zizmor" ]; then
-            ./zizmor .github/workflows
-          elif [ -f "$HOME/.local/bin/zizmor" ]; then
-            "$HOME/.local/bin/zizmor" .github/workflows
-          else
-            ZIZMOR_PATH=$(find . -name zizmor -type f -executable 2>/dev/null | head -1)
-            if [ -n "$ZIZMOR_PATH" ]; then
-              "$ZIZMOR_PATH" .github/workflows
-            else
-              echo "Error: zizmor binary not found"
-              ls -la
-              exit 1
-            fi
-          fi
+          echo "PATH: $PATH"
+          echo "Checking for zizmor..."
+          which zizmor || echo "Not in PATH"
+          find $HOME -name zizmor -type f 2>/dev/null | head -5
+          find . -name zizmor -type f 2>/dev/null | head -5
+          zizmor .github/workflows || (echo "zizmor not found, trying alternative..." && $HOME/.local/bin/zizmor .github/workflows || ./zizmor .github/workflows)
 
   ratchet:
     name: Ratchet - Version Pinning Check
@@ -60,26 +53,19 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install ratchet
+        id: install-ratchet
         uses: jaxxstorm/action-install-gh-release@v1.10.0
         with:
           repo: sethvargo/ratchet
           tag: latest
           rename-to: ratchet
 
-      - name: Find and run ratchet
+      - name: Run ratchet
         run: |
-          if [ -f "./ratchet" ]; then
-            ./ratchet
-          elif [ -f "$HOME/.local/bin/ratchet" ]; then
-            "$HOME/.local/bin/ratchet"
-          else
-            RATCHET_PATH=$(find . -name ratchet -type f -executable 2>/dev/null | head -1)
-            if [ -n "$RATCHET_PATH" ]; then
-              "$RATCHET_PATH"
-            else
-              echo "Error: ratchet binary not found"
-              ls -la
-              exit 1
-            fi
-          fi
+          echo "PATH: $PATH"
+          echo "Checking for ratchet..."
+          which ratchet || echo "Not in PATH"
+          find $HOME -name ratchet -type f 2>/dev/null | head -5
+          find . -name ratchet -type f 2>/dev/null | head -5
+          ratchet || (echo "ratchet not found, trying alternative..." && $HOME/.local/bin/ratchet || ./ratchet)
 
