@@ -38,12 +38,18 @@ jobs:
 
       - name: Run zizmor
         run: |
-          echo "PATH: $PATH"
+          echo "PATH: ${PATH}"
           echo "Checking for zizmor..."
-          which zizmor || echo "Not in PATH"
-          find $HOME -name zizmor -type f 2>/dev/null | head -5
-          find . -name zizmor -type f 2>/dev/null | head -5
-          zizmor .github/workflows || (echo "zizmor not found, trying alternative..." && $HOME/.local/bin/zizmor .github/workflows || ./zizmor .github/workflows)
+          if command -v zizmor >/dev/null 2>&1; then
+            zizmor .github/workflows
+          elif [ -f "${HOME}/.local/bin/zizmor" ]; then
+            "${HOME}/.local/bin/zizmor" .github/workflows
+          elif [ -f "./zizmor" ]; then
+            ./zizmor .github/workflows
+          else
+            echo "Error: zizmor binary not found"
+            exit 1
+          fi
 
   ratchet:
     name: Ratchet - Version Pinning Check
@@ -62,10 +68,16 @@ jobs:
 
       - name: Run ratchet
         run: |
-          echo "PATH: $PATH"
+          echo "PATH: ${PATH}"
           echo "Checking for ratchet..."
-          which ratchet || echo "Not in PATH"
-          find $HOME -name ratchet -type f 2>/dev/null | head -5
-          find . -name ratchet -type f 2>/dev/null | head -5
-          ratchet || (echo "ratchet not found, trying alternative..." && $HOME/.local/bin/ratchet || ./ratchet)
+          if command -v ratchet >/dev/null 2>&1; then
+            ratchet
+          elif [ -f "${HOME}/.local/bin/ratchet" ]; then
+            "${HOME}/.local/bin/ratchet"
+          elif [ -f "./ratchet" ]; then
+            ./ratchet
+          else
+            echo "Error: ratchet binary not found"
+            exit 1
+          fi
 
