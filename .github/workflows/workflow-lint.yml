@@ -28,12 +28,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install and Run zizmor
+      - name: Install zizmor
         run: |
-          mkdir -p $HOME/.local/bin
-          curl -L https://github.com/zizmorcore/zizmor/releases/latest/download/zizmor-linux-amd64 -o $HOME/.local/bin/zizmor
-          chmod +x $HOME/.local/bin/zizmor
-          $HOME/.local/bin/zizmor .github/workflows
+          curl -Lf https://github.com/zizmorcore/zizmor/releases/latest/download/zizmor-linux-amd64 -o /tmp/zizmor
+          chmod +x /tmp/zizmor
+          file /tmp/zizmor
+          ls -lh /tmp/zizmor
+
+      - name: Run zizmor
+        run: /tmp/zizmor .github/workflows
 
   ratchet:
     name: Ratchet - Version Pinning Check
@@ -42,10 +45,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install and Run Ratchet
+      - name: Install ratchet
         run: |
-          mkdir -p $HOME/.local/bin
-          curl -L https://github.com/sethvargo/ratchet/releases/latest/download/ratchet-linux-amd64 -o $HOME/.local/bin/ratchet
-          chmod +x $HOME/.local/bin/ratchet
-          $HOME/.local/bin/ratchet
+          curl -Lf https://github.com/sethvargo/ratchet/releases/latest/download/ratchet-linux-amd64 -o /tmp/ratchet
+          chmod +x /tmp/ratchet
+          file /tmp/ratchet
+          ls -lh /tmp/ratchet
+
+      - name: Run ratchet
+        run: /tmp/ratchet
 
