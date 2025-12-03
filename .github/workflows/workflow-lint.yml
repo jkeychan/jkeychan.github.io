@@ -79,11 +79,11 @@ jobs:
           echo "PATH: ${PATH}"
           echo "Checking for ratchet..."
           if command -v ratchet >/dev/null 2>&1; then
-            ratchet
+            ratchet lint
           elif [ -f "${HOME}/.local/bin/ratchet" ]; then
-            "${HOME}/.local/bin/ratchet"
+            "${HOME}/.local/bin/ratchet" lint
           elif [ -f "./ratchet" ]; then
-            ./ratchet
+            ./ratchet lint
           else
             echo "Error: ratchet binary not found"
             exit 1
