@@ -29,14 +29,14 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install zizmor
-        run: |
-          curl -Lf https://github.com/zizmorcore/zizmor/releases/latest/download/zizmor-linux-amd64 -o /tmp/zizmor
-          chmod +x /tmp/zizmor
-          file /tmp/zizmor
-          ls -lh /tmp/zizmor
+        uses: jaxxstorm/action-install-gh-release@v1.10.0
+        with:
+          repo: zizmorcore/zizmor
+          tag: latest
+          rename-to: zizmor
 
       - name: Run zizmor
-        run: /tmp/zizmor .github/workflows
+        run: ./zizmor .github/workflows
 
   ratchet:
     name: Ratchet - Version Pinning Check
@@ -46,12 +46,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install ratchet
-        run: |
-          curl -Lf https://github.com/sethvargo/ratchet/releases/latest/download/ratchet-linux-amd64 -o /tmp/ratchet
-          chmod +x /tmp/ratchet
-          file /tmp/ratchet
-          ls -lh /tmp/ratchet
+        uses: jaxxstorm/action-install-gh-release@v1.10.0
+        with:
+          repo: sethvargo/ratchet
+          tag: latest
+          rename-to: ratchet
 
       - name: Run ratchet
-        run: /tmp/ratchet
+        run: ./ratchet
 
