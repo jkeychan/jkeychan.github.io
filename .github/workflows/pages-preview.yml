@@ -4,11 +4,6 @@ on:
   pull_request:
     branches: [ main ]
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 concurrency:
   group: pages-preview-${{ github.ref }}
   cancel-in-progress: true
@@ -16,9 +11,13 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -45,6 +44,10 @@ jobs:
       name: github-pages
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     # Note: Deployment may be blocked by environment protection rules
     # This is expected for PR branches - the build job validates compilation
     steps:

@@ -6,31 +6,36 @@ on:
   pull_request:
     branches: [ main ]
 
-permissions:
-  contents: read
-  security-events: write
-
 jobs:
   actionlint:
     name: Actionlint - Workflow Syntax Check
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Run actionlint
-        uses: raven-actions/actionlint@v2
+        uses: raven-actions/actionlint@3a24062651993d40fed1019b58ac6fbdfbf276cc
 
   zizmor:
     name: Zizmor - Security Analysis
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Install zizmor
         id: install-zizmor
-        uses: jaxxstorm/action-install-gh-release@v1.10.0
+        uses: jaxxstorm/action-install-gh-release@c5ead9a448b4660cf1e7866ee22e4dc56538031a
         with:
           repo: zizmorcore/zizmor
           tag: latest
@@ -54,13 +59,17 @@ jobs:
   ratchet:
     name: Ratchet - Version Pinning Check
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Install ratchet
         id: install-ratchet
-        uses: jaxxstorm/action-install-gh-release@v1.10.0
+        uses: jaxxstorm/action-install-gh-release@c5ead9a448b4660cf1e7866ee22e4dc56538031a
         with:
           repo: sethvargo/ratchet
           tag: latest
