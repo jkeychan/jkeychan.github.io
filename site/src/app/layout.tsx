@@ -229,15 +229,16 @@ export default function RootLayout({
             <Link href="/" className="text-white hover:opacity-80">Home</Link>
             <Link href="/publications" className="text-white hover:opacity-80">Publications</Link>
             <Link href="/resume" className="text-white hover:opacity-80">Resume/CV</Link>
+            <div className="ml-auto flex items-center gap-4">
+              <a href="https://www.linkedin.com/in/jeffb0llinger" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white hover:opacity-80 text-sm">LinkedIn</a>
+              <a href="https://github.com/jkeychan" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white hover:opacity-80 text-sm">GitHub</a>
+            </div>
           </div>
         </nav>
         <div className="pt-16" id="main-content">{children}</div>
-        <footer className="mt-8 border-t border-white/10 text-white/80">
-          <div className="w-full px-4 py-8 flex items-center justify-start">
-            <div className="max-w-6xl w-full mx-auto flex gap-4">
-              <a href="https://www.linkedin.com/in/jeffb0llinger" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">LinkedIn</a>
-              <a href="https://github.com/jkeychan" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">GitHub</a>
-            </div>
+        <footer className="mt-8 border-t border-white/10 text-white/60 text-sm">
+          <div className="mx-auto max-w-6xl px-4 py-6">
+            <p>&copy; Jeff Bollinger</p>
           </div>
         </footer>
       </body>
