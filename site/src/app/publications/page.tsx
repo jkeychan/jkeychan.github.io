@@ -2,6 +2,15 @@
 import { useEffect, useRef, useState } from "react";
 import { ProjectCard } from "../(components)/ProjectCard";
 
+type EventData = {
+  startDate: string; // ISO 8601 date
+  endDate?: string; // ISO 8601 date
+  locationName: string;
+  locationAddress: string;
+  organizerName: string;
+  organizerUrl?: string;
+};
+
 type Publication = {
   imageSrc: string;
   title: string;
@@ -11,6 +20,7 @@ type Publication = {
   thumbnailUrl?: string;
   uploadDate?: string;
   videoId?: string;
+  eventData?: EventData;
 };
 
 // Helper function to check if URL matches a specific hostname
@@ -137,11 +147,32 @@ function generateSchemas(cards: Publication[]) {
         baseSchema.uploadDate = card.uploadDate;
       }
     } else if (schemaType === "Event") {
-      // Explicitly set required fields for Event
-      baseSchema.image = imageUrl;
-      baseSchema.description = description;
       baseSchema.eventAttendanceMode = "https://schema.org/OfflineEventAttendanceMode";
-      // Could add startDate, endDate, location if available
+      baseSchema.eventStatus = "https://schema.org/EventScheduled";
+      baseSchema.performer = {
+        "@type": "Person",
+        name: "Jeff Bollinger",
+        url: "https://www.jeff-bollinger.com",
+      };
+      if (card.eventData) {
+        baseSchema.startDate = card.eventData.startDate;
+        if (card.eventData.endDate) {
+          baseSchema.endDate = card.eventData.endDate;
+        }
+        baseSchema.location = {
+          "@type": "Place",
+          name: card.eventData.locationName,
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: card.eventData.locationAddress,
+          },
+        };
+        baseSchema.organizer = {
+          "@type": "Organization",
+          name: card.eventData.organizerName,
+          ...(card.eventData.organizerUrl && { url: card.eventData.organizerUrl }),
+        };
+      }
     } else if (schemaType === "Book") {
       baseSchema.publisher = {
         "@type": "Organization",
@@ -209,6 +240,14 @@ const cards = [
     description:
       "Presented at the SANS SIEM Summit on defining the right observability for security monitoring and how to apply the data collection principles to delivering security monitoring.",
     linkHref: "https://www.sans.org/presentations/the-right-data-at-the-right-time/",
+    eventData: {
+      startDate: "2017-08-22",
+      endDate: "2017-08-22",
+      locationName: "SANS SIEM Summit",
+      locationAddress: "Austin, TX, USA",
+      organizerName: "SANS Institute",
+      organizerUrl: "https://www.sans.org/",
+    },
   },
   {
     imageSrc: "/static/media/locks.33137b9b7fc27a57f175.png",
@@ -226,6 +265,14 @@ const cards = [
     linkHref:
       "https://www.first.org/resources/papers/conf2019/1100-CSIRT-Schiltron-Final.pdf",
     imageFit: "contain" as const,
+    eventData: {
+      startDate: "2019-06-16",
+      endDate: "2019-06-21",
+      locationName: "FIRST Annual Conference 2019",
+      locationAddress: "Edinburgh, Scotland, UK",
+      organizerName: "FIRST (Forum of Incident Response and Security Teams)",
+      organizerUrl: "https://www.first.org/",
+    },
   },
   {
     imageSrc: "/static/media/hacker.a0a5977e419ef5ecbc86.png",
@@ -235,6 +282,14 @@ const cards = [
       "Presentation at LACNIC 29 in Panama on applying cyber threat intelligence to incident response and detection engineering playbooks.",
     linkHref:
       "https://www.first.org/events/symposium/panama2018/program#pHow-Computer-Incident-Response-teams-use-Cyber-Threat-Intelligence-CTI-to-ensure-they-keep-up-with-the-miscreants",
+    eventData: {
+      startDate: "2018-04-30",
+      endDate: "2018-05-04",
+      locationName: "FIRST / LACNIC 29",
+      locationAddress: "Panama City, Panama",
+      organizerName: "FIRST (Forum of Incident Response and Security Teams)",
+      organizerUrl: "https://www.first.org/",
+    },
   },
   {
     imageSrc: "/static/media/interop.5e03f76b3da18aa7a93e.png",
@@ -242,6 +297,14 @@ const cards = [
     description:
       "InterOp Japan presentation on building a world class security team and demonstrating approaches with web filtering and intrusion detection.",
     linkHref: "https://archive.interop.jp/2017/en/about/",
+    eventData: {
+      startDate: "2017-06-07",
+      endDate: "2017-06-09",
+      locationName: "Interop Tokyo 2017",
+      locationAddress: "Makuhari Messe, Chiba, Japan",
+      organizerName: "Interop Tokyo",
+      organizerUrl: "https://www.interop.jp/",
+    },
   },
   {
     imageSrc: "/static/media/bonzi.7015abbedc1e2d5d322f.png",
@@ -260,6 +323,14 @@ const cards = [
       "Annual FIRST Technical Colloquium in Amsterdam producing hundreds of talks on incident handling, threat intelligence, malware analysis, and more.",
     linkHref:
       "https://www.first.org/events/colloquia/amsterdam2022/program#pFIRST-TC-Amsterdam-2020-Day-1",
+    eventData: {
+      startDate: "2022-11-14",
+      endDate: "2022-11-15",
+      locationName: "FIRST Technical Colloquium Amsterdam 2022",
+      locationAddress: "Amsterdam, Netherlands",
+      organizerName: "FIRST (Forum of Incident Response and Security Teams)",
+      organizerUrl: "https://www.first.org/",
+    },
   },
   {
     imageSrc: "/static/media/web.621276f7226ea1a23b18.png",
@@ -268,6 +339,14 @@ const cards = [
       "Cisco Live presentations covering web-based attacks and protections through HTTP/S inspection and web-based logging and monitoring.",
     linkHref:
       "https://www.alcatron.net/Cisco%20Live%202013%20Melbourne/Cisco%20Live%20Content/Security/BRKSEC-2010%20%20The%20State%20of%20Web%20Security%20-%20Attack%20and%20Response.pdf",
+    eventData: {
+      startDate: "2013-03-05",
+      endDate: "2013-03-08",
+      locationName: "Cisco Live Melbourne 2013",
+      locationAddress: "Melbourne Convention and Exhibition Centre, Melbourne, Australia",
+      organizerName: "Cisco",
+      organizerUrl: "https://www.ciscolive.com/",
+    },
   },
   {
     imageSrc: "/static/media/cloud.e6bacd0aae8c329e0edd.png",
