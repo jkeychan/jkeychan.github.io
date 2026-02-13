@@ -10,9 +10,24 @@ export type TypewriterTextProps = {
   holdBeforeNextMs?: number;
   loop?: boolean;
   className?: string;
-  reserveLines?: number; // reserve vertical space to avoid layout shift
-  lineHeight?: number; // line-height multiplier used to compute reserved height
+  reserveLines?: number;
+  lineHeight?: number;
 };
+
+function usePrefersReducedMotion(): boolean {
+  const [prefersReduced, setPrefersReduced] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReduced(mql.matches);
+    const handler = (e: MediaQueryListEvent) =>
+      setPrefersReduced(e.matches);
+    mql.addEventListener("change", handler);
+    return () => mql.removeEventListener("change", handler);
+  }, []);
+
+  return prefersReduced;
+}
 
 export function TypewriterText({
   phrases,
@@ -25,6 +40,7 @@ export function TypewriterText({
   reserveLines = 2,
   lineHeight = 1.25,
 }: TypewriterTextProps) {
+  const prefersReducedMotion = usePrefersReducedMotion();
   const [index, setIndex] = useState(0);
   const [display, setDisplay] = useState("");
   const [phase, setPhase] = useState<"typing" | "holding" | "deleting">(
@@ -34,6 +50,13 @@ export function TypewriterText({
   const phrase = useMemo(() => phrases[index] ?? "", [phrases, index]);
 
   useEffect(() => {
+    // When reduced motion is preferred, show full phrase immediately
+    if (prefersReducedMotion) {
+      setDisplay(phrase);
+      setPhase("holding");
+      return;
+    }
+
     if (timeoutRef.current) {
       window.clearTimeout(timeoutRef.current);
       timeoutRef.current = null;
@@ -66,29 +89,58 @@ export function TypewriterText({
         }
       }
     } else if (phase === "holding") {
-      timeoutRef.current = window.setTimeout(() => setPhase("deleting"), holdBeforeNextMs);
+      timeoutRef.current = window.setTimeout(
+        () => setPhase("deleting"),
+        holdBeforeNextMs,
+      );
     }
 
     return () => {
       if (timeoutRef.current) window.clearTimeout(timeoutRef.current);
     };
-  }, [display, phrase, phase, typingMsPerChar, deletingMsPerChar, holdBeforeDeleteMs, holdBeforeNextMs, index, phrases.length, loop]);
+  }, [
+    display,
+    phrase,
+    phase,
+    typingMsPerChar,
+    deletingMsPerChar,
+    holdBeforeDeleteMs,
+    holdBeforeNextMs,
+    index,
+    phrases.length,
+    loop,
+    prefersReducedMotion,
+  ]);
 
   useEffect(() => {
-    setDisplay("");
-    setPhase("typing");
-  }, [index]);
+    if (prefersReducedMotion) {
+      setDisplay(phrases[index] ?? "");
+      setPhase("holding");
+    } else {
+      setDisplay("");
+      setPhase("typing");
+    }
+  }, [index, prefersReducedMotion, phrases]);
 
-  const showCaret = phase !== "holding"; // hide caret when a phrase is fully shown
+  const showCaret = !prefersReducedMotion && phase !== "holding";
   const minHeightEm = `${reserveLines * lineHeight}em`;
+
   return (
-    <span className={className} style={{ display: "block", lineHeight, minHeight: minHeightEm }}>
+    <span
+      className={className}
+      style={{ display: "block", lineHeight, minHeight: minHeightEm }}
+      aria-live="polite"
+      aria-atomic="true"
+    >
       {display}
       {showCaret ? (
-        <span aria-hidden className="ml-1 inline-block w-[1ch] animate-pulse">|</span>
+        <span
+          aria-hidden="true"
+          className="ml-1 inline-block w-[1ch] animate-pulse"
+        >
+          |
+        </span>
       ) : null}
     </span>
   );
 }
-
-
