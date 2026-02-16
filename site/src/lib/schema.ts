@@ -102,15 +102,28 @@ export function generateSchemas(cards: Publication[]) {
     "@context": "https://schema.org",
     "@type": "ItemList",
     numberOfItems: cards.length,
-    itemListElement: cards.map((card, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      item: {
-        "@type": getSchemaType(card),
+    itemListElement: cards.map((card, index) => {
+      const schemaType = getSchemaType(card);
+      const item: Record<string, unknown> = {
+        "@type": schemaType,
         name: card.title,
         url: card.linkHref,
-      },
-    })),
+      };
+
+      if (schemaType === "VideoObject") {
+        const imageUrl = `${BASE_URL}${card.imageSrc}`;
+        item.thumbnailUrl = card.thumbnailUrl ?? imageUrl;
+        if (card.uploadDate) {
+          item.uploadDate = card.uploadDate;
+        }
+      }
+
+      return {
+        "@type": "ListItem",
+        position: index + 1,
+        item,
+      };
+    }),
   };
 
   const schemas = cards.map((card) => {
