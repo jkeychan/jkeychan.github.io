@@ -34,9 +34,6 @@ jobs:
         working-directory: site
         run: npm run build
 
-      - name: Build output summary
-        run: ls -la site/out/ | head -20
-
   # Deploy job omitted: PR branches cannot deploy to github-pages due to
   # environment protection rules. The build job above validates that PRs compile.
 
