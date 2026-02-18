@@ -22,7 +22,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
-          node-version: 20
+          node-version: 25
           cache: npm
           cache-dependency-path: site/package-lock.json
 
@@ -34,25 +34,9 @@ jobs:
         working-directory: site
         run: npm run build
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa
-        with:
-          path: site/out
+      - name: Build output summary
+        run: ls -la site/out/ | head -20
 
-  deploy:
-    environment:
-      name: github-pages
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    # Note: Deployment may be blocked by environment protection rules
-    # This is expected for PR branches - the build job validates compilation
-    steps:
-      - name: Deploy to GitHub Pages (preview)
-        id: deployment
-        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e
-        continue-on-error: true
+  # Deploy job omitted: PR branches cannot deploy to github-pages due to
+  # environment protection rules. The build job above validates that PRs compile.
 
