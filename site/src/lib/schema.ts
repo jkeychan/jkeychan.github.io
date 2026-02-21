@@ -104,15 +104,24 @@ export function generateSchemas(cards: Publication[]) {
     numberOfItems: cards.length,
     itemListElement: cards.map((card, index) => {
       const schemaType = getSchemaType(card);
+      const imageUrl = `${BASE_URL}${card.imageSrc}`;
+      const description = card.description || card.title;
       const item: Record<string, unknown> = {
         "@type": schemaType,
         name: card.title,
         url: card.linkHref,
+        description,
+        image: imageUrl,
       };
 
       if (schemaType === "VideoObject") {
-        const imageUrl = `${BASE_URL}${card.imageSrc}`;
         item.thumbnailUrl = card.thumbnailUrl ?? imageUrl;
+        const videoId =
+          card.videoId || extractYouTubeVideoId(card.linkHref);
+        item.contentUrl = card.linkHref;
+        item.embedUrl = videoId
+          ? `https://www.youtube.com/embed/${videoId}`
+          : card.linkHref;
         if (card.uploadDate) {
           item.uploadDate = card.uploadDate;
         }
@@ -149,6 +158,7 @@ export function generateSchemas(cards: Publication[]) {
     if (schemaType === "VideoObject") {
       const videoId =
         card.videoId || extractYouTubeVideoId(card.linkHref);
+      baseSchema.contentUrl = card.linkHref;
       baseSchema.embedUrl = videoId
         ? `https://www.youtube.com/embed/${videoId}`
         : card.linkHref;
