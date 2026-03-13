@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
+import { NavLinks } from "./(components)/NavLinks";
 import "./globals.css";
-import Link from "next/link";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
 });
 
 export const metadata: Metadata = {
@@ -87,15 +83,25 @@ export default function RootLayout({
         <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${jetbrainsMono.variable} antialiased`}
       >
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-purple-600 focus:text-white focus:px-4 focus:py-2 focus:rounded focus:text-sm focus:font-medium"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-[#00e5e5] focus:text-black focus:px-4 focus:py-2 focus:text-[12px] focus:tracking-[2px] focus:uppercase focus:font-bold"
         >
           Skip to main content
         </a>
-        <div className="star-field" aria-hidden="true" />
+        <div
+          aria-hidden="true"
+          style={{
+            position: "fixed",
+            inset: 0,
+            pointerEvents: "none",
+            zIndex: 50,
+            background:
+              "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,200,200,0.008) 3px, rgba(0,200,200,0.008) 4px)",
+          }}
+        />
         {/* ProfilePage with Person schema */}
         <script
           type="application/ld+json"
@@ -222,23 +228,19 @@ export default function RootLayout({
           }}
         />
         <nav
-          className="fixed top-0 left-0 right-0 z-10 backdrop-blur bg-black/10 border-b border-white/10"
+          className="fixed top-0 left-0 right-0 z-[60] backdrop-blur bg-[rgba(0,10,10,0.92)] border-b border-[rgba(0,229,229,0.12)]"
           aria-label="Main navigation"
         >
-          <div className="mx-auto max-w-6xl px-4 py-3 flex items-center gap-6">
-            <Link href="/" className="text-white hover:opacity-80">Home</Link>
-            <Link href="/publications" className="text-white hover:opacity-80">Publications</Link>
-            <Link href="/resume" className="text-white hover:opacity-80">Resume/CV</Link>
-            <div className="ml-auto flex items-center gap-4">
-              <a href="https://www.linkedin.com/in/jeffb0llinger" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white hover:opacity-80 text-sm">LinkedIn</a>
-              <a href="https://github.com/jkeychan" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white hover:opacity-80 text-sm">GitHub</a>
-            </div>
+          <div className="mx-auto max-w-5xl px-6 py-4 flex items-center">
+            <NavLinks />
           </div>
         </nav>
         <div className="pt-16" id="main-content">{children}</div>
-        <footer className="mt-8 border-t border-white/10 text-white/60 text-sm">
-          <div className="mx-auto max-w-6xl px-4 py-6">
-            <p>&copy; Jeff Bollinger</p>
+        <footer className="mt-8 border-t border-[rgba(0,229,229,0.08)]">
+          <div className="mx-auto max-w-5xl px-6 py-6">
+            <p className="text-[11px] tracking-[2px] text-[rgba(0,229,229,0.2)]">
+              &copy; {new Date().getFullYear()} Jeff Bollinger
+            </p>
           </div>
         </footer>
       </body>
