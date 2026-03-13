@@ -20,7 +20,6 @@ body {
   background: var(--color-terminal-bg);
   color: var(--color-terminal-cyan);
   font-family: var(--font-jetbrains-mono), monospace;
-  overflow-y: auto;
 }
 
 /* Focus indicators (accessibility) */

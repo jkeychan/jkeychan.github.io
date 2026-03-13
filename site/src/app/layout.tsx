@@ -235,7 +235,7 @@ export default function RootLayout({
             <NavLinks />
           </div>
         </nav>
-        <div className="pt-16" id="main-content">{children}</div>
+        <div className="pt-16" id="main-content" tabIndex={-1}>{children}</div>
         <footer className="mt-8 border-t border-[rgba(0,229,229,0.08)]">
           <div className="mx-auto max-w-5xl px-6 py-6">
             <p className="text-[11px] tracking-[2px] text-[rgba(0,229,229,0.2)]">

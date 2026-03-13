@@ -121,7 +121,7 @@ export default function Home() {
               </Link>
               <Link
                 href="/resume"
-                className="bg-transparent text-terminal-cyan text-[12px] tracking-[2px] uppercase px-5 py-2.5 border border-[rgba(0,229,229,0.3)] hover:border-[rgba(0,229,229,0.5)]"
+                className="bg-transparent text-terminal-cyan text-[12px] tracking-[2px] uppercase px-5 py-2.5 border border-[rgba(0,229,229,0.3)] hover:border-[rgba(0,229,229,0.5)] transition-colors"
               >
                 Resume / CV
               </Link>

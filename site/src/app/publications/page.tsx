@@ -5,6 +5,8 @@ import { ProjectCard } from "../(components)/ProjectCard";
 import { publications } from "./data";
 import { generateSchemas } from "@/lib/schema";
 
+const { itemList, schemas } = generateSchemas(publications);
+
 export default function PublicationsPage() {
   const [visibleCount, setVisibleCount] = useState(12);
   const sentinelRef = useRef<HTMLDivElement | null>(null);
@@ -31,7 +33,6 @@ export default function PublicationsPage() {
     0,
     Math.min(visibleCount, publications.length),
   );
-  const { itemList, schemas } = generateSchemas(publications);
 
   return (
     <>
@@ -84,7 +85,10 @@ export default function PublicationsPage() {
           </p>
           <h1 className="text-[40px] font-bold tracking-tight text-terminal-cyan [text-shadow:0_0_30px_rgba(0,229,229,0.2)] leading-none mb-4">
             Publications
-            <span className="text-[10px] tracking-[2px] border border-[rgba(0,229,229,0.15)] px-2.5 py-1 ml-4 align-middle font-normal">
+            <span
+              className="text-[10px] tracking-[2px] border border-[rgba(0,229,229,0.15)] px-2.5 py-1 ml-4 align-middle font-normal"
+              aria-label={`${publications.length} publications`}
+            >
               {publications.length}
             </span>
           </h1>
@@ -112,7 +116,7 @@ export default function PublicationsPage() {
                 )
               }
               aria-label="Load more publications"
-              className="bg-transparent text-terminal-cyan text-[11px] tracking-[2px] uppercase px-5 py-2.5 border border-[rgba(0,229,229,0.3)] hover:border-[rgba(0,229,229,0.5)]"
+              className="bg-transparent text-terminal-cyan text-[11px] tracking-[2px] uppercase px-5 py-2.5 border border-[rgba(0,229,229,0.3)] hover:border-[rgba(0,229,229,0.5)] transition-colors"
             >
               Load more
             </button>

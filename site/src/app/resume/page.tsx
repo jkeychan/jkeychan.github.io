@@ -51,7 +51,7 @@ export default function ResumePage() {
               View PDF
             </a>
             <a
-              className="bg-transparent text-terminal-cyan text-[12px] tracking-[2px] uppercase px-5 py-2.5 border border-[rgba(0,229,229,0.3)] hover:border-[rgba(0,229,229,0.5)]"
+              className="bg-transparent text-terminal-cyan text-[12px] tracking-[2px] uppercase px-5 py-2.5 border border-[rgba(0,229,229,0.3)] hover:border-[rgba(0,229,229,0.5)] transition-colors"
               href="/static/media/Jeff_Bollinger-Resume-2023-redacted.31d6cfe0d16ae931b73c.docx"
               target="_blank"
               rel="noopener noreferrer"
@@ -64,7 +64,19 @@ export default function ResumePage() {
               title="Jeff Bollinger Resume"
               src="/static/media/Jeff_Bollinger-Resume-2023-redacted.31d6cfe0d16ae931b73c.pdf"
               className="w-full h-full"
-            />
+            >
+              <p className="text-[12px] text-terminal-cyan-35 p-4">
+                PDF preview unavailable.{" "}
+                <a
+                  href="/static/media/Jeff_Bollinger-Resume-2023-redacted.31d6cfe0d16ae931b73c.pdf"
+                  className="text-terminal-cyan underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Download PDF directly
+                </a>
+              </p>
+            </iframe>
           </div>
         </div>
       </main>

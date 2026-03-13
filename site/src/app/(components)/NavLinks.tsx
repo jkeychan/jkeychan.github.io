@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const NAV_LINK_BASE = "text-[12px] tracking-[2px] uppercase";
+const NAV_LINK_BASE = "text-[12px] tracking-[2px] uppercase transition-colors";
+const NAV_LINK_ACTIVE = `${NAV_LINK_BASE} text-terminal-cyan border-b border-terminal-cyan`;
 const NAV_LINK_INACTIVE = `${NAV_LINK_BASE} text-terminal-cyan-35 hover:text-terminal-cyan`;
 
 const links = [
@@ -13,7 +14,7 @@ const links = [
 ];
 
 const externalLinks = [
-  { href: "https://www.linkedin.com/in/jeffb0llinger", label: "LinkedIn" },
+  { href: "https://www.linkedin.com/in/jeffb0llinger/", label: "LinkedIn" },
   { href: "https://github.com/jkeychan", label: "GitHub" },
 ];
 
@@ -29,7 +30,7 @@ export function NavLinks() {
             href={href}
             className={
               pathname === href
-                ? `${NAV_LINK_BASE} text-terminal-cyan`
+                ? NAV_LINK_ACTIVE
                 : NAV_LINK_INACTIVE
             }
           >
@@ -45,6 +46,7 @@ export function NavLinks() {
             target="_blank"
             rel="noopener noreferrer"
             className={NAV_LINK_INACTIVE}
+            aria-label={`${label} (opens in new tab)`}
           >
             {label}
           </a>
