@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ResumeViewer } from "../(components)/ResumeViewer";
 
 export const metadata: Metadata = {
   title: "Resume / CV",
@@ -60,23 +61,7 @@ export default function ResumePage() {
             </a>
           </div>
           <div className="border border-[rgba(0,229,229,0.15)] overflow-hidden h-[80vh]">
-            <iframe
-              title="Jeff Bollinger Resume"
-              src="/static/media/Jeff_Bollinger-Resume-2023-redacted.31d6cfe0d16ae931b73c.pdf"
-              className="w-full h-full"
-            >
-              <p className="text-[12px] text-terminal-cyan-35 p-4">
-                PDF preview unavailable.{" "}
-                <a
-                  href="/static/media/Jeff_Bollinger-Resume-2023-redacted.31d6cfe0d16ae931b73c.pdf"
-                  className="text-terminal-cyan underline"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Download PDF directly
-                </a>
-              </p>
-            </iframe>
+            <ResumeViewer />
           </div>
         </div>
       </main>
