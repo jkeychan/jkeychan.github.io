@@ -23,7 +23,7 @@ export function ProjectCard({
   const posClass = positionMap[imagePosition] ?? "object-center";
 
   return (
-    <div className="border border-terminal-border bg-terminal-surface overflow-hidden flex flex-col h-full hover:border-terminal-border-hv hover:bg-[rgba(0,229,229,0.04)] transition-colors">
+    <div className="card-pulse border-2 border-[rgba(0,229,229,0.22)] bg-terminal-surface overflow-hidden flex flex-col h-full hover:border-[rgba(0,229,229,0.45)] hover:bg-[rgba(0,229,229,0.04)] transition-colors">
       <div className="w-full h-56 md:h-64 bg-[#001010] overflow-hidden relative border-b border-[rgba(0,229,229,0.08)]">
         <Image
           src={imageSrc}

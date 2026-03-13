@@ -134,7 +134,7 @@ export default function Home() {
               width={160}
               height={160}
               priority
-              className="w-36 h-36 md:w-40 md:h-40 border border-terminal-border-hv [box-shadow:0_0_30px_rgba(0,229,229,0.08)] [filter:saturate(0.5)_contrast(1.1)]"
+              className="card-pulse w-36 h-36 md:w-40 md:h-40 border-2 border-[rgba(0,229,229,0.3)] [filter:saturate(0.5)_contrast(1.1)]"
             />
           </div>
         </section>

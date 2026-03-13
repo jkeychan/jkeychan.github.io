@@ -45,3 +45,19 @@ body {
     opacity: 1;
   }
 }
+
+/* Gentle border glow pulse for cards and featured images */
+@keyframes border-pulse {
+  0%, 100% { box-shadow: 0 0 0   rgba(0, 229, 229, 0); }
+  50%       { box-shadow: 0 0 14px rgba(0, 229, 229, 0.18); }
+}
+
+.card-pulse {
+  animation: border-pulse 3.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-pulse {
+    animation: none;
+  }
+}
