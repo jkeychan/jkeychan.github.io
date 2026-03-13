@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { TypewriterText } from "./(components)/TypewriterText";
 import { ProjectCard } from "./(components)/ProjectCard";
 
 export default function Home() {
@@ -87,13 +88,26 @@ export default function Home() {
             <p className="text-[11px] tracking-[4px] uppercase text-terminal-cyan-35 mb-4">
               {"// security author & leader"}
             </p>
-            <h1 className="text-[40px] md:text-[60px] font-bold tracking-tight text-terminal-cyan [text-shadow:0_0_40px_rgba(0,229,229,0.3)] leading-none mb-5">
+            <h1 className="text-[40px] md:text-[60px] font-bold tracking-tight text-terminal-cyan [text-shadow:0_0_40px_rgba(0,229,229,0.3)] leading-none mb-3">
               Jeff<br />Bollinger
               <span
                 aria-hidden="true"
                 className="cursor-blink inline-block w-[4px] h-[50px] md:h-[62px] bg-terminal-cyan align-middle ml-2 [box-shadow:0_0_10px_rgba(0,229,229,0.8)]"
               />
             </h1>
+            <TypewriterText
+              className="text-[12px] tracking-[3px] uppercase text-terminal-cyan-35 mb-5"
+              phrases={[
+                "Threat Detection + Incident Response",
+                "Detection Engineering + Security Architecture",
+                "Executive Leadership + Team Building",
+                "Security Author + International Speaker",
+              ]}
+              typingMsPerChar={40}
+              deletingMsPerChar={20}
+              holdBeforeDeleteMs={1800}
+              holdBeforeNextMs={400}
+            />
             <p className="text-[13px] md:text-[14px] text-terminal-cyan-60 leading-[1.7] max-w-[440px] mb-8">
               Author of <em>Crafting the Infosec Playbook</em>. Writing and speaking
               on security operations, threat hunting, and incident response.
