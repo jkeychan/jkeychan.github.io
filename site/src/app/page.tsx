@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { TypewriterText } from "./(components)/TypewriterText";
 import { ProjectCard } from "./(components)/ProjectCard";
 
 export default function Home() {
@@ -81,102 +80,91 @@ export default function Home() {
           }),
         }}
       />
-      <main className="min-h-[80vh] p-6 md:p-8 text-white">
-        <section className="mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+      <main className="min-h-[80vh] px-6 md:px-8 pt-8 pb-16 text-[#00e5e5]">
+        {/* Hero */}
+        <section className="mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-[1fr_auto] gap-14 items-start mb-16 pb-16 border-b border-[rgba(0,229,229,0.1)]">
           <div>
-            <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-1">
-              Hello I&apos;m <span className="text-purple-400">Jeff Bollinger</span>
-            </h1>
-          </div>
-          <div className="mt-1 flex items-start gap-4">
-            <Image
-              src="/static/media/avatar.d355c64ac071e83edeabfc9c51f454d3.svg"
-              alt="Jeff Bollinger headshot"
-              width={128}
-              height={128}
-              priority
-              className="w-28 h-28 md:w-32 md:h-32 rounded-full border border-white/20 shadow-sm"
-            />
-            <div className="min-h-[160px] md:min-h-[120px] flex-1">
-              <TypewriterText
-                className="text-purple-300 text-lg md:text-2xl mb-3 block"
-                phrases={[
-                  "Infosec Professional | 25 years",
-                  "Threat Detection | Incident Response",
-                  "Detection Engineering | Security Architecture",
-                  "Executive Leadership | Mentoring, Team Building",
-                ]}
+            <p className="text-[11px] tracking-[4px] uppercase text-[rgba(0,229,229,0.35)] mb-4">
+              {"// security author & leader"}
+            </p>
+            <h1 className="text-[40px] md:text-[60px] font-bold tracking-tight text-[#00e5e5] [text-shadow:0_0_40px_rgba(0,229,229,0.3)] leading-none mb-5">
+              Jeff<br />Bollinger
+              <span
+                aria-hidden="true"
+                className="cursor-blink inline-block w-[4px] h-[50px] md:h-[62px] bg-[#00e5e5] align-middle ml-2 [box-shadow:0_0_10px_rgba(0,229,229,0.8)]"
               />
-              <p className="text-white/80 text-sm md:text-base mt-2 mb-4">
-                Jeff Bollinger is a cybersecurity leader focused on incident response, detection engineering, and
-                large-scale security operations. He has led programs at LinkedIn and Cisco and frequently writes and
-                speaks about security monitoring, threat detection, and response.
-              </p>
+            </h1>
+            <p className="text-[13px] md:text-[14px] text-[rgba(0,229,229,0.6)] leading-[1.7] max-w-[440px] mb-8">
+              Author of <em>Crafting the Infosec Playbook</em>. Writing and speaking
+              on security operations, threat hunting, and incident response.
+            </p>
+            <div className="flex gap-3">
+              <Link
+                href="/publications"
+                className="bg-[#00e5e5] text-black font-bold text-[12px] tracking-[2px] uppercase px-5 py-2.5"
+              >
+                Publications
+              </Link>
+              <Link
+                href="/resume"
+                className="bg-transparent text-[#00e5e5] text-[12px] tracking-[2px] uppercase px-5 py-2.5 border border-[rgba(0,229,229,0.3)] hover:border-[rgba(0,229,229,0.5)]"
+              >
+                Resume / CV
+              </Link>
             </div>
           </div>
-          <div className="md:col-span-2 flex flex-wrap gap-3">
-            <Link
-              href="/publications"
-              className="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white text-sm font-medium px-4 py-2 rounded"
-            >
-              View Publications
-            </Link>
-            <Link
-              href="/resume"
-              className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 text-white text-sm font-medium px-4 py-2 rounded border border-white/10"
-            >
-              Resume / CV
-            </Link>
-            <a
-              href="https://www.linkedin.com/in/jeffb0llinger/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 text-white text-sm font-medium px-4 py-2 rounded border border-white/10"
-            >
-              LinkedIn
-            </a>
+          <div>
+            <Image
+              src="/static/media/avatar.d355c64ac071e83edeabfc9c51f454d3.svg"
+              alt="Jeff Bollinger"
+              width={160}
+              height={160}
+              priority
+              className="w-36 h-36 md:w-40 md:h-40 border border-[rgba(0,229,229,0.25)] [box-shadow:0_0_30px_rgba(0,229,229,0.08)] [filter:saturate(0.5)_contrast(1.1)]"
+            />
           </div>
         </section>
 
-        <section className="mx-auto max-w-5xl mt-8 grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-          <div className="rounded-lg border border-white/10 bg-white/5 p-4">
-            <h2 className="text-white/90 font-semibold mb-2">What I do</h2>
-            <ul className="list-disc pl-5 text-white/80 space-y-1 text-sm">
-              <li>Build, modernize, and lead detection engineering, incident response, and insider threat programs</li>
-              <li>Design reliable security architecture and observability for large enterprises</li>
-              <li>Coach and mentor high-performing security teams</li>
-              <li>Build and lead security operations centers</li>
-              <li>Lead security architecture and design</li>
-              <li>Lead security operations and incident response</li>
-            </ul>
+        {/* About block */}
+        <div className="mx-auto max-w-5xl mb-8">
+          <div className="relative border border-[rgba(0,229,229,0.15)] bg-[rgba(0,229,229,0.02)] px-7 py-5">
+            <span className="absolute -top-[9px] left-4 bg-[#000a0a] px-2 text-[10px] tracking-[3px] uppercase text-[rgba(0,229,229,0.4)]">
+              about
+            </span>
+            <p className="text-[13px] text-[rgba(0,229,229,0.65)] leading-[1.8]">
+              Cybersecurity leader focused on building and running security operations
+              programs. Detection engineering, incident response, security
+              architecture, and growing high-performing teams.
+            </p>
           </div>
-          <div className="rounded-lg border border-white/10 bg-white/5 p-4">
-            <h2 className="text-white/90 font-semibold mb-2">Core skills</h2>
-            <div className="flex flex-wrap gap-2 text-sm">
-              <span className="px-2 py-1 rounded bg-purple-600/30 border border-purple-300/20">Threat Detection</span>
-              <span className="px-2 py-1 rounded bg-purple-600/30 border border-purple-300/20">Incident Response</span>
-              <span className="px-2 py-1 rounded bg-purple-600/30 border border-purple-300/20">Detection Engineering</span>
-              <span className="px-2 py-1 rounded bg-purple-600/30 border border-purple-300/20">Security Architecture</span>
-              <span className="px-2 py-1 rounded bg-purple-600/30 border border-purple-300/20">Executive Leadership</span>
-              <span className="px-2 py-1 rounded bg-purple-600/30 border border-purple-300/20">Security Operations</span>
-              <span className="px-2 py-1 rounded bg-purple-600/30 border border-purple-300/20">Security Engineering</span>
-            </div>
-          </div>
-          <div className="relative rounded-lg border border-white/10 bg-white/5 overflow-hidden h-full">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(167,139,250,0.18),transparent_60%)]" />
-            <Image
-              src="/static/media/home-main.bb0187d03cff74c7d9bec63d61173238.svg"
-              alt="Home Illustration"
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 33vw"
-              className="object-cover"
-            />
-          </div>
-        </section>
-        <section className="mx-auto max-w-5xl mt-10">
-          <h2 className="text-2xl font-semibold text-purple-400 mb-4">Recent highlights</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        </div>
+
+        {/* Skills */}
+        <div className="mx-auto max-w-5xl flex flex-wrap gap-2 mb-16">
+          {[
+            "Threat Detection",
+            "Incident Response",
+            "Detection Engineering",
+            "Security Architecture",
+            "Executive Leadership",
+            "Security Operations",
+            "Security Engineering",
+          ].map((skill) => (
+            <span
+              key={skill}
+              className="text-[11px] tracking-[1.5px] uppercase border border-[rgba(0,229,229,0.15)] bg-[rgba(0,229,229,0.03)] px-3 py-1.5 text-[rgba(0,229,229,0.5)]"
+            >
+              {skill}
+            </span>
+          ))}
+        </div>
+
+        {/* Recent highlights */}
+        <section className="mx-auto max-w-5xl">
+          <h2 className="text-[11px] tracking-[4px] uppercase text-[rgba(0,229,229,0.35)] mb-6 pb-3 border-b border-[rgba(0,229,229,0.08)]">
+            {"// recent highlights"}
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <ProjectCard
               imageSrc="/static/media/cover-blue-edition.0781c7b04869f677781b.png"
               title="Crafting the Infosec Playbook"
