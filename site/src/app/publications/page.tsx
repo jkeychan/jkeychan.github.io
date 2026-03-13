@@ -1,15 +1,18 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ProjectCard } from "../(components)/ProjectCard";
+import { PublicationsTerminal } from "../(components)/PublicationsTerminal";
 import { publications } from "./data";
 import { generateSchemas } from "@/lib/schema";
 
 const { itemList, schemas } = generateSchemas(publications);
 
 export default function PublicationsPage() {
+  const [terminalDone, setTerminalDone] = useState(false);
   const [visibleCount, setVisibleCount] = useState(12);
   const sentinelRef = useRef<HTMLDivElement | null>(null);
+  const handleTerminalDone = useCallback(() => setTerminalDone(true), []);
 
   useEffect(() => {
     const el = sentinelRef.current;
@@ -99,12 +102,30 @@ export default function PublicationsPage() {
           </p>
         </div>
 
-        {/* Grid */}
-        <div className="mx-auto max-w-5xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {visibleItems.map((p) => (
-            <ProjectCard key={p.title} {...p} />
-          ))}
-        </div>
+        {/* Terminal extraction animation */}
+        {!terminalDone && (
+          <div className="mx-auto max-w-5xl">
+            <PublicationsTerminal
+              total={publications.length}
+              onDone={handleTerminalDone}
+            />
+          </div>
+        )}
+
+        {/* Grid — staggered fade-in after terminal */}
+        {terminalDone && (
+          <div className="mx-auto max-w-5xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {visibleItems.map((p, i) => (
+              <div
+                key={p.title}
+                className="opacity-0 animate-fade-in"
+                style={{ animationDelay: `${i * 60}ms`, animationFillMode: "forwards" }}
+              >
+                <ProjectCard {...p} />
+              </div>
+            ))}
+          </div>
+        )}
 
         {/* Load more */}
         {visibleCount < publications.length && (
