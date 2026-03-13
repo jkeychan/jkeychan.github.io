@@ -80,34 +80,34 @@ export default function Home() {
           }),
         }}
       />
-      <main className="min-h-[80vh] px-6 md:px-8 pt-8 pb-16 text-[#00e5e5]">
+      <main className="min-h-[80vh] px-6 md:px-8 pt-8 pb-16 text-terminal-cyan">
         {/* Hero */}
         <section className="mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-[1fr_auto] gap-14 items-start mb-16 pb-16 border-b border-[rgba(0,229,229,0.1)]">
           <div>
-            <p className="text-[11px] tracking-[4px] uppercase text-[rgba(0,229,229,0.35)] mb-4">
+            <p className="text-[11px] tracking-[4px] uppercase text-terminal-cyan-35 mb-4">
               {"// security author & leader"}
             </p>
-            <h1 className="text-[40px] md:text-[60px] font-bold tracking-tight text-[#00e5e5] [text-shadow:0_0_40px_rgba(0,229,229,0.3)] leading-none mb-5">
+            <h1 className="text-[40px] md:text-[60px] font-bold tracking-tight text-terminal-cyan [text-shadow:0_0_40px_rgba(0,229,229,0.3)] leading-none mb-5">
               Jeff<br />Bollinger
               <span
                 aria-hidden="true"
-                className="cursor-blink inline-block w-[4px] h-[50px] md:h-[62px] bg-[#00e5e5] align-middle ml-2 [box-shadow:0_0_10px_rgba(0,229,229,0.8)]"
+                className="cursor-blink inline-block w-[4px] h-[50px] md:h-[62px] bg-terminal-cyan align-middle ml-2 [box-shadow:0_0_10px_rgba(0,229,229,0.8)]"
               />
             </h1>
-            <p className="text-[13px] md:text-[14px] text-[rgba(0,229,229,0.6)] leading-[1.7] max-w-[440px] mb-8">
+            <p className="text-[13px] md:text-[14px] text-terminal-cyan-60 leading-[1.7] max-w-[440px] mb-8">
               Author of <em>Crafting the Infosec Playbook</em>. Writing and speaking
               on security operations, threat hunting, and incident response.
             </p>
             <div className="flex gap-3">
               <Link
                 href="/publications"
-                className="bg-[#00e5e5] text-black font-bold text-[12px] tracking-[2px] uppercase px-5 py-2.5"
+                className="bg-terminal-cyan text-black font-bold text-[12px] tracking-[2px] uppercase px-5 py-2.5"
               >
                 Publications
               </Link>
               <Link
                 href="/resume"
-                className="bg-transparent text-[#00e5e5] text-[12px] tracking-[2px] uppercase px-5 py-2.5 border border-[rgba(0,229,229,0.3)] hover:border-[rgba(0,229,229,0.5)]"
+                className="bg-transparent text-terminal-cyan text-[12px] tracking-[2px] uppercase px-5 py-2.5 border border-[rgba(0,229,229,0.3)] hover:border-[rgba(0,229,229,0.5)]"
               >
                 Resume / CV
               </Link>
@@ -120,15 +120,15 @@ export default function Home() {
               width={160}
               height={160}
               priority
-              className="w-36 h-36 md:w-40 md:h-40 border border-[rgba(0,229,229,0.25)] [box-shadow:0_0_30px_rgba(0,229,229,0.08)] [filter:saturate(0.5)_contrast(1.1)]"
+              className="w-36 h-36 md:w-40 md:h-40 border border-terminal-border-hv [box-shadow:0_0_30px_rgba(0,229,229,0.08)] [filter:saturate(0.5)_contrast(1.1)]"
             />
           </div>
         </section>
 
         {/* About block */}
         <div className="mx-auto max-w-5xl mb-8">
-          <div className="relative border border-[rgba(0,229,229,0.15)] bg-[rgba(0,229,229,0.02)] px-7 py-5">
-            <span className="absolute -top-[9px] left-4 bg-[#000a0a] px-2 text-[10px] tracking-[3px] uppercase text-[rgba(0,229,229,0.4)]">
+          <div className="relative border border-[rgba(0,229,229,0.15)] bg-terminal-surface px-7 py-5">
+            <span className="absolute -top-[9px] left-4 bg-terminal-bg px-2 text-[10px] tracking-[3px] uppercase text-[rgba(0,229,229,0.4)]">
               about
             </span>
             <p className="text-[13px] text-[rgba(0,229,229,0.65)] leading-[1.8]">
@@ -161,7 +161,7 @@ export default function Home() {
 
         {/* Recent highlights */}
         <section className="mx-auto max-w-5xl">
-          <h2 className="text-[11px] tracking-[4px] uppercase text-[rgba(0,229,229,0.35)] mb-6 pb-3 border-b border-[rgba(0,229,229,0.08)]">
+          <h2 className="text-[11px] tracking-[4px] uppercase text-terminal-cyan-35 mb-6 pb-3 border-b border-[rgba(0,229,229,0.08)]">
             {"// recent highlights"}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

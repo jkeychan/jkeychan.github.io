@@ -76,13 +76,13 @@ export default function PublicationsPage() {
           }),
         }}
       />
-      <main className="min-h-screen px-6 md:px-8 pt-8 pb-16 text-[#00e5e5]">
+      <main className="min-h-screen px-6 md:px-8 pt-8 pb-16 text-terminal-cyan">
         {/* Page header */}
         <div className="mx-auto max-w-5xl mb-12">
-          <p className="text-[11px] tracking-[4px] uppercase text-[rgba(0,229,229,0.35)] mb-4">
+          <p className="text-[11px] tracking-[4px] uppercase text-terminal-cyan-35 mb-4">
             {"// writing, talks & appearances"}
           </p>
-          <h1 className="text-[40px] font-bold tracking-tight text-[#00e5e5] [text-shadow:0_0_30px_rgba(0,229,229,0.2)] leading-none mb-4">
+          <h1 className="text-[40px] font-bold tracking-tight text-terminal-cyan [text-shadow:0_0_30px_rgba(0,229,229,0.2)] leading-none mb-4">
             Publications
             <span className="text-[10px] tracking-[2px] border border-[rgba(0,229,229,0.15)] px-2.5 py-1 ml-4 align-middle font-normal">
               {publications.length}
@@ -112,7 +112,7 @@ export default function PublicationsPage() {
                 )
               }
               aria-label="Load more publications"
-              className="bg-transparent text-[#00e5e5] text-[11px] tracking-[2px] uppercase px-5 py-2.5 border border-[rgba(0,229,229,0.3)] hover:border-[rgba(0,229,229,0.5)]"
+              className="bg-transparent text-terminal-cyan text-[11px] tracking-[2px] uppercase px-5 py-2.5 border border-[rgba(0,229,229,0.3)] hover:border-[rgba(0,229,229,0.5)]"
             >
               Load more
             </button>

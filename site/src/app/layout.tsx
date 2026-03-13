@@ -87,7 +87,7 @@ export default function RootLayout({
       >
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-[#00e5e5] focus:text-black focus:px-4 focus:py-2 focus:text-[12px] focus:tracking-[2px] focus:uppercase focus:font-bold"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-terminal-cyan focus:text-black focus:px-4 focus:py-2 focus:text-[12px] focus:tracking-[2px] focus:uppercase focus:font-bold"
         >
           Skip to main content
         </a>
@@ -228,7 +228,7 @@ export default function RootLayout({
           }}
         />
         <nav
-          className="fixed top-0 left-0 right-0 z-[60] backdrop-blur bg-[rgba(0,10,10,0.92)] border-b border-[rgba(0,229,229,0.12)]"
+          className="fixed top-0 left-0 right-0 z-[60] backdrop-blur bg-[rgba(0,10,10,0.92)] border-b border-terminal-border"
           aria-label="Main navigation"
         >
           <div className="mx-auto max-w-5xl px-6 py-4 flex items-center">

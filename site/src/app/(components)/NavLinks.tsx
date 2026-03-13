@@ -3,6 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+const NAV_LINK_BASE = "text-[12px] tracking-[2px] uppercase";
+const NAV_LINK_INACTIVE = `${NAV_LINK_BASE} text-terminal-cyan-35 hover:text-terminal-cyan`;
+
 const links = [
   { href: "/", label: "Home" },
   { href: "/publications", label: "Publications" },
@@ -26,8 +29,8 @@ export function NavLinks() {
             href={href}
             className={
               pathname === href
-                ? "text-[12px] tracking-[2px] uppercase text-[#00e5e5]"
-                : "text-[12px] tracking-[2px] uppercase text-[rgba(0,229,229,0.35)] hover:text-[#00e5e5]"
+                ? `${NAV_LINK_BASE} text-terminal-cyan`
+                : NAV_LINK_INACTIVE
             }
           >
             {label}
@@ -41,7 +44,7 @@ export function NavLinks() {
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[12px] tracking-[2px] uppercase text-[rgba(0,229,229,0.35)] hover:text-[#00e5e5]"
+            className={NAV_LINK_INACTIVE}
           >
             {label}
           </a>
