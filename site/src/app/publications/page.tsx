@@ -102,17 +102,15 @@ export default function PublicationsPage() {
           </p>
         </div>
 
-        {/* Terminal extraction animation */}
-        {!terminalDone && (
-          <div className="mx-auto max-w-5xl">
-            <PublicationsTerminal
-              total={publications.length}
-              onDone={handleTerminalDone}
-            />
-          </div>
-        )}
+        {/* Terminal extraction animation — stays visible */}
+        <div className="mx-auto max-w-5xl">
+          <PublicationsTerminal
+            total={publications.length}
+            onDone={handleTerminalDone}
+          />
+        </div>
 
-        {/* Grid — staggered fade-in after terminal */}
+        {/* Grid — staggered fade-in after terminal completes */}
         {terminalDone && (
           <div className="mx-auto max-w-5xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {visibleItems.map((p, i) => (
