@@ -199,6 +199,14 @@ export default function Home() {
               linkHref="https://cloud.withgoogle.com/cloudsecurity/podcast/ep96-cloud-security-observability-for-detection-and-response/"
             />
           </div>
+          <div className="mt-8 pt-6 border-t border-[rgba(0,229,229,0.08)]">
+            <Link
+              href="/publications"
+              className="text-[11px] tracking-[3px] uppercase text-terminal-cyan-35 hover:text-terminal-cyan transition-colors"
+            >
+              View all publications &rarr;
+            </Link>
+          </div>
         </section>
       </main>
     </>
