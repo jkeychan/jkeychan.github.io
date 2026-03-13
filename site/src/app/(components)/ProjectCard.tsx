@@ -12,34 +12,30 @@ export function ProjectCard({
 }: ProjectCardProps) {
   const fitClass =
     imageFit === "contain" ? "object-contain" : "object-cover";
-  const posClass =
-    imagePosition === "top"
-      ? "object-top"
-      : imagePosition === "bottom"
-        ? "object-bottom"
-        : imagePosition === "left"
-          ? "object-left"
-          : imagePosition === "right"
-            ? "object-right"
-            : "object-center";
+
+  const positionMap: Record<string, string> = {
+    top: "object-top",
+    bottom: "object-bottom",
+    left: "object-left",
+    right: "object-right",
+    center: "object-center",
+  };
+  const posClass = positionMap[imagePosition] ?? "object-center";
 
   return (
-    <div className="bg-white/5 border border-white/10 rounded-lg overflow-hidden shadow-md flex flex-col h-full">
-      <div className="w-full h-56 md:h-64 bg-black/20 overflow-hidden relative">
+    <div className="card-pulse border-2 border-[rgba(0,229,229,0.22)] bg-terminal-surface overflow-hidden flex flex-col h-full hover:border-[rgba(0,229,229,0.45)] hover:bg-[rgba(0,229,229,0.04)] transition-colors">
+      <div className="w-full h-56 md:h-64 bg-[#001010] overflow-hidden relative border-b border-[rgba(0,229,229,0.08)]">
         <Image
           src={imageSrc}
           alt={title}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className={`${fitClass} ${posClass}`}
+          className={`${fitClass} ${posClass} [filter:saturate(0.5)_contrast(1.1)]`}
         />
       </div>
       <div className="p-4 flex-1 flex flex-col">
-        <h3 className="text-white text-lg font-semibold mb-2">{title}</h3>
-        <p
-          className="text-white/80 text-sm flex-1"
-          style={{ textAlign: "justify" }}
-        >
+        <h3 className="text-terminal-cyan text-[13px] font-bold mb-2 leading-snug">{title}</h3>
+        <p className="text-[rgba(0,229,229,0.45)] text-[11px] flex-1 leading-[1.6]">
           {description}
         </p>
         <div className="mt-4">
@@ -47,9 +43,9 @@ export function ProjectCard({
             href={linkHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white text-sm font-medium px-3 py-2 rounded"
+            className="text-[10px] tracking-[2px] uppercase text-terminal-cyan-60 hover:text-terminal-cyan"
           >
-            {linkLabel}
+            {linkLabel} &rarr;
           </a>
         </div>
       </div>

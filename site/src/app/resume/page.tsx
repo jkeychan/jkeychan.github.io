@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ResumeViewer } from "../(components)/ResumeViewer";
 
 export const metadata: Metadata = {
   title: "Resume / CV",
@@ -33,32 +34,35 @@ export default function ResumePage() {
           }),
         }}
       />
-      <main className="min-h-screen p-8 text-white">
-        <h1 className="text-3xl font-bold mb-6">Resume / CV</h1>
-        <div className="flex gap-4 mb-6">
-          <a
-            className="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white text-sm font-medium px-3 py-2 rounded"
-            href="/static/media/Jeff_Bollinger-Resume-2023-redacted.31d6cfe0d16ae931b73c.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View PDF
-          </a>
-          <a
-            className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 text-white text-sm font-medium px-3 py-2 rounded border border-white/10"
-            href="/static/media/Jeff_Bollinger-Resume-2023-redacted.31d6cfe0d16ae931b73c.docx"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Download DOCX
-          </a>
-        </div>
-        <div className="bg-white rounded overflow-hidden h-[80vh]">
-          <iframe
-            title="Jeff Bollinger Resume"
-            src="/static/media/Jeff_Bollinger-Resume-2023-redacted.31d6cfe0d16ae931b73c.pdf"
-            className="w-full h-full"
-          />
+      <main className="min-h-screen px-6 md:px-8 pt-8 pb-16 text-terminal-cyan">
+        <div className="mx-auto max-w-5xl mb-8">
+          <p className="text-[11px] tracking-[4px] uppercase text-terminal-cyan-35 mb-4">
+            {"// resume & cv"}
+          </p>
+          <h1 className="text-[40px] font-bold tracking-tight text-terminal-cyan [text-shadow:0_0_30px_rgba(0,229,229,0.2)] leading-none mb-8">
+            Resume / CV
+          </h1>
+          <div className="flex gap-3 mb-8">
+            <a
+              className="bg-terminal-cyan text-black font-bold text-[12px] tracking-[2px] uppercase px-5 py-2.5"
+              href="/static/media/Jeff_Bollinger-Resume-2023-redacted.31d6cfe0d16ae931b73c.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View PDF
+            </a>
+            <a
+              className="bg-transparent text-terminal-cyan text-[12px] tracking-[2px] uppercase px-5 py-2.5 border border-[rgba(0,229,229,0.3)] hover:border-[rgba(0,229,229,0.5)] transition-colors"
+              href="/static/media/Jeff_Bollinger-Resume-2023-redacted.31d6cfe0d16ae931b73c.docx"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Download DOCX
+            </a>
+          </div>
+          <div className="border border-[rgba(0,229,229,0.15)] overflow-hidden h-[80vh]">
+            <ResumeViewer />
+          </div>
         </div>
       </main>
     </>

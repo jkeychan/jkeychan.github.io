@@ -1,13 +1,18 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ProjectCard } from "../(components)/ProjectCard";
+import { PublicationsTerminal } from "../(components)/PublicationsTerminal";
 import { publications } from "./data";
 import { generateSchemas } from "@/lib/schema";
 
+const { itemList, schemas } = generateSchemas(publications);
+
 export default function PublicationsPage() {
+  const [terminalDone, setTerminalDone] = useState(false);
   const [visibleCount, setVisibleCount] = useState(12);
   const sentinelRef = useRef<HTMLDivElement | null>(null);
+  const handleTerminalDone = useCallback(() => setTerminalDone(true), []);
 
   useEffect(() => {
     const el = sentinelRef.current;
@@ -31,7 +36,6 @@ export default function PublicationsPage() {
     0,
     Math.min(visibleCount, publications.length),
   );
-  const { itemList, schemas } = generateSchemas(publications);
 
   return (
     <>
@@ -76,26 +80,54 @@ export default function PublicationsPage() {
           }),
         }}
       />
-      <main className="min-h-screen p-8 text-white">
-        <h1 className="text-3xl font-bold mb-2">
-          <span className="text-purple-400">
-            Publications and Conferences
-          </span>
-        </h1>
-        <p className="text-white/80 mb-6">
-          This is a non-exhaustive list of blogs, podcasts, articles,
-          reviews, conferences hosted, and other publications I&apos;ve
-          created, co-created, or been involved in.
-        </p>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {visibleItems.map((p) => (
-            <ProjectCard key={p.title} {...p} />
-          ))}
+      <main className="min-h-screen px-6 md:px-8 pt-8 pb-16 text-terminal-cyan">
+        {/* Page header */}
+        <div className="mx-auto max-w-5xl mb-12">
+          <p className="text-[11px] tracking-[4px] uppercase text-terminal-cyan-35 mb-4">
+            {"// writing, talks & appearances"}
+          </p>
+          <h1 className="text-[40px] font-bold tracking-tight text-terminal-cyan [text-shadow:0_0_30px_rgba(0,229,229,0.2)] leading-none mb-4">
+            Publications
+            <span
+              className="text-[10px] tracking-[2px] border border-[rgba(0,229,229,0.15)] px-2.5 py-1 ml-4 align-middle font-normal"
+              aria-label={`${publications.length} publications`}
+            >
+              {publications.length}
+            </span>
+          </h1>
+          <p className="text-[13px] text-[rgba(0,229,229,0.5)] leading-[1.7] max-w-[560px]">
+            A non-exhaustive collection of blogs, podcasts, articles, conference
+            talks, and other publications I&apos;ve created, co-created, or been
+            involved in.
+          </p>
         </div>
 
+        {/* Terminal extraction animation — stays visible */}
+        <div className="mx-auto max-w-5xl">
+          <PublicationsTerminal
+            total={publications.length}
+            onDone={handleTerminalDone}
+          />
+        </div>
+
+        {/* Grid — staggered fade-in after terminal completes */}
+        {terminalDone && (
+          <div className="mx-auto max-w-5xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {visibleItems.map((p, i) => (
+              <div
+                key={p.title}
+                className="opacity-0 animate-fade-in"
+                style={{ animationDelay: `${i * 60}ms`, animationFillMode: "forwards" }}
+              >
+                <ProjectCard {...p} />
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Load more */}
         {visibleCount < publications.length && (
-          <div className="mt-8 flex justify-center">
+          <div className="mx-auto max-w-5xl mt-12 pt-6 border-t border-[rgba(0,229,229,0.08)] flex items-center gap-6">
             <button
               onClick={() =>
                 setVisibleCount((prev) =>
@@ -103,10 +135,13 @@ export default function PublicationsPage() {
                 )
               }
               aria-label="Load more publications"
-              className="px-4 py-2 rounded bg-purple-600 hover:bg-purple-500 text-white text-sm font-medium"
+              className="bg-transparent text-terminal-cyan text-[11px] tracking-[2px] uppercase px-5 py-2.5 border border-[rgba(0,229,229,0.3)] hover:border-[rgba(0,229,229,0.5)] transition-colors"
             >
               Load more
             </button>
+            <span className="text-[11px] text-[rgba(0,229,229,0.25)] tracking-[1px]">
+              Showing {Math.min(visibleCount, publications.length)} of {publications.length}
+            </span>
           </div>
         )}
 
