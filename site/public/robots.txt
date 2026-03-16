@@ -6,4 +6,5 @@ Disallow: /
 
 User-agent: *
 Allow: /
+Disallow: /_next/
 Sitemap: https://www.jeff-bollinger.com/sitemap.xml
