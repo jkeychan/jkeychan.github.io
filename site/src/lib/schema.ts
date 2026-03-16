@@ -54,14 +54,9 @@ export function extractYouTubeVideoId(url: string): string | null {
 /** Determine the Schema.org type for a publication entry. */
 export function getSchemaType(
   publication: Publication,
-): "Article" | "VideoObject" | "Event" | "Book" {
-  const { title, description, linkHref } = publication;
+): "Article" | "Event" | "Book" {
+  const { title, linkHref, eventData } = publication;
   const lowerTitle = title.toLowerCase();
-  const lowerDesc = description.toLowerCase();
-
-  if (urlMatchesHostname(linkHref, ["youtube.com", "youtu.be"])) {
-    return "VideoObject";
-  }
 
   if (
     lowerTitle.includes("crafting the infosec playbook") &&
@@ -70,26 +65,8 @@ export function getSchemaType(
     return "Book";
   }
 
-  const eventKeywords = [
-    "presentation",
-    "presented",
-    "summit",
-    "conference",
-    "colloquium",
-    "symposium",
-    "cisco live",
-    "sans",
-    "first",
-    "lacnic",
-    "interop",
-    "b-sides",
-  ];
-  if (
-    eventKeywords.some(
-      (keyword) =>
-        lowerTitle.includes(keyword) || lowerDesc.includes(keyword),
-    )
-  ) {
+  // Only use Event when structured event data is present to satisfy required fields.
+  if (eventData) {
     return "Event";
   }
 
@@ -114,17 +91,34 @@ export function generateSchemas(cards: Publication[]) {
         image: imageUrl,
       };
 
-      if (schemaType === "VideoObject") {
-        item.thumbnailUrl = card.thumbnailUrl ?? imageUrl;
-        const videoId =
-          card.videoId || extractYouTubeVideoId(card.linkHref);
-        item.contentUrl = card.linkHref;
-        item.embedUrl = videoId
-          ? `https://www.youtube.com/embed/${videoId}`
-          : card.linkHref;
-        if (card.uploadDate) {
-          item.uploadDate = card.uploadDate;
+      if (schemaType === "Event" && card.eventData) {
+        item.eventStatus = "https://schema.org/EventScheduled";
+        item.eventAttendanceMode =
+          "https://schema.org/OfflineEventAttendanceMode";
+        item.startDate = card.eventData.startDate;
+        if (card.eventData.endDate) {
+          item.endDate = card.eventData.endDate;
         }
+        item.location = {
+          "@type": "Place",
+          name: card.eventData.locationName,
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: card.eventData.locationAddress,
+          },
+        };
+        item.organizer = {
+          "@type": "Organization",
+          name: card.eventData.organizerName,
+          ...(card.eventData.organizerUrl && {
+            url: card.eventData.organizerUrl,
+          }),
+        };
+        item.performer = {
+          "@type": "Person",
+          name: "Jeff Bollinger",
+          url: BASE_URL,
+        };
       }
 
       return {
@@ -138,7 +132,6 @@ export function generateSchemas(cards: Publication[]) {
   const schemas = cards.map((card) => {
     const schemaType = getSchemaType(card);
     const imageUrl = `${BASE_URL}${card.imageSrc}`;
-    const thumbnailUrl = card.thumbnailUrl ?? imageUrl;
     const description = card.description || card.title;
 
     const baseSchema: Record<string, unknown> = {
@@ -155,49 +148,34 @@ export function generateSchemas(cards: Publication[]) {
       },
     };
 
-    if (schemaType === "VideoObject") {
-      const videoId =
-        card.videoId || extractYouTubeVideoId(card.linkHref);
-      baseSchema.contentUrl = card.linkHref;
-      baseSchema.embedUrl = videoId
-        ? `https://www.youtube.com/embed/${videoId}`
-        : card.linkHref;
-      baseSchema.thumbnailUrl = thumbnailUrl;
-      baseSchema.description = description;
-      if (card.uploadDate) {
-        baseSchema.uploadDate = card.uploadDate;
-      }
-    } else if (schemaType === "Event") {
+    if (schemaType === "Event" && card.eventData) {
       baseSchema.eventAttendanceMode =
         "https://schema.org/OfflineEventAttendanceMode";
-      baseSchema.eventStatus =
-        "https://schema.org/EventScheduled";
+      baseSchema.eventStatus = "https://schema.org/EventScheduled";
       baseSchema.performer = {
         "@type": "Person",
         name: "Jeff Bollinger",
         url: BASE_URL,
       };
-      if (card.eventData) {
-        baseSchema.startDate = card.eventData.startDate;
-        if (card.eventData.endDate) {
-          baseSchema.endDate = card.eventData.endDate;
-        }
-        baseSchema.location = {
-          "@type": "Place",
-          name: card.eventData.locationName,
-          address: {
-            "@type": "PostalAddress",
-            addressLocality: card.eventData.locationAddress,
-          },
-        };
-        baseSchema.organizer = {
-          "@type": "Organization",
-          name: card.eventData.organizerName,
-          ...(card.eventData.organizerUrl && {
-            url: card.eventData.organizerUrl,
-          }),
-        };
+      baseSchema.startDate = card.eventData.startDate;
+      if (card.eventData.endDate) {
+        baseSchema.endDate = card.eventData.endDate;
       }
+      baseSchema.location = {
+        "@type": "Place",
+        name: card.eventData.locationName,
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: card.eventData.locationAddress,
+        },
+      };
+      baseSchema.organizer = {
+        "@type": "Organization",
+        name: card.eventData.organizerName,
+        ...(card.eventData.organizerUrl && {
+          url: card.eventData.organizerUrl,
+        }),
+      };
     } else if (schemaType === "Book") {
       baseSchema.publisher = {
         "@type": "Organization",
