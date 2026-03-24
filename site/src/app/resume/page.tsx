@@ -4,7 +4,7 @@ import { ResumeViewer } from "../(components)/ResumeViewer";
 export const metadata: Metadata = {
   title: "Resume / CV",
   description: "Resume and CV for Jeff Bollinger.",
-  alternates: { canonical: "/resume" },
+  alternates: { canonical: "/resume/" },
 };
 
 export default function ResumePage() {
@@ -28,7 +28,7 @@ export default function ResumePage() {
                 "@type": "ListItem",
                 position: 2,
                 name: "Resume/CV",
-                item: "https://www.jeff-bollinger.com/resume",
+                item: "https://www.jeff-bollinger.com/resume/",
               },
             ],
           }),

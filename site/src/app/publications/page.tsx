@@ -74,7 +74,7 @@ export default function PublicationsPage() {
                 "@type": "ListItem",
                 position: 2,
                 name: "Publications",
-                item: "https://www.jeff-bollinger.com/publications",
+                item: "https://www.jeff-bollinger.com/publications/",
               },
             ],
           }),
