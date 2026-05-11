@@ -8,3 +8,6 @@ User-agent: *
 Allow: /
 Disallow: /_next/
 Sitemap: https://www.jeff-bollinger.com/sitemap.xml
+
+# LLM-friendly site index (https://llmstxt.org)
+# https://www.jeff-bollinger.com/llms.txt

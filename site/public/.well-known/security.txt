@@ -1,0 +1,4 @@
+Contact: mailto:admin@jeff-bollinger.com
+Expires: 2031-05-10T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://www.jeff-bollinger.com/.well-known/security.txt

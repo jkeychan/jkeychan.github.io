@@ -1,0 +1,63 @@
+# Jeff Bollinger
+
+> Cybersecurity author, international speaker, and security operations leader. Co-author of *Crafting the Infosec Playbook* (O'Reilly Media). Writing and speaking on threat detection, incident response, detection engineering, security architecture, and building high-performing security teams.
+
+- Personal site: https://www.jeff-bollinger.com/
+- Sitemap: https://www.jeff-bollinger.com/sitemap.xml
+- Focus areas: Threat Detection, Incident Response, Detection Engineering, Security Architecture, Security Operations, Executive Leadership
+
+## Site
+
+- [Home](https://www.jeff-bollinger.com/) — biography, recent highlights, and overview of work
+- [Publications](https://www.jeff-bollinger.com/publications/) — full list of books, articles, talks, podcasts, interviews, and press
+- [Resume / CV](https://www.jeff-bollinger.com/resume/) — career history and credentials
+
+## Books
+
+- [Crafting the Infosec Playbook](https://www.infosecplaybook.com/) — co-authored O'Reilly book on building incident response programs and the process, philosophy, and architecture for security monitoring; ISBN 978-1491949405; translated into Japanese
+- [O'Reilly author page for Jeff Bollinger](https://www.oreilly.com/pub/au/6508) — publisher profile
+
+## Featured articles and blog posts
+
+- [(Re)building Threat Detection and Incident Response at LinkedIn](https://engineering.linkedin.com/blog/2022/-re-building-threat-detection-and-incident-response-at-linkedin) — LinkedIn Engineering, 2022; how LinkedIn rebuilt its security operations platform to protect ~20,000 employees and 875M+ members
+- [Disk Image Deception](https://blogs.cisco.com/security/disk-image-deception-incident-response) — Cisco Talos/Security blog on a malspam campaign that misused the .IMG file extension
+- [Cognitive Bias in Incident Response](https://blogs.cisco.com/security/cognitive-bias-in-incident-response) — Cisco blog on the Dunning–Kruger effect and methodology rigor in IR
+- [Cisco Security Blogs by Jeff Bollinger](https://blogs.cisco.com/author/jeffbollinger) — collected security posts on incident response, web security, and threat analysis
+- [Responsible Disclosure](https://dl.acm.org/doi/abs/10.1145/1111635.1111636) — ACM SIGCAS Computers and Society publication
+
+## Conference talks and presentations
+
+- [The Right Data at the Right Time](https://www.sans.org/presentations/the-right-data-at-the-right-time/) — SANS SIEM Summit, Austin TX, 2017; observability principles for security monitoring
+- [CSIRT Schiltron: Training, Techniques, and Talent](https://www.first.org/resources/papers/conf2019/1100-CSIRT-Schiltron-Final.pdf) — FIRST Annual Conference, Edinburgh, 2019; readiness and skills evolution for IR teams
+- [How CIRTs use Cyber Threat Intelligence to keep up with the miscreants](https://www.first.org/events/symposium/panama2018/program#pHow-Computer-Incident-Response-teams-use-Cyber-Threat-Intelligence-CTI-to-ensure-they-keep-up-with-the-miscreants) — FIRST / LACNIC 29, Panama City, 2018
+- [Incident Detection and Response](https://archive.interop.jp/2017/en/about/) — Interop Tokyo 2017; building a world-class security team with web filtering and IDS
+- [FIRST Technical Colloquium Amsterdam](https://www.first.org/events/colloquia/amsterdam2022/program#pFIRST-TC-Amsterdam-2020-Day-1) — 2022 program participation
+- [The State of Web Security: Attack and Response](https://www.alcatron.net/Cisco%20Live%202013%20Melbourne/Cisco%20Live%20Content/Security/BRKSEC-2010%20%20The%20State%20of%20Web%20Security%20-%20Attack%20and%20Response.pdf) — Cisco Live Melbourne, 2013; HTTP/S inspection, web logging, and monitoring
+- [Ad-Weary, "What Could Possibly Go Wrong?"](https://www.youtube.com/watch?v=zfIAifhRMto) — Security B-Sides Asheville and LACNIC/LACNOG 26; adware threats in enterprise networks
+
+## Podcasts and video
+
+- [Cloud Security Observability for Detection and Response](https://cloud.withgoogle.com/cloudsecurity/podcast/ep96-cloud-security-observability-for-detection-and-response/) — Google Cloud Security Podcast
+- [Cisco TAC Security Podcast: Web Security with Jeff Bollinger](https://podcasts.apple.com/us/podcast/how-cisco-uses-web-security-appliance-to-protect-its/id343898585?i=1000370866442) — protecting an enterprise network with Cisco's Web Security Appliance
+- [Breaking into Cybersecurity with Jeff Bollinger — Incident Response](https://www.youtube.com/live/Bkbgzz4L8J4) — career paths into IR
+- [The Role of Human Intuition in Addressing Security Challenges](https://www.youtube.com/watch?v=1QfJwvNb_Uk) — balancing automation with human judgment in security ops
+- [Voices in Infosec LinkedIn Live — International Women in Engineering Day](https://www.inwed.org.uk/activity/voices-in-infosec-linkedin-live-event/)
+
+## Press and interviews
+
+- [LinkedIn has massively cut the time it takes to detect security threats](https://www.zdnet.com/article/linkedin-has-massively-cut-the-time-it-takes-to-detect-security-threats-heres-how-it-did-it/) — ZDNet
+- [Confirmation bias in incident response](https://www.theregister.com/2016/07/27/cisco_warns_responders_drop_ego_assimilate_with_the_ir_playbook/) — The Register interview
+- [Article on Jeff Bollinger and the Infosec Playbook](https://sils.unc.edu/news/2015/bollinger-infosec-book) — UNC School of Information and Library Science
+
+## Reviews and citations of *Crafting the Infosec Playbook*
+
+- [Crafting the Infosec Playbook: Security Monitoring and Incident Response Master Plan](https://www.rsaconference.com/library/blog/crafting-the-infosec-playbook-security-monitoring-and-incident-response-master-pl) — RSA Conference review
+- [The 6 highest-rated SIEM books on Amazon](https://solutionsreview.com/security-information-event-management/the-6-highest-rated-siem-books-available-on-amazon/) — Solutions Review
+- [Cybersecurity / infosec recommended reading](https://www.splunk.com/en_us/blog/learn/cybersecurity-infosec-books.html) — Splunk
+- [Cisco Cybersecurity Series: Threat Hunting (quoted)](https://www.cisco.com/c/dam/global/en_uk/products/collateral/cybersecurity-series-2019-threat-hunting.pdf)
+- [Awesome Incident Response](https://github.com/meirwah/awesome-incident-response) — curated GitHub resource list including the book
+
+## Case studies
+
+- [Cisco IT Case Study: Web Security](https://www.cisco.com/c/dam/en_us/about/ciscoitatwork/borderless_networks/docs/cisco_it_case_study_wsa.pdf) — deploying web security appliances to protect the enterprise
+- [CSIRT Network-Based Intrusion Prevention System Case Study](https://www.cisco.com/c/dam/en_us/about/ciscoitatwork/downloads/ciscoitatwork/pdf/CSIRT_Network-Based_Intrusion_Prevention_System_Case_Study.pdf) — Cisco data center IPS deployment
