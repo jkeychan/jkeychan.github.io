@@ -16,18 +16,23 @@
 
 - [Crafting the Infosec Playbook](https://www.infosecplaybook.com/) — co-authored O'Reilly book on building incident response programs and the process, philosophy, and architecture for security monitoring; ISBN 978-1491949405; translated into Japanese
 - [O'Reilly author page for Jeff Bollinger](https://www.oreilly.com/pub/au/6508) — publisher profile
+- [Amazon author page for Jeff Bollinger](https://www.amazon.com/Jeff-Bollinger/e/B00SPXA73Y) — author profile aggregating books and bio
 
 ## Featured articles and blog posts
 
 - [(Re)building Threat Detection and Incident Response at LinkedIn](https://engineering.linkedin.com/blog/2022/-re-building-threat-detection-and-incident-response-at-linkedin) — LinkedIn Engineering, 2022; how LinkedIn rebuilt its security operations platform to protect ~20,000 employees and 875M+ members
 - [Disk Image Deception](https://blogs.cisco.com/security/disk-image-deception-incident-response) — Cisco Talos/Security blog on a malspam campaign that misused the .IMG file extension
-- [Cognitive Bias in Incident Response](https://blogs.cisco.com/security/cognitive-bias-in-incident-response) — Cisco blog on the Dunning–Kruger effect and methodology rigor in IR
+- [Cognitive Bias in Incident Response](https://blogs.cisco.com/security/cognitive-bias-in-incident-response) — Cisco blog co-authored with Gavin Reid on the Dunning–Kruger effect and methodology rigor in IR
+- [Big Security — Mining Mountains of Log Data to Find Bad Stuff](https://blogs.cisco.com/security/big-security-mining-mountains-of-log-data-to-find-bad-stuff-2) — Cisco blog on enterprise-scale log mining for threat detection
+- [To SIEM or Not to SIEM? Part I](https://blogs.cisco.com/security/to-siem-or-not-to-siem-part-i) — Cisco blog on the pros and cons of SIEM vs. log management
+- [To SIEM or Not to SIEM? Part II](https://blogs.cisco.com/security/to-siem-or-not-to-siem-part-ii) — Cisco blog on SIEM correlation engines
 - [Cisco Security Blogs by Jeff Bollinger](https://blogs.cisco.com/author/jeffbollinger) — collected security posts on incident response, web security, and threat analysis
 - [Responsible Disclosure](https://dl.acm.org/doi/abs/10.1145/1111635.1111636) — ACM SIGCAS Computers and Society publication
 
 ## Conference talks and presentations
 
 - [The Right Data at the Right Time](https://www.sans.org/presentations/the-right-data-at-the-right-time/) — SANS SIEM Summit, Austin TX, 2017; observability principles for security monitoring
+- [Re-writing the CSIRT Playbook](https://www.first.org/resources/papers/amsterdam2013/bollinger-jeff-slides.pdf) — FIRST Technical Colloquium Amsterdam, 2013; foundational talk on building a structured CSIRT playbook
 - [CSIRT Schiltron: Training, Techniques, and Talent](https://www.first.org/resources/papers/conf2019/1100-CSIRT-Schiltron-Final.pdf) — FIRST Annual Conference, Edinburgh, 2019; readiness and skills evolution for IR teams
 - [How CIRTs use Cyber Threat Intelligence to keep up with the miscreants](https://www.first.org/events/symposium/panama2018/program#pHow-Computer-Incident-Response-teams-use-Cyber-Threat-Intelligence-CTI-to-ensure-they-keep-up-with-the-miscreants) — FIRST / LACNIC 29, Panama City, 2018
 - [Incident Detection and Response](https://archive.interop.jp/2017/en/about/) — Interop Tokyo 2017; building a world-class security team with web filtering and IDS
@@ -40,7 +45,8 @@
 - [Cloud Security Observability for Detection and Response](https://cloud.withgoogle.com/cloudsecurity/podcast/ep96-cloud-security-observability-for-detection-and-response/) — Google Cloud Security Podcast
 - [Cisco TAC Security Podcast: Web Security with Jeff Bollinger](https://podcasts.apple.com/us/podcast/how-cisco-uses-web-security-appliance-to-protect-its/id343898585?i=1000370866442) — protecting an enterprise network with Cisco's Web Security Appliance
 - [Breaking into Cybersecurity with Jeff Bollinger — Incident Response](https://www.youtube.com/live/Bkbgzz4L8J4) — career paths into IR
-- [The Role of Human Intuition in Addressing Security Challenges](https://www.youtube.com/watch?v=1QfJwvNb_Uk) — balancing automation with human judgment in security ops
+- [The Role of Human Intuition in Addressing Security Challenges (Detection at Scale podcast)](https://panther.com/podcasts/linkedins-jeff-bollinger-on-the-role-of-human-intuition-in-addressing-security-challenges) — Panther's Detection at Scale podcast episode page with show notes
+- [The Role of Human Intuition in Addressing Security Challenges (video)](https://www.youtube.com/watch?v=1QfJwvNb_Uk) — video recording of the Detection at Scale interview; balancing automation with human judgment in security ops
 - [Voices in Infosec LinkedIn Live — International Women in Engineering Day](https://www.inwed.org.uk/activity/voices-in-infosec-linkedin-live-event/)
 
 ## Press and interviews
