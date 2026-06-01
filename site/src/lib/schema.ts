@@ -54,8 +54,8 @@ export function extractYouTubeVideoId(url: string): string | null {
 /** Determine the Schema.org type for a publication entry. */
 export function getSchemaType(
   publication: Publication,
-): "Article" | "Event" | "Book" {
-  const { title, linkHref, eventData } = publication;
+): "Article" | "Event" | "Book" | "VideoObject" {
+  const { title, linkHref, eventData, videoId } = publication;
   const lowerTitle = title.toLowerCase();
 
   if (
@@ -70,7 +70,21 @@ export function getSchemaType(
     return "Event";
   }
 
+  if (videoId) {
+    return "VideoObject";
+  }
+
   return "Article";
+}
+
+/** Build the embed URL for a video publication. */
+function getVideoEmbedUrl(publication: Publication): string | null {
+  const { videoId, videoPlatform } = publication;
+  if (!videoId) return null;
+  if (videoPlatform === "vimeo") {
+    return `https://player.vimeo.com/video/${videoId}`;
+  }
+  return `https://www.youtube.com/embed/${videoId}`;
 }
 
 /** Generate JSON-LD structured data for an array of publications. */
@@ -176,6 +190,35 @@ export function generateSchemas(cards: Publication[]) {
           url: card.eventData.organizerUrl,
         }),
       };
+    } else if (schemaType === "VideoObject") {
+      const embedUrl = getVideoEmbedUrl(card);
+      if (embedUrl) baseSchema.embedUrl = embedUrl;
+      baseSchema.contentUrl = card.linkHref;
+      if (card.thumbnailUrl) baseSchema.thumbnailUrl = card.thumbnailUrl;
+      if (card.uploadDate) baseSchema.uploadDate = card.uploadDate;
+      if (card.publisher) {
+        baseSchema.publisher = {
+          "@type": "Organization",
+          name: card.publisher.name,
+          url: card.publisher.url,
+        };
+        baseSchema.creator = {
+          "@type": "Organization",
+          name: card.publisher.name,
+          url: card.publisher.url,
+        };
+        // Jeff is the interviewee/subject, not the video's author
+        baseSchema.author = {
+          "@type": "Organization",
+          name: card.publisher.name,
+          url: card.publisher.url,
+        };
+        baseSchema.about = {
+          "@type": "Person",
+          name: "Jeff Bollinger",
+          url: BASE_URL,
+        };
+      }
     } else if (schemaType === "Book") {
       baseSchema.publisher = {
         "@type": "Organization",

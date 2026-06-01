@@ -2,6 +2,22 @@ import type { Publication } from "@/types";
 
 export const publications: Publication[] = [
   {
+    imageSrc: "/static/media/vimeo-illusion-of-coverage.jpg",
+    title: "Interview Spotlight: Jeff Bollinger on the Illusion of Coverage",
+    description:
+      "Interview published by Spectrum Security on the persistent uncertainty haunting modern SecOps. Covers why massive investments in tooling still leave teams unable to answer whether they're actually protected, how AI-driven attack velocity has broken traditional detection workflows, and why automated context is the path forward.",
+    linkHref: "https://vimeo.com/1185239756",
+    videoId: "1185239756",
+    videoPlatform: "vimeo",
+    thumbnailUrl:
+      "https://i.vimeocdn.com/video/2148608828-b288cd0e963d8439fb431e96718f86646140140ca84abd084063ae2e328141f6-d_640x360?region=us",
+    uploadDate: "2026-04-21T13:24:04Z",
+    publisher: {
+      name: "Spectrum Security",
+      url: "https://www.spectrum.security/",
+    },
+  },
+  {
     imageSrc: "/static/media/moonbase.498c0f55cde35211bd65.png",
     title:
       "(Re)building Threat Detection and Incident Response at LinkedIn",

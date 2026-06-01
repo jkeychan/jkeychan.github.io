@@ -16,6 +16,8 @@ export type Publication = {
   thumbnailUrl?: string;
   uploadDate?: string;
   videoId?: string;
+  videoPlatform?: "youtube" | "vimeo";
+  publisher?: { name: string; url: string };
   eventData?: EventData;
 };
 
