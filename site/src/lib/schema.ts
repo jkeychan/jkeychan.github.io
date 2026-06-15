@@ -133,6 +133,12 @@ export function generateSchemas(cards: Publication[]) {
           name: "Jeff Bollinger",
           url: BASE_URL,
         };
+      } else if (schemaType === "VideoObject") {
+        const embedUrl = getVideoEmbedUrl(card);
+        if (embedUrl) item.embedUrl = embedUrl;
+        item.contentUrl = card.linkHref;
+        if (card.thumbnailUrl) item.thumbnailUrl = card.thumbnailUrl;
+        if (card.uploadDate) item.uploadDate = card.uploadDate;
       }
 
       return {
