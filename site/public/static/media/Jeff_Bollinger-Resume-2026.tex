@@ -1,0 +1,104 @@
+\documentclass[10.5pt]{article}
+
+\usepackage{cmap}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{tgheros}
+\usepackage{microtype}
+
+\renewcommand{\familydefault}{\sfdefault}
+\DisableLigatures{encoding = *, family = *}
+
+\definecolor{accent}{HTML}{0A3B3B}
+
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+\sloppy
+
+\titleformat{\section}{\large\bfseries\color{accent}}{}{0em}{}[{\color{accent}\titlerule[1.2pt]}]
+\titlespacing{\section}{0pt}{12pt}{4pt}
+
+\newcommand{\role}[3]{%
+  \noindent\textbf{#1} \hfill {\small\color{darkgray} #3}\\
+  {\itshape\small #2}\par\smallskip
+}
+
+\setlist[itemize]{leftmargin=14pt, itemsep=2pt, topsep=2pt}
+
+\hypersetup{
+  colorlinks=true, urlcolor=accent,
+  pdftitle={Jeff Bollinger - Resume},
+  pdfauthor={Jeff Bollinger},
+  pdfsubject={Director, Information Security - Threat Detection \& Incident Response},
+  pdfkeywords={incident response, detection engineering, threat detection, security operations, CISO, information security, Jeff Bollinger}
+}
+
+\begin{document}
+
+{\Huge\bfseries\color{accent} Jeff Bollinger}\\[2pt]
+{\large\bfseries Director, Information Security \textemdash\ Threat Detection \& Incident Response}\\[2pt]
+{\small \href{https://linkedin.com/in/jeffb0llinger}{linkedin.com/in/jeffb0llinger} \quad|\quad \textit{Esse Quam Videri}}
+
+\section*{Summary}
+\begin{itemize}
+  \item 25+ years of experience in incident response, detection engineering, security architecture, cloud security, threat research, and leading security operations for hyperscale platforms and large enterprises
+  \item Director of Information Security leading LinkedIn's threat detection and incident response organization (SEEK), reporting to the CISO, defending a platform serving more than a billion members
+\end{itemize}
+
+\section*{Skills \& Abilities}
+\noindent\small Threat detection \& incident response \textbullet\ Security-infrastructure-as-code \& detection engineering \textbullet\
+Cybersecurity threat intelligence \& adversary simulation \textbullet\ Multi-year strategy, roadmap \& executive communication \textbullet\
+Technical leadership of large, globally distributed organizations \textbullet\ Cloud security (GCP, AWS, Azure) \textbullet\
+AI security \& emerging attack surfaces \textbullet\ International speaker \& writer; SANS Lecturer \textbullet\
+Author, O'Reilly Media's \textit{Crafting the InfoSec Playbook} (used in university cybersecurity courses)
+\normalsize
+
+\section*{Experience}
+
+\role{Director, Information Security}{LinkedIn}{February 2021 \textendash\ Present}
+\begin{itemize}
+  \item Lead SEEK, LinkedIn's threat detection and incident response organization, spanning Detection Engineering, Defense Infrastructure, and Incident Response, defending a platform serving more than a billion members
+  \item Conceived, named, and led Moonbase, a software-defined security operations platform built as security-infrastructure-as-code, expanding threat-detection coverage 900\% and cutting incident-investigation time 50\%
+  \item Scaled security data infrastructure 10x (gigabytes to petabytes) at 99.99\% platform uptime, reducing detect-to-contain time from weeks/days to hours
+  \item Established LinkedIn's first formal Insider Threat Program in partnership with Legal, HR, and Physical Security, shifting insider-activity detection from externally reported to internally detected with same-day containment
+  \item Redesigned and overhauled the incident response program, expanding coverage from 10x5 to 24x7 monitoring and decreasing time to detect and contain security incidents from days to under two hours on average
+  \item Designed and implemented a threat intelligence program, expanding coverage of known threats by more than 300\%
+  \item Reduced risk of phishing from persistent threat actors by 70\% through investigations and creative discovery and mitigation techniques
+  \item Built a continuous adversary-simulation program that validates detections against real attack techniques, surfacing vulnerabilities in internal systems before external attackers could
+  \item Delivered LinkedIn's first detection coverage for AI-specific attacks as the company expands into agentic AI, zero-trust workload identity, and new attack surfaces
+  \item Authored SEEK's multi-year strategy and vision, repositioning the function from reactive incident response toward proactive threat prevention across these new attack surfaces
+  \item Co-authored \textquotedblleft{}(Re)building Threat Detection and Incident Response at LinkedIn\textquotedblright{} on the LinkedIn Engineering blog
+\end{itemize}
+
+\role{Senior Manager, InfoSec Incident Response and Investigations}{Cisco Systems, Inc.}{September 2015 \textendash\ February 2021}
+\begin{itemize}
+  \item Managed global teams of senior security investigators, managers, and two teams of analysts for US and Americas incident response operations at Cisco
+  \item Achieved 24x7 detection, investigation, mitigation, and Incident Response (IR) coordination of digital crimes, policy violations, or malicious activity across the global corporate landscape including private and public clouds like GCP, AWS, Azure, and Oracle
+  \item Authored and edited tactical, risk-specific, and data-driven updates within one hour on an incident to executive staff and senior leadership
+  \item Visualized incident data to identify key problem areas and drive changes to improve Cisco's security posture and response to threats, improving average time to detect to under 24 hours
+  \item Developed a highly efficient framework for Monitoring, IR, and business intelligence as a service, reducing time to detect incidents to under three hours on average
+  \item Streamlined and automated the internal security customer onboarding and solution development process, saving 100+ hours and preventing 100s of data entry mistakes
+  \item Tailored more than 10 custom security monitoring plans and architectures for engagements ranging from small, temporary networks, to FedRAMP compliant clouds and public IaaS, to global enterprise networks
+  \item Generated \$1M in internal cross charges for services using the framework over the first four quarters of use
+  \item Influenced Cisco's security product portfolio, leading to enhanced features, bug fixes, and new products, and touching over \$10M in sales
+  \item Consulted with hundreds of major Cisco clients, customer executives, and global companies on CSIRT strategy, best practices, and architecture, influencing \$25M+ in security sales revenue
+\end{itemize}
+
+\section*{Education}
+\textbf{University of North Carolina, Chapel Hill, NC \textemdash\ Masters of Science in Information Science (MSIS)}
+\begin{itemize}
+  \item Published in academic journal (ACM) and library archives
+  \item Focused curriculum in IP networking, network security, Linux, and metadata
+  \item Managed graduate school lab of 50+ servers and acted as departmental sysadmin
+\end{itemize}
+\textbf{University of North Carolina, Chapel Hill, NC \textemdash\ Bachelor of Arts in English Writing and Literature (BA)}
+
+\section*{Certifications \& Interests}
+CISSP 41372 \textbullet\ hacker, maker, tinkerer, beekeeper, homesteader, hunger for knowledge
+
+\end{document}

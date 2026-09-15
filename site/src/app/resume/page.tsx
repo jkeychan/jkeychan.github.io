@@ -42,10 +42,10 @@ export default function ResumePage() {
           <h1 className="text-[40px] font-bold tracking-tight text-terminal-cyan [text-shadow:0_0_30px_rgba(0,229,229,0.2)] leading-none mb-8">
             Resume / CV
           </h1>
-          <div className="flex gap-3 mb-8">
+          <div className="flex flex-wrap items-center gap-3 mb-8">
             <a
               className="bg-terminal-cyan text-black font-bold text-[12px] tracking-[2px] uppercase px-5 py-2.5"
-              href="/static/media/Jeff_Bollinger-Resume-2023-redacted.31d6cfe0d16ae931b73c.pdf"
+              href="/static/media/Jeff_Bollinger-Resume-2026.pdf"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -53,11 +53,19 @@ export default function ResumePage() {
             </a>
             <a
               className="bg-transparent text-terminal-cyan text-[12px] tracking-[2px] uppercase px-5 py-2.5 border border-[rgba(0,229,229,0.3)] hover:border-[rgba(0,229,229,0.5)] transition-colors"
-              href="/static/media/Jeff_Bollinger-Resume-2023-redacted.31d6cfe0d16ae931b73c.docx"
+              href="/static/media/Jeff_Bollinger-Resume-2026.docx"
               target="_blank"
               rel="noopener noreferrer"
             >
               Download DOCX
+            </a>
+            <a
+              className="text-[11px] tracking-[2px] uppercase text-terminal-cyan-35 hover:text-terminal-cyan transition-colors"
+              href="/static/media/Jeff_Bollinger-Resume-2026.tex"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              .tex source &rarr;
             </a>
           </div>
           <div className="border border-[rgba(0,229,229,0.15)] overflow-hidden h-[80vh]">

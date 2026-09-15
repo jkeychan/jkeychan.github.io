@@ -3,8 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 
-const PDF_SRC =
-  "/static/media/Jeff_Bollinger-Resume-2023-redacted.31d6cfe0d16ae931b73c.pdf";
+const PDF_SRC = "/static/media/Jeff_Bollinger-Resume-2026.pdf";
 
 type Phase = "ls" | "open" | "progress" | "done" | "viewer";
 
@@ -97,14 +96,14 @@ export function ResumeViewer() {
           <div className="grid grid-cols-[auto_1fr_auto] gap-x-4 text-terminal-cyan-35">
             <span>-rw-r--r--</span>
             <span className="text-terminal-cyan font-bold">
-              Jeff_Bollinger-Resume-2023-redacted.pdf
+              Jeff_Bollinger-Resume-2026.pdf
             </span>
-            <span>148K</span>
+            <span>74K</span>
           </div>
           <div className="grid grid-cols-[auto_1fr_auto] gap-x-4 text-terminal-cyan-35">
             <span>-rw-r--r--</span>
-            <span>Jeff_Bollinger-Resume-2023-redacted.docx</span>
-            <span>82K</span>
+            <span>Jeff_Bollinger-Resume-2026.docx</span>
+            <span>14K</span>
           </div>
         </div>
       )}
@@ -117,7 +116,7 @@ export function ResumeViewer() {
           <span className="text-[rgba(0,229,229,0.5)]">~/documents/resume</span>
           <span className="text-terminal-cyan-35"> $ </span>
           <span className="text-terminal-cyan">
-            open Jeff_Bollinger-Resume-2023-redacted.pdf
+            open Jeff_Bollinger-Resume-2026.pdf
           </span>
         </div>
       )}
