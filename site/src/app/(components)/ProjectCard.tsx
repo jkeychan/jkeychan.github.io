@@ -6,21 +6,10 @@ export function ProjectCard({
   title,
   description,
   linkHref,
-  linkLabel = "Link",
   imageFit = "cover",
-  imagePosition = "center",
 }: ProjectCardProps) {
   const fitClass =
     imageFit === "contain" ? "object-contain" : "object-cover";
-
-  const positionMap: Record<string, string> = {
-    top: "object-top",
-    bottom: "object-bottom",
-    left: "object-left",
-    right: "object-right",
-    center: "object-center",
-  };
-  const posClass = positionMap[imagePosition] ?? "object-center";
 
   return (
     <div className="card-pulse border-2 border-[rgba(0,229,229,0.22)] bg-terminal-surface overflow-hidden flex flex-col h-full hover:border-[rgba(0,229,229,0.45)] hover:bg-[rgba(0,229,229,0.04)] transition-colors">
@@ -30,7 +19,7 @@ export function ProjectCard({
           alt={title}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className={`${fitClass} ${posClass} [filter:saturate(0.5)_contrast(1.1)]`}
+          className={`${fitClass} object-center [filter:saturate(0.5)_contrast(1.1)]`}
         />
       </div>
       <div className="p-4 flex-1 flex flex-col">
@@ -45,7 +34,7 @@ export function ProjectCard({
             rel="noopener noreferrer"
             className="text-[10px] tracking-[2px] uppercase text-terminal-cyan-60 hover:text-terminal-cyan"
           >
-            {linkLabel} &rarr;
+            Link &rarr;
           </a>
         </div>
       </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 
 type Props = { total: number; onDone: () => void };
 
@@ -35,14 +36,11 @@ const SIZES = ["24K", "148K", "18K", "32K", "21K", "44K", "38K", "29K", "17K", "
 export function PublicationsTerminal({ total, onDone }: Props) {
   const [lines, setLines] = useState<string[]>([]);
   const [phase, setPhase] = useState<"cmd" | "extracting" | "done">("cmd");
-  const prefersReduced = useRef(false);
+  const prefersReducedMotion = usePrefersReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    prefersReduced.current = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    if (prefersReduced.current) {
+    if (prefersReducedMotion) {
       onDone();
       return;
     }
@@ -50,7 +48,7 @@ export function PublicationsTerminal({ total, onDone }: Props) {
     // Short pause then start extraction
     const t = setTimeout(() => setPhase("extracting"), 600);
     return () => clearTimeout(t);
-  }, [onDone]);
+  }, [onDone, prefersReducedMotion]);
 
   useEffect(() => {
     if (phase !== "extracting") return;

@@ -26,7 +26,5 @@ export type ProjectCardProps = {
   title: string;
   description: string;
   linkHref: string;
-  linkLabel?: string;
   imageFit?: "cover" | "contain";
-  imagePosition?: "center" | "top" | "bottom" | "left" | "right";
 };

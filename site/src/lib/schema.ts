@@ -17,40 +17,6 @@ export function urlMatchesHostname(url: string, hostnames: string[]): boolean {
   }
 }
 
-/** Extract a YouTube video ID from common YouTube URL formats. */
-export function extractYouTubeVideoId(url: string): string | null {
-  try {
-    const urlObj = new URL(url);
-    const hostname = urlObj.hostname.toLowerCase();
-
-    // youtube.com/watch?v=VIDEO_ID
-    if (
-      (hostname === "youtube.com" || hostname === "www.youtube.com") &&
-      urlObj.searchParams.has("v")
-    ) {
-      return urlObj.searchParams.get("v");
-    }
-    // youtube.com/live/VIDEO_ID
-    if (
-      (hostname === "youtube.com" || hostname === "www.youtube.com") &&
-      urlObj.pathname.startsWith("/live/")
-    ) {
-      const parts = urlObj.pathname.split("/");
-      const liveIndex = parts.indexOf("live");
-      if (liveIndex !== -1 && liveIndex < parts.length - 1) {
-        return parts[liveIndex + 1].split("?")[0];
-      }
-    }
-    // youtu.be/VIDEO_ID
-    if (hostname === "youtu.be" || hostname === "www.youtu.be") {
-      return urlObj.pathname.slice(1).split("?")[0];
-    }
-  } catch {
-    // Invalid URL
-  }
-  return null;
-}
-
 /** Determine the Schema.org type for a publication entry. */
 export function getSchemaType(
   publication: Publication,

@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 
 const PDF_SRC =
   "/static/media/Jeff_Bollinger-Resume-2023-redacted.31d6cfe0d16ae931b73c.pdf";
@@ -20,13 +21,10 @@ function ProgressBar({ value }: { value: number }) {
 export function ResumeViewer() {
   const [phase, setPhase] = useState<Phase>("ls");
   const [progress, setProgress] = useState(0);
-  const prefersReduced = useRef(false);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
-    prefersReduced.current = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    if (prefersReduced.current) {
+    if (prefersReducedMotion) {
       setPhase("viewer");
       return;
     }
@@ -36,7 +34,7 @@ export function ResumeViewer() {
       clearTimeout(t1);
       clearTimeout(t2);
     };
-  }, []);
+  }, [prefersReducedMotion]);
 
   useEffect(() => {
     if (phase !== "progress") return;
