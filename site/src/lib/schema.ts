@@ -2,32 +2,13 @@ import type { Publication } from "@/types";
 
 const BASE_URL = "https://www.jeff-bollinger.com";
 
-/** Check whether a URL's hostname matches any of the given hostnames (with/without www). */
-export function urlMatchesHostname(url: string, hostnames: string[]): boolean {
-  try {
-    const urlObj = new URL(url);
-    const hostname = urlObj.hostname.toLowerCase();
-    return hostnames.some(
-      (h) =>
-        hostname === h.toLowerCase() ||
-        hostname === `www.${h.toLowerCase()}`,
-    );
-  } catch {
-    return false;
-  }
-}
-
 /** Determine the Schema.org type for a publication entry. */
 export function getSchemaType(
   publication: Publication,
 ): "Article" | "Event" | "Book" | "VideoObject" {
-  const { title, linkHref, eventData, videoId } = publication;
-  const lowerTitle = title.toLowerCase();
+  const { isbn, eventData, videoId } = publication;
 
-  if (
-    lowerTitle.includes("crafting the infosec playbook") &&
-    urlMatchesHostname(linkHref, ["infosecplaybook.com"])
-  ) {
+  if (isbn) {
     return "Book";
   }
 
@@ -191,40 +172,13 @@ export function generateSchemas(cards: Publication[]) {
           url: BASE_URL,
         };
       }
-    } else if (schemaType === "Book") {
+    } else if (card.publisher) {
       baseSchema.publisher = {
         "@type": "Organization",
-        name: "O'Reilly Media",
-        url: "https://www.oreilly.com/",
+        name: card.publisher.name,
+        url: card.publisher.url,
       };
-      baseSchema.isbn = "978-1491949405";
-    } else if (schemaType === "Article") {
-      if (urlMatchesHostname(card.linkHref, ["cisco.com"])) {
-        baseSchema.publisher = {
-          "@type": "Organization",
-          name: "Cisco",
-          url: "https://www.cisco.com/",
-        };
-      } else if (
-        urlMatchesHostname(card.linkHref, [
-          "linkedin.com",
-          "engineering.linkedin.com",
-        ])
-      ) {
-        baseSchema.publisher = {
-          "@type": "Organization",
-          name: "LinkedIn Engineering",
-          url: "https://engineering.linkedin.com/",
-        };
-      } else if (
-        urlMatchesHostname(card.linkHref, ["cloud.withgoogle.com"])
-      ) {
-        baseSchema.publisher = {
-          "@type": "Organization",
-          name: "Google Cloud",
-          url: "https://cloud.withgoogle.com/",
-        };
-      }
+      if (card.isbn) baseSchema.isbn = card.isbn;
     }
 
     return baseSchema;

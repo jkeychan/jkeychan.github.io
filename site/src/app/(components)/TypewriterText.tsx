@@ -36,12 +36,8 @@ export function TypewriterText({
   const phrase = useMemo(() => phrases[index] ?? "", [phrases, index]);
 
   useEffect(() => {
-    // When reduced motion is preferred, show full phrase immediately
-    if (prefersReducedMotion) {
-      setDisplay(phrase);
-      setPhase("holding");
-      return;
-    }
+    // Reduced motion renders the full phrase directly; nothing to animate
+    if (prefersReducedMotion) return;
 
     if (timeoutRef.current) {
       window.clearTimeout(timeoutRef.current);
@@ -66,12 +62,11 @@ export function TypewriterText({
         }, deletingMsPerChar);
       } else {
         const next = index + 1;
-        if (next < phrases.length) {
-          setIndex(next);
-          setPhase("typing");
-        } else if (loop) {
-          setIndex(0);
-          setPhase("typing");
+        if (next < phrases.length || loop) {
+          timeoutRef.current = window.setTimeout(() => {
+            setIndex(next < phrases.length ? next : 0);
+            setPhase("typing");
+          }, 0);
         }
       }
     } else if (phase === "holding") {
@@ -98,16 +93,6 @@ export function TypewriterText({
     prefersReducedMotion,
   ]);
 
-  useEffect(() => {
-    if (prefersReducedMotion) {
-      setDisplay(phrases[index] ?? "");
-      setPhase("holding");
-    } else {
-      setDisplay("");
-      setPhase("typing");
-    }
-  }, [index, prefersReducedMotion, phrases]);
-
   const showCaret = !prefersReducedMotion && phase !== "holding";
   const minHeightEm = `${reserveLines * lineHeight}em`;
 
@@ -118,7 +103,7 @@ export function TypewriterText({
       aria-live="polite"
       aria-atomic="true"
     >
-      {display}
+      {prefersReducedMotion ? phrase : display}
       {showCaret ? (
         <span
           aria-hidden="true"
