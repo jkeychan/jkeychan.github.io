@@ -30,6 +30,10 @@ jobs:
         working-directory: site
         run: npm ci
 
+      - name: Lint
+        working-directory: site
+        run: npm run lint
+
       - name: Build (static export)
         working-directory: site
         run: npm run build
