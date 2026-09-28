@@ -11,3 +11,11 @@ updates:
       - "dependencies"
     commit-message:
       prefix: "deps"
+    groups:
+      # react and react-dom must move in lockstep or npm ci fails on peer resolution
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
