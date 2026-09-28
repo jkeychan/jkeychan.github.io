@@ -5,7 +5,7 @@ const eslintConfig = [
   ...nextVitals,
   ...nextTs,
   // eslint-plugin-react's "detect" calls context.getFilename(), removed in ESLint 10
-  { settings: { react: { version: "19.2" } } },
+  { settings: { react: { version: "19.3" } } },
 ];
 
 export default eslintConfig;
