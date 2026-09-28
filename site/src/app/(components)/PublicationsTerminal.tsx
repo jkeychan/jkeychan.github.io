@@ -5,6 +5,12 @@ import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 
 type Props = { total: number; onDone: () => void };
 
+type Line =
+  | { kind: "file"; name: string; size: string }
+  | { kind: "more"; text: string }
+  | { kind: "blank"; text: string }
+  | { kind: "summary"; text: string };
+
 // Derive unix-style filenames from publication titles
 function toFilename(title: string): string {
   return (
@@ -34,7 +40,7 @@ const SAMPLE_TITLES = [
 const SIZES = ["24K", "148K", "18K", "32K", "21K", "44K", "38K", "29K", "17K", "52K", "36K", "27K"];
 
 export function PublicationsTerminal({ total, onDone }: Props) {
-  const [lines, setLines] = useState<string[]>([]);
+  const [lines, setLines] = useState<Line[]>([]);
   const [phase, setPhase] = useState<"cmd" | "extracting" | "done">("cmd");
   const prefersReducedMotion = usePrefersReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -59,7 +65,10 @@ export function PublicationsTerminal({ total, onDone }: Props) {
     const iv = setInterval(() => {
       if (i < filenames.length) {
         const size = SIZES[i] ?? "22K";
-        setLines((prev) => [...prev, `x  experience/${filenames[i]}  (${size})`]);
+        setLines((prev) => [
+          ...prev,
+          { kind: "file", name: `experience/${filenames[i]}`, size: `(${size})` },
+        ]);
         i++;
       } else {
         clearInterval(iv);
@@ -67,9 +76,9 @@ export function PublicationsTerminal({ total, onDone }: Props) {
         setTimeout(() => {
           setLines((prev) => [
             ...prev,
-            `... ${remaining} more archived entries`,
-            ``,
-            `${total} files extracted.`,
+            { kind: "more", text: `... ${remaining} more archived entries` },
+            { kind: "blank", text: "" },
+            { kind: "summary", text: `${total} files extracted.` },
           ]);
           setPhase("done");
         }, 200);
@@ -112,20 +121,20 @@ export function PublicationsTerminal({ total, onDone }: Props) {
 
       {/* Extracted filenames */}
       {lines.map((line, i) =>
-        line === "" ? (
+        line.kind === "blank" ? (
           <div key={i} className="h-[1.85em]" />
-        ) : line.startsWith("...") ? (
-          <div key={i} className="text-[rgba(0,229,229,0.3)] italic">{line}</div>
-        ) : line.endsWith("extracted.") ? (
-          <div key={i} className="text-terminal-cyan mt-1 font-bold">{line}</div>
+        ) : line.kind === "more" ? (
+          <div key={i} className="text-[rgba(0,229,229,0.3)] italic">{line.text}</div>
+        ) : line.kind === "summary" ? (
+          <div key={i} className="text-terminal-cyan mt-1 font-bold">{line.text}</div>
         ) : (
           <div key={i} className="text-terminal-cyan-35">
             <span className="text-[rgba(0,229,229,0.5)]">x  </span>
             <span className="text-terminal-cyan">
-              {line.replace(/^x  /, "").split("  ")[0]}
+              {line.name}
             </span>
             <span className="text-[rgba(0,229,229,0.25)]">
-              {"  " + (line.split("  ").pop() ?? "")}
+              {"  " + line.size}
             </span>
           </div>
         )

@@ -25,6 +25,10 @@ export const publications: Publication[] = [
       "This blog discusses how LinkedIn rebuilt its security operations platform and teams, scaled to protect nearly 20,000 employees and more than 875 million members, and our approach and strategy to achieve this objective.",
     linkHref:
       "https://engineering.linkedin.com/blog/2022/-re-building-threat-detection-and-incident-response-at-linkedin",
+    publisher: {
+      name: "LinkedIn Engineering",
+      url: "https://engineering.linkedin.com/",
+    },
   },
   {
     imageSrc:
@@ -34,6 +38,11 @@ export const publications: Publication[] = [
       "Co-authored this O'Reilly book on building an incident response program and creating the process, philosophy, and architecture for implementing an information security monitoring program. The book was also translated into Japanese.",
     linkHref: "https://www.infosecplaybook.com/",
     imageFit: "contain",
+    isbn: "978-1491949405",
+    publisher: {
+      name: "O'Reilly Media",
+      url: "https://www.oreilly.com/",
+    },
   },
   {
     imageSrc: "/static/media/broken-disk.5b8ebec8d7f8f022e876.png",
@@ -42,6 +51,10 @@ export const publications: Publication[] = [
       "Cisco blog post highlighting our encounter with a malspam campaign that misused the .IMG file extension and lessons learned.",
     linkHref:
       "https://blogs.cisco.com/security/disk-image-deception-incident-response",
+    publisher: {
+      name: "Cisco Systems, Inc.",
+      url: "https://www.cisco.com/",
+    },
   },
   {
     imageSrc: "/static/media/kill-chain.0ddaf11be14699561ffc.png",
@@ -66,6 +79,10 @@ export const publications: Publication[] = [
       "Blog on pitfalls of overconfidence in cybersecurity incident response, highlighting the Dunning–Kruger effect and emphasizing robust methodology.",
     linkHref:
       "https://blogs.cisco.com/security/cognitive-bias-in-incident-response",
+    publisher: {
+      name: "Cisco Systems, Inc.",
+      url: "https://www.cisco.com/",
+    },
   },
   {
     imageSrc: "/static/media/schiltron.d0ca5c27d5b5cfee981e.png",
@@ -171,6 +188,10 @@ export const publications: Publication[] = [
       "Discussed enterprise scale security observability for incident response and threat detection on the Google Cloud Security Podcast.",
     linkHref:
       "https://cloud.withgoogle.com/cloudsecurity/podcast/ep96-cloud-security-observability-for-detection-and-response/",
+    publisher: {
+      name: "Google Cloud",
+      url: "https://cloud.withgoogle.com/",
+    },
   },
   {
     imageSrc:
@@ -188,6 +209,10 @@ export const publications: Publication[] = [
       "Collection of security blog posts authored for Cisco covering incident response, web security, and threat analysis.",
     linkHref: "https://blogs.cisco.com/author/jeffbollinger",
     imageFit: "contain",
+    publisher: {
+      name: "Cisco Systems, Inc.",
+      url: "https://www.cisco.com/",
+    },
   },
   {
     imageSrc:
@@ -258,6 +283,10 @@ export const publications: Publication[] = [
       "Quoted in the Cisco Cybersecurity Series whitepaper on threat hunting methodologies and best practices.",
     linkHref:
       "https://www.cisco.com/c/dam/global/en_uk/products/collateral/cybersecurity-series-2019-threat-hunting.pdf",
+    publisher: {
+      name: "Cisco Systems, Inc.",
+      url: "https://www.cisco.com/",
+    },
   },
   {
     imageSrc: "/static/media/cisco-it-case-study-web-security.jpeg",
@@ -266,6 +295,10 @@ export const publications: Publication[] = [
       "Cisco IT case study on deploying web security appliances to protect the enterprise network.",
     linkHref:
       "https://www.cisco.com/c/dam/en_us/about/ciscoitatwork/borderless_networks/docs/cisco_it_case_study_wsa.pdf",
+    publisher: {
+      name: "Cisco Systems, Inc.",
+      url: "https://www.cisco.com/",
+    },
   },
   {
     imageSrc: "/static/media/cisco-datacenter-network-ips.jpeg",
@@ -274,6 +307,10 @@ export const publications: Publication[] = [
       "Case study on CSIRT's deployment of network-based intrusion prevention systems in Cisco data centers.",
     linkHref:
       "https://www.cisco.com/c/dam/en_us/about/ciscoitatwork/downloads/ciscoitatwork/pdf/CSIRT_Network-Based_Intrusion_Prevention_System_Case_Study.pdf",
+    publisher: {
+      name: "Cisco Systems, Inc.",
+      url: "https://www.cisco.com/",
+    },
   },
   {
     imageSrc: "/static/media/unc-sils-article-logo.png",

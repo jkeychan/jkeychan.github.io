@@ -18,6 +18,7 @@ export type Publication = {
   videoId?: string;
   videoPlatform?: "youtube" | "vimeo";
   publisher?: { name: string; url: string };
+  isbn?: string;
   eventData?: EventData;
 };
 
