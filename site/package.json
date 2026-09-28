@@ -6,7 +6,10 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "checksums": "cd public/static/media && shasum -a 256 Jeff_Bollinger-Resume-2026.* > SHA256SUMS",
+    "predev": "npm run checksums",
+    "prebuild": "npm run checksums"
   },
   "dependencies": {
     "next": "^16.3.6",
