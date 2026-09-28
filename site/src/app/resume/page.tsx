@@ -68,7 +68,7 @@ export default function ResumePage() {
               .tex source &rarr;
             </a>
           </div>
-          <div className="border border-[rgba(0,229,229,0.15)] overflow-hidden h-[80vh]">
+          <div className="border border-[rgba(0,229,229,0.15)] overflow-hidden">
             <ResumeViewer />
           </div>
         </div>

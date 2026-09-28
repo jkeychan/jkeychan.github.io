@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 
 const MEDIA = "/static/media/";
@@ -19,7 +19,16 @@ const LS_OUTPUT = `total 208
 const PRE =
   "mt-1 mb-3 font-[inherit] overflow-x-auto [scrollbar-width:thin] [scrollbar-color:rgba(0,229,229,0.25)_transparent]";
 
-type Phase = "ls" | "hash" | "check" | "open" | "progress" | "done" | "viewer";
+const PHASES = [
+  "ls",
+  "hash",
+  "check",
+  "open",
+  "progress",
+  "done",
+  "viewer",
+] as const;
+type Phase = (typeof PHASES)[number];
 
 type Sum = { name: string; actual: string | null; ok: boolean };
 
@@ -58,7 +67,16 @@ async function checksums(): Promise<Sum[]> {
   );
 }
 
-function Prompt({ cmd }: { cmd: string }) {
+function Cursor() {
+  return (
+    <span
+      className="cursor-blink inline-block w-[8px] h-[13px] bg-terminal-cyan align-middle ml-1"
+      aria-hidden="true"
+    />
+  );
+}
+
+function Prompt({ cmd, children }: { cmd: string; children?: ReactNode }) {
   return (
     <div>
       <span className="text-terminal-cyan">jeff@terminal</span>
@@ -66,6 +84,7 @@ function Prompt({ cmd }: { cmd: string }) {
       <span className="text-[rgba(0,229,229,0.5)]">~/documents/resume</span>
       <span className="text-terminal-cyan-35"> $ </span>
       <span className="text-terminal-cyan">{cmd}</span>
+      {children}
     </div>
   );
 }
@@ -140,112 +159,111 @@ export function ResumeViewer() {
     return () => clearTimeout(t);
   }, [phase]);
 
-  if (prefersReducedMotion || phase === "viewer") {
-    return (
-      <div className="w-full h-full animate-fade-in">
-        <iframe
-          title="Jeff Bollinger Resume"
-          src={PDF_SRC}
-          className="w-full h-full"
+  const reached = (p: Phase) => PHASES.indexOf(phase) >= PHASES.indexOf(p);
+
+  const viewer = (
+    <iframe
+      title="Jeff Bollinger Resume"
+      src={PDF_SRC}
+      className="w-full h-[80vh]"
+    >
+      <p className="text-[12px] text-terminal-cyan-35 p-4">
+        PDF preview unavailable.{" "}
+        <a
+          href={PDF_SRC}
+          className="text-terminal-cyan underline"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          <p className="text-[12px] text-terminal-cyan-35 p-4">
-            PDF preview unavailable.{" "}
-            <a
-              href={PDF_SRC}
-              className="text-terminal-cyan underline"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Download PDF directly
-            </a>
-          </p>
-        </iframe>
-      </div>
-    );
-  }
+          Download PDF directly
+        </a>
+      </p>
+    </iframe>
+  );
+
+  if (prefersReducedMotion) return viewer;
 
   return (
-    <div className="w-full h-full bg-terminal-bg p-6 text-[13px] leading-[1.9] overflow-hidden">
-      <Prompt cmd="ls -lh" />
+    <>
+      <div className="w-full bg-terminal-bg p-6 text-[13px] leading-[1.9]">
+        <Prompt cmd="ls -lh" />
+        {phase === "ls" && <Cursor />}
 
-      {/* ls output */}
-      {phase !== "ls" && (
-        <pre className={`${PRE} text-terminal-cyan-35`}>{LS_OUTPUT}</pre>
-      )}
+        {reached("hash") && (
+          <>
+            <pre className={`${PRE} text-terminal-cyan-35`}>{LS_OUTPUT}</pre>
+            {/* hash files in the browser */}
+            <Prompt cmd="sha256sum Jeff_Bollinger-Resume-2026.*" />
+            {sums ? (
+              <pre className={`${PRE} text-terminal-cyan-35`}>
+                {sums
+                  .map(({ name, actual }) =>
+                    actual
+                      ? `${actual}  ${name}`
+                      : `sha256sum: ${name}: No such file or directory`,
+                  )
+                  .join("\n")}
+              </pre>
+            ) : (
+              <Cursor />
+            )}
+          </>
+        )}
 
-      {/* hash files in the browser */}
-      {phase !== "ls" && (
-        <>
-          <Prompt cmd="sha256sum Jeff_Bollinger-Resume-2026.*" />
-          {sums ? (
-            <pre className={`${PRE} text-terminal-cyan-35`}>
-              {sums
-                .map(({ name, actual }) =>
-                  actual
-                    ? `${actual}  ${name}`
-                    : `sha256sum: ${name}: No such file or directory`,
-                )
-                .join("\n")}
+        {/* verify against published checksums */}
+        {sums && reached("check") && (
+          <>
+            <Prompt cmd="sha256sum -c SHA256SUMS" />
+            <pre className={PRE}>
+              {sums.map(({ name, actual, ok }) => (
+                <div key={name} className="text-terminal-cyan-35">
+                  {name}:{" "}
+                  <span className={ok ? "text-terminal-cyan" : "text-red-400"}>
+                    {ok ? "OK" : actual ? "FAILED" : "FAILED open or read"}
+                  </span>
+                </div>
+              ))}
             </pre>
-          ) : (
-            <span
-              className="cursor-blink inline-block w-[8px] h-[13px] bg-terminal-cyan align-middle ml-1"
-              aria-hidden="true"
-            />
-          )}
-        </>
-      )}
+          </>
+        )}
 
-      {/* verify against published checksums */}
-      {sums && phase !== "hash" && (
-        <>
-          <Prompt cmd="sha256sum -c SHA256SUMS" />
-          <pre className={PRE}>
-            {sums.map(({ name, actual, ok }) => (
-              <div key={name} className="text-terminal-cyan-35">
-                {name}:{" "}
-                <span className={ok ? "text-terminal-cyan" : "text-red-400"}>
-                  {ok ? "OK" : actual ? "FAILED" : "FAILED open or read"}
-                </span>
-              </div>
-            ))}
-          </pre>
-        </>
-      )}
+        {reached("open") && (
+          <Prompt cmd="open Jeff_Bollinger-Resume-2026.pdf" />
+        )}
 
-      {(phase === "open" || phase === "progress" || phase === "done") && (
-        <Prompt cmd="open Jeff_Bollinger-Resume-2026.pdf" />
-      )}
-
-      {/* progress bar */}
-      {(phase === "progress" || phase === "done") && (
-        <div className="mt-2 text-terminal-cyan-35">
-          <div>
+        {reached("progress") && (
+          <div className="mt-2 text-terminal-cyan-35">
             Rendering pages <ProgressBar value={progress} />{" "}
             <span className="text-terminal-cyan">{progress}%</span>
           </div>
+        )}
+
+        {reached("done") && (
+          <div className="mt-1 text-terminal-cyan">
+            Document ready.{" "}
+            <span className="text-terminal-cyan-35">
+              {phase === "done"
+                ? "Launching viewer"
+                : "Opened in viewer below."}
+            </span>
+            {phase === "done" && <Cursor />}
+          </div>
+        )}
+
+        {phase === "viewer" && (
+          <div className="mt-3">
+            <Prompt cmd="">
+              <Cursor />
+            </Prompt>
+          </div>
+        )}
+      </div>
+
+      {phase === "viewer" && (
+        <div className="border-t border-[rgba(0,229,229,0.15)] animate-fade-in">
+          {viewer}
         </div>
       )}
-
-      {/* done */}
-      {phase === "done" && (
-        <div className="mt-1 text-terminal-cyan">
-          Document ready.{" "}
-          <span className="text-terminal-cyan-35">Launching viewer</span>
-          <span
-            className="cursor-blink inline-block w-[8px] h-[13px] bg-terminal-cyan align-middle ml-1"
-            aria-hidden="true"
-          />
-        </div>
-      )}
-
-      {/* idle cursor on ls phase */}
-      {phase === "ls" && (
-        <span
-          className="cursor-blink inline-block w-[8px] h-[13px] bg-terminal-cyan align-middle ml-1"
-          aria-hidden="true"
-        />
-      )}
-    </div>
+    </>
   );
 }
