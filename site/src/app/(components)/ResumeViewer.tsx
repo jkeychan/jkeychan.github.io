@@ -23,10 +23,7 @@ export function ResumeViewer() {
   const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
-    if (prefersReducedMotion) {
-      setPhase("viewer");
-      return;
-    }
+    if (prefersReducedMotion) return;
     const t1 = setTimeout(() => setPhase("open"), 700);
     const t2 = setTimeout(() => setPhase("progress"), 1300);
     return () => {
@@ -55,7 +52,7 @@ export function ResumeViewer() {
     return () => clearTimeout(t);
   }, [phase]);
 
-  if (phase === "viewer") {
+  if (prefersReducedMotion || phase === "viewer") {
     return (
       <div className="w-full h-full animate-fade-in">
         <iframe
